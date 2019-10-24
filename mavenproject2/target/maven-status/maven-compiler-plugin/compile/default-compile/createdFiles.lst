@@ -1,4 +1,7 @@
 com\mycompany\mavenproject2\MainApp.class
 com\mycompany\mavenproject2\FXMLController.class
+NewLoginController.class
+RegisterController.class
 com\mycompany\mavenproject2\sqliteConnect.class
+HomeController.class
 com\mycompany\mavenproject2\Login.class

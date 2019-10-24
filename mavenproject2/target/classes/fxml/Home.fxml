@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <HBox prefHeight="55.0" prefWidth="600.0" style="-fx-background-color: lightblue;" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="55.0" prefWidth="600.0">
+               <children>
+                  <Label layoutX="219.0" layoutY="12.0" text="MooneyBook" textFill="#881010">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <HBox layoutY="51.0" prefHeight="54.0" prefWidth="600.0" style="-fx-background-color: lightgreen;">
+                     <children>
+                        <AnchorPane prefHeight="54.0" prefWidth="601.0" style="-fx-border-color: black;">
+                           <children>
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="14.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../gambar/save-money.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="6.0" layoutY="34.0" text="Pemasukkan">
+                                 <font>
+                                    <Font size="8.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="13.833343505859375" endY="-25.0" layoutX="45.0" layoutY="30.0" startX="13.833343505859375" startY="15.666671752929688" />
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="74.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../gambar/give-money.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="67.0" layoutY="34.0" text="Pengeluaran">
+                                 <font>
+                                    <Font size="8.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="13.833343505859375" endY="-25.0" layoutX="106.0" layoutY="30.0" startX="13.833343505859375" startY="15.666671752929688" />
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="141.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../gambar/peminjaman.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="134.0" layoutY="34.0" text="Peminjaman">
+                                 <font>
+                                    <Font size="8.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="13.833343505859375" endY="-25.0" layoutX="172.0" layoutY="30.0" startX="13.833343505859375" startY="15.666671752929688" />
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="202.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../gambar/budget.png" />
+                                 </image>
+                              </ImageView>
+                              <Line endX="13.833343505859375" endY="-25.0" layoutX="232.0" layoutY="29.0" startX="13.833343505859375" startY="15.666671752929688" />
+                              <Label layoutX="199.0" layoutY="34.0" text="Anggaran">
+                                 <font>
+                                    <Font size="8.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="261.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../gambar/kategori.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="261.0" layoutY="34.0" text="Kategori">
+                                 <font>
+                                    <Font size="8.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="13.833343505859375" endY="-25.0" layoutX="293.0" layoutY="30.0" startX="13.833343505859375" startY="15.666671752929688" />
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="324.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../gambar/llaporan.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="324.0" layoutY="34.0" text="Laporan">
+                                 <font>
+                                    <Font size="8.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="398.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../gambar/laporan%20bulanan.png" />
+                                 </image>
+                              </ImageView>
+                              <Line endX="13.833343505859375" endY="-25.0" layoutX="437.0" layoutY="31.0" startX="13.833343505859375" startY="15.666671752929688" />
+                              <Label layoutX="382.0" layoutY="34.0" text="Laporan Bulanan">
+                                 <font>
+                                    <Font size="8.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="13.833343505859375" endY="-25.0" layoutX="355.0" layoutY="31.0" startX="13.833343505859375" startY="15.666671752929688" />
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="465.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../gambar/money.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="465.0" layoutY="35.0" text="DOMPET">
+                                 <font>
+                                    <Font size="8.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="539.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../gambar/settings.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="541.0" layoutY="38.0" text="Setting">
+                                 <font>
+                                    <Font size="8.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="13.833343505859375" endY="-25.0" layoutX="496.0" layoutY="31.0" startX="13.833343505859375" startY="15.666671752929688" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </top>
+</BorderPane>

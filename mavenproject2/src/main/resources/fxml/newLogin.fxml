@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="401.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller=".NewLoginController">
+    <stylesheets>
+        <URL value="@/styles/newlogin.css" />
+    </stylesheets>
+   <children>
+      <TextField id="tfUsername" layoutX="118.0" layoutY="138.0" promptText="Username" />
+      <PasswordField id="f" layoutX="118.0" layoutY="181.0" promptText="Password" />
+      <Label layoutX="76.0" layoutY="77.0" text="Mooney Book">
+         <font>
+            <Font name="Bodoni MT Black" size="33.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#ce0707" />
+                  <Stop color="#cbef00" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="63.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../gambar/user-png-icon-account-avatar-human-male-man-men-people-person-download-svg-download-png-edit-icon-512.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="47.0" layoutX="63.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../gambar/locked+login+password+privacy+private+protect+protection+safe-1320196167397530530.png" />
+         </image>
+      </ImageView>
+      <Button id="btnLogin" layoutX="118.0" layoutY="222.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Login" />
+      <Button layoutX="118.0" layoutY="257.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Register" />
+   </children>
+</AnchorPane>
