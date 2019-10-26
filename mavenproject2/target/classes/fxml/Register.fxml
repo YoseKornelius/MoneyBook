@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="538.0" style="-fx-background-color: #00ff43;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.RegisterController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="538.0" style="-fx-background-color: #00ff43;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.RegisterController">
     <stylesheets>
         <URL value="@/styles/register.css" />
     </stylesheets>
    <children>
-      <TextField layoutX="201.0" layoutY="91.0" promptText="Username" />
-      <TextField layoutX="201.0" layoutY="139.0" promptText="Email" />
-      <PasswordField layoutX="201.0" layoutY="188.0" promptText="Password" />
+      <TextField fx:id="user" layoutX="201.0" layoutY="91.0" promptText="Username" />
+      <TextField fx:id="e" layoutX="201.0" layoutY="139.0" promptText="Email" />
+      <PasswordField fx:id="pass" layoutX="201.0" layoutY="188.0" promptText="Password" />
       <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="139.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../gambar/user-png-icon-account-avatar-human-male-man-men-people-person-download-svg-download-png-edit-icon-512.png" />
@@ -33,8 +33,8 @@
             <Image url="@../gambar/password.png" />
          </image>
       </ImageView>
-      <Button id="btnRegister" layoutX="199.0" layoutY="282.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Register" />
-      <PasswordField layoutX="199.0" layoutY="236.0" promptText="Konfirmasi Password" />
+      <Button id="btnRegister" layoutX="198.0" layoutY="309.0" mnemonicParsing="false" onAction="#regis" prefHeight="25.0" prefWidth="149.0" text="Register" />
+      <PasswordField fx:id="konfpass" layoutX="199.0" layoutY="236.0" promptText="Konfirmasi Password" />
       <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="139.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../gambar/password.png" />
@@ -45,6 +45,7 @@
             <Font name="Bookman Old Style Bold" size="39.0" />
          </font>
       </Label>
-      <Button id="btnRegister" fx:id="btnKembali" layoutX="199.0" layoutY="323.0" mnemonicParsing="false" onAction="#klikKembali" prefHeight="25.0" prefWidth="149.0" text="Kembali" />
+      <Button id="btnRegister" fx:id="btnKembali" layoutX="198.0" layoutY="343.0" mnemonicParsing="false" onAction="#klikKembali" prefHeight="25.0" prefWidth="149.0" text="Kembali" />
+      <Label fx:id="cek" alignment="CENTER" layoutX="158.0" layoutY="277.0" prefHeight="18.0" prefWidth="233.0" textAlignment="CENTER" textFill="#fd0c0c" />
    </children>
 </AnchorPane>

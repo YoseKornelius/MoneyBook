@@ -24,6 +24,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -45,12 +46,13 @@ public class NewLoginController implements Initializable {
     private Button btnRegister;
     
     @FXML
-    private void tombolLogin(ActionEvent event) throws SQLException, IOException {
-        
+    private Label cek;
+    
+    @FXML
+    public void tombolLogin(ActionEvent event) throws SQLException, IOException {
         Connection connection = sqliteConnect.connect().Connector();
         Statement statement;
         statement = connection.createStatement();
-        System.out.print("bisa akses db");
         String username = tfUsername.getText();
         String password = tpPassword.getText();
         String query = "SELECT * from user where username ='"+username+"' and password ='"+password+"'";
@@ -64,7 +66,7 @@ public class NewLoginController implements Initializable {
                 window.show();
                /* notif.setText("Berhasil Masuk") */
             }else{
-
+                cek.setText("Username / password salah");
                 /*notif.setText("Username atau Password anda Salah")*/
             }
     }
@@ -91,6 +93,14 @@ public class NewLoginController implements Initializable {
     }    
      
 }
+
+
+
+
+
+
+
+
 
 
 

@@ -19,13 +19,13 @@ public class sqliteConnect {
         try{
             Class.forName("org.sqlite.JDBC");
             Connection conn = DriverManager.getConnection("jdbc:sqlite:MoneyBook.db");
-            System.out.print(conn);
             return conn;
         }catch(Exception c){
             return null;
         }
     }
 }
+
 
 
 
