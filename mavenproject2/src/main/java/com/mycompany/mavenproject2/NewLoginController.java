@@ -38,36 +38,38 @@ public class NewLoginController implements Initializable {
     private TextField tfUsername;
     
     @FXML
-    private PasswordField pass;
+    private PasswordField tpPassword;
     
     @FXML
     private Button btnLogin;
     private Button btnRegister;
     
-     private void tombolLogin(ActionEvent event) throws SQLException, IOException {
-        //ini belu tau gan jadi tk comment dulu
-//        Connection connection = sqliteConnect.connect().Connector();
-//        Statement statement;
-//        statement = connection.createStatement();
-//        System.out.print("bisa akses db");
-//        String username = tfUsername.getText();
-//        String password = pass.getText();
-//        String query = "SELECT * from user where username ='"+username+"' and password ='"+password+"'";
-//        ResultSet rs = statement.executeQuery(query);
-//            if(rs.next()){
-//                Parent root = FXMLLoader.load(getClass().getResource("/fxml/Home.fxml"));        
-//                Scene scene = new Scene(root);
-//                scene.getStylesheets().add("/styles/Styles.css");
-//                Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-//                window.setScene(scene);
-//                window.show();
-//               /* notif.setText("Berhasil Masuk") */
-//            }else{
-//
-//                /*notif.setText("Username atau Password anda Salah")*/
-//            }
-//    }
+    @FXML
+    private void tombolLogin(ActionEvent event) throws SQLException, IOException {
+        
+        Connection connection = sqliteConnect.connect().Connector();
+        Statement statement;
+        statement = connection.createStatement();
+        System.out.print("bisa akses db");
+        String username = tfUsername.getText();
+        String password = tpPassword.getText();
+        String query = "SELECT * from user where username ='"+username+"' and password ='"+password+"'";
+        ResultSet rs = statement.executeQuery(query);
+            if(rs.next()){
+                Parent root = FXMLLoader.load(getClass().getResource("/fxml/Home.fxml"));        
+                Scene scene = new Scene(root);
+                scene.getStylesheets().add("/styles/Styles.css");
+                Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                window.setScene(scene);
+                window.show();
+               /* notif.setText("Berhasil Masuk") */
+            }else{
+
+                /*notif.setText("Username atau Password anda Salah")*/
+            }
+    }
     
+    @FXML
     public void Register(ActionEvent event) throws Exception{
         
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Register.fxml"));        
@@ -89,3 +91,6 @@ public class NewLoginController implements Initializable {
     }    
      
 }
+
+
+

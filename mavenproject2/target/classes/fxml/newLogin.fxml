@@ -43,6 +43,6 @@
          </image>
       </ImageView>      
       <Button id="btnLogin" fx:id="btnPassword" layoutX="118.0" layoutY="262.0" mnemonicParsing="false" onAction="#Register" prefHeight="25.0" prefWidth="149.0" text="Register" />
-      <Button fx:id="btnLogin" layoutX="118.0" layoutY="227.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Login" />      
+      <Button fx:id="btnLogin" layoutX="118.0" layoutY="227.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Login" onAction="#tombolLogin"  />      
    </children>
 </AnchorPane>
