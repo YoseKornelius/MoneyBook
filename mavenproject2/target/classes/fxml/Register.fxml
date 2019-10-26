@@ -10,40 +10,41 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller=".RegisterController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="538.0" style="-fx-background-color: #00ff43;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.RegisterController">
     <stylesheets>
         <URL value="@/styles/register.css" />
     </stylesheets>
    <children>
-      <TextField layoutX="200.0" layoutY="131.0" promptText="Username" />
-      <TextField layoutX="200.0" layoutY="179.0" promptText="Email" />
-      <PasswordField layoutX="200.0" layoutY="228.0" promptText="Password" />
-      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="138.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true">
+      <TextField layoutX="201.0" layoutY="91.0" promptText="Username" />
+      <TextField layoutX="201.0" layoutY="139.0" promptText="Email" />
+      <PasswordField layoutX="201.0" layoutY="188.0" promptText="Password" />
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="139.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../gambar/user-png-icon-account-avatar-human-male-man-men-people-person-download-svg-download-png-edit-icon-512.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="138.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="139.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../gambar/email.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="138.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="139.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../gambar/password.png" />
          </image>
       </ImageView>
-      <Button id="btnRegister" layoutX="198.0" layoutY="322.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Register" />
-      <PasswordField layoutX="198.0" layoutY="276.0" promptText="Konfirmasi Password" />
-      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="138.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
+      <Button id="btnRegister" layoutX="199.0" layoutY="282.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Register" />
+      <PasswordField layoutX="199.0" layoutY="236.0" promptText="Konfirmasi Password" />
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="139.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../gambar/password.png" />
          </image>
       </ImageView>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="132.0" layoutY="22.0" prefHeight="56.0" prefWidth="281.0" text="Register">
          <font>
-            <Font size="39.0" />
+            <Font name="Bookman Old Style Bold" size="39.0" />
          </font>
       </Label>
+      <Button id="btnRegister" fx:id="btnKembali" layoutX="199.0" layoutY="323.0" mnemonicParsing="false" onAction="#klikKembali" prefHeight="25.0" prefWidth="149.0" text="Kembali" />
    </children>
 </AnchorPane>

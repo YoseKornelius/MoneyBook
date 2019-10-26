@@ -37,9 +37,11 @@ public class FXMLController implements Initializable {
             if(rs.next()){
                 txt.setText(query);
                 Status.setText("berhasil");
+               /* notif.setText("Berhasil Masuk") */
             }else{
                 txt.setText("GAGAL KONTOL");
                 Status.setText("GAGAL SU...");
+                /*notif.setText("Username atau Password anda Salah")*/
             }
     }
     
