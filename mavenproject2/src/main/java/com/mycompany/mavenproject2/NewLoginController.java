@@ -6,6 +6,7 @@ package com.mycompany.mavenproject2;
  * and open the template in the editor.
  */
 
+import com.sun.istack.internal.logging.Logger;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -13,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -35,6 +37,10 @@ import javafx.stage.Stage;
  * @author ASUS
  */
 public class NewLoginController implements Initializable {
+
+    /**
+     * @return the nama
+     */
     @FXML
     private TextField tfUsername;
     
@@ -46,7 +52,8 @@ public class NewLoginController implements Initializable {
     private Button btnRegister;
     
     @FXML
-    private Label cek;
+    private Label cek, lbBerubah;
+    private String nama;
     
     @FXML
     public void tombolLogin(ActionEvent event) throws SQLException, IOException {
@@ -58,13 +65,38 @@ public class NewLoginController implements Initializable {
         String query = "SELECT * from user where username ='"+username+"' and password ='"+password+"'";
         ResultSet rs = statement.executeQuery(query);
             if(rs.next()){
-                Parent root = FXMLLoader.load(getClass().getResource("/fxml/Home.fxml"));        
-                Scene scene = new Scene(root);
-                scene.getStylesheets().add("/styles/Styles.css");
-                Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-                window.setScene(scene);
-                window.show();
-               /* notif.setText("Berhasil Masuk") */
+                nama = rs.getString(2);
+                lbBerubah.setText(nama);
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Home.fxml"));
+                    Parent root = (Parent) loader.load();
+                    
+                    HomeController home = loader.getController();
+                    home.myFunction(tfUsername.getText());
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                //lbBerubah.setText(nama);
+//                FXMLLoader Loader = new FXMLLoader();
+//                Loader.setLocation(getClass().getResource("/fxml/Home.fxml"));
+//                try {
+//                    Loader.load();
+//                } catch (IOException e) {
+//                    //Logger.getLogger(NewLoginController.class.getName()).log(Level.SEVERE, null, e);
+//                }
+//                HomeController home = Loader.getController();
+//                home.setUsername(nama);
+                //berpindah ke form home
+//                Parent root = FXMLLoader.load(getClass().getResource("/fxml/Home.fxml"));                        
+//                Scene scene = new Scene(root);
+//                scene.getStylesheets().add("/styles/Styles.css");
+//                Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+//                window.setScene(scene);
+//                window.show();
+//               /* notif.setText("Berhasil Masuk") */
             }else{
                 cek.setText("Username / password salah");
                 /*notif.setText("Username atau Password anda Salah")*/

@@ -12,7 +12,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="401.0" style="-fx-background-color: #00FFFF;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.NewLoginController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="401.0" style="-fx-background-color: #00FFFF;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.NewLoginController">
     <stylesheets>
         <URL value="@/styles/newlogin.css" />
     </stylesheets>
@@ -44,6 +44,7 @@
       </ImageView>      
       <Button id="btnLogin" fx:id="btnPassword" layoutX="126.0" layoutY="298.0" mnemonicParsing="false" onAction="#Register" prefHeight="25.0" prefWidth="149.0" text="Register" />
       <Button fx:id="btnLogin" layoutX="126.0" layoutY="259.0" mnemonicParsing="false" onAction="#tombolLogin" prefHeight="25.0" prefWidth="149.0" text="Login" />
-      <Label fx:id="cek" alignment="CENTER" layoutX="95.0" layoutY="220.0" prefHeight="18.0" prefWidth="210.0" text=" " textAlignment="CENTER" textFill="#ff1a1a" />      
+      <Label fx:id="cek" alignment="CENTER" layoutX="95.0" layoutY="220.0" prefHeight="18.0" prefWidth="210.0" text=" " textAlignment="CENTER" textFill="#ff1a1a" />
+      <Label fx:id="lbBerubah" layoutX="126.0" layoutY="230.0" text="berubah" />      
    </children>
 </AnchorPane>
