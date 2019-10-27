@@ -53,7 +53,7 @@ public class NewLoginController implements Initializable {
     
     @FXML
     private Label cek, lbBerubah;
-    private String nama;
+    private String nama, idUser;
     
     @FXML
     public void tombolLogin(ActionEvent event) throws SQLException, IOException {
@@ -65,42 +65,27 @@ public class NewLoginController implements Initializable {
         String query = "SELECT * from user where username ='"+username+"' and password ='"+password+"'";
         ResultSet rs = statement.executeQuery(query);
             if(rs.next()){
-                nama = rs.getString(2);
-                lbBerubah.setText(nama);
+                idUser = rs.getString(1);
+                System.out.println("login"+idUser);
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Home.fxml"));
                     Parent root = (Parent) loader.load();
+                    Scene scene = new Scene(root);
+                    scene.getStylesheets().add("/styles/Styles.css");
                     
                     HomeController home = loader.getController();
-                    home.myFunction(tfUsername.getText());
-                    Stage stage = new Stage();
-                    stage.setScene(new Scene(root));
+                    home.setLabelUsername(tfUsername.getText(), idUser);
+                    Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                    stage.setScene(scene);
                     stage.show();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                //lbBerubah.setText(nama);
-//                FXMLLoader Loader = new FXMLLoader();
-//                Loader.setLocation(getClass().getResource("/fxml/Home.fxml"));
-//                try {
-//                    Loader.load();
-//                } catch (IOException e) {
-//                    //Logger.getLogger(NewLoginController.class.getName()).log(Level.SEVERE, null, e);
-//                }
-//                HomeController home = Loader.getController();
-//                home.setUsername(nama);
-                //berpindah ke form home
-//                Parent root = FXMLLoader.load(getClass().getResource("/fxml/Home.fxml"));                        
-//                Scene scene = new Scene(root);
-//                scene.getStylesheets().add("/styles/Styles.css");
-//                Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-//                window.setScene(scene);
-//                window.show();
-//               /* notif.setText("Berhasil Masuk") */
             }else{
                 cek.setText("Username / password salah");
                 /*notif.setText("Username atau Password anda Salah")*/
             }
+            connection.close();
     }
     
     @FXML

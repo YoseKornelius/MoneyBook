@@ -42,9 +42,8 @@
             <Image url="@../gambar/password.png" />
          </image>
       </ImageView>      
-      <Button id="btnLogin" fx:id="btnPassword" layoutX="126.0" layoutY="298.0" mnemonicParsing="false" onAction="#Register" prefHeight="25.0" prefWidth="149.0" text="Register" />
-      <Button fx:id="btnLogin" layoutX="126.0" layoutY="259.0" mnemonicParsing="false" onAction="#tombolLogin" prefHeight="25.0" prefWidth="149.0" text="Login" />
-      <Label fx:id="cek" alignment="CENTER" layoutX="95.0" layoutY="220.0" prefHeight="18.0" prefWidth="210.0" text=" " textAlignment="CENTER" textFill="#ff1a1a" />
-      <Label fx:id="lbBerubah" layoutX="126.0" layoutY="230.0" text="berubah" />      
+      <Button id="btnLogin" fx:id="btnPassword" layoutX="118.0" layoutY="301.0" mnemonicParsing="false" onAction="#Register" prefHeight="25.0" prefWidth="149.0" text="Register" />
+      <Button fx:id="btnLogin" layoutX="118.0" layoutY="258.0" mnemonicParsing="false" onAction="#tombolLogin" prefHeight="25.0" prefWidth="149.0" text="Login" />
+      <Label fx:id="cek" alignment="CENTER" layoutX="95.0" layoutY="220.0" prefHeight="18.0" prefWidth="210.0" text=" " textAlignment="CENTER" textFill="#ff1a1a" />      
    </children>
 </AnchorPane>
