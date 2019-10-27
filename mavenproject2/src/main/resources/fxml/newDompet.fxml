@@ -29,6 +29,5 @@
       <Label layoutX="79.0" layoutY="131.0" text="Nama Dompet:" />
       <TextField fx:id="tfNamaDompet" layoutX="79.0" layoutY="148.0" />
       <Button fx:id="btnTambahDompet" layoutX="79.0" layoutY="185.0" mnemonicParsing="false" onAction="#tambahDompet" text="Tambah" />
-      <Label fx:id="lbcekID" layoutX="282.0" layoutY="131.0" text="Label" />
    </children>
 </AnchorPane>

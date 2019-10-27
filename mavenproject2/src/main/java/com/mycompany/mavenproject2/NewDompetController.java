@@ -38,8 +38,7 @@ public class NewDompetController implements Initializable {
     @FXML
     private TextField tfNamaDompet;
     
-    @FXML
-    private Label lbcekID;
+    
     
     @FXML
     public void tambahDompet(ActionEvent event) throws Exception{
@@ -48,7 +47,6 @@ public class NewDompetController implements Initializable {
         statement = connection.createStatement();
         String namaDompet = tfNamaDompet.getText();   
         String id = idUser;
-        lbcekID.setText(id);
         String query = "INSERT INTO dompet(id_user, nama_dompet) VALUES('"+id+"','"+namaDompet+"')";
         int hasil = statement.executeUpdate(query);
         if(hasil==1){

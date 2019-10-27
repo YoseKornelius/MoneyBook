@@ -5,6 +5,7 @@
  */
 package com.mycompany.mavenproject2;
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -19,9 +20,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -37,7 +41,15 @@ public class HomeController implements Initializable {
     private String idUser;
     
     @FXML
-    public void tambahPengeluaran(ActionEvent event) throws SQLException, IOException {
+    private ImageView imgPemasukkan;
+    
+    @FXML
+    private ImageView imgTambahPengeluaran;
+    
+    
+    
+    @FXML
+    public void tambahPengeluaran(MouseEvent event) throws SQLException, IOException {
         Connection connection = sqliteConnect.connect().Connector();
         Statement statement;
         statement = connection.createStatement();
