@@ -59,6 +59,7 @@ public class NewDompetController implements Initializable {
         }else{
             
         }
+        statement.close();
         connection.close();
     }
     

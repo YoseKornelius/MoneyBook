@@ -111,7 +111,7 @@
                                     <Font size="8.0" />
                                  </font>
                               </Label>
-                              <ImageView fx:id="gmbrSetting" fitHeight="29.0" fitWidth="29.0" layoutX="539.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView onMouseClicked="#edit"  fx:id="gmbrSetting" fitHeight="29.0" fitWidth="29.0" layoutX="539.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/user-png-icon-account-avatar-human-male-man-men-people-person-download-svg-download-png-edit-icon-512.png" />
                                  </image>

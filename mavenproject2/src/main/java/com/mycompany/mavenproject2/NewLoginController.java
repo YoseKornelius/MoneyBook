@@ -85,7 +85,9 @@ public class NewLoginController implements Initializable {
                 cek.setText("Username / password salah");
                 /*notif.setText("Username atau Password anda Salah")*/
             }
-            connection.close();
+            statement.close();
+        connection.close();
+        rs.close();
     }
     
     @FXML

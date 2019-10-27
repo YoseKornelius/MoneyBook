@@ -80,7 +80,8 @@ public class RegisterController implements Initializable {
             cek.setText("Password tidak sesuai");
         }
         
-        
+        connection.close();
+        statement.close();
  
     }
     

@@ -7,8 +7,24 @@ package com.mycompany.mavenproject2;
  */
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -20,9 +36,123 @@ public class SettingProfileController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    private String idUser;
+    
+    @FXML
+    private Label lbUsername, lbEmail, lbPassword;
+    
+    @FXML
+    private TextField tfUsername, tfEmail;
+    
+    @FXML
+    private PasswordField pfPassword, pfKonfirPassword;
+    
+    @FXML
+    private Button btnEditProfil, btnHapusAkun, btnLogout, btnSelesai;
+    
+    @FXML
+    public void editProfil(ActionEvent event) throws Exception{
+        if(pfPassword.getText().equals(pfKonfirPassword.getText())){  
+            try {
+                Class.forName("org.sqlite.JDBC");
+                Connection c = DriverManager.getConnection("jdbc:sqlite:MoneyBook.db");
+                c.setAutoCommit(false);
+                Statement stmt;
+                stmt = c.createStatement();
+                
+                String update = "UPDATE user SET username = '"+tfUsername.getText()+"', email = '"+tfEmail.getText()+"', password = '"+pfPassword.getText()+"' where id_user = '"+idUser+"'";
+                stmt.executeUpdate(update);
+                System.out.println(update);
+                stmt.close();
+                stmt.close();
+                c.close();
+            } catch (Exception e) {
+                System.err.print( e.getClass().getName() + ": " + e.getMessage());
+            }
+        }
+        
+//        if(pfPassword.getText().equals(pfKonfirPassword.getText())){  
+//            Connection connection = sqliteConnect.connect().Connector();
+//            Statement statement;
+//            statement = connection.createStatement();
+//            String query = "UPDATE user SET username = '"+tfUsername.getText()+"', email = '"+tfEmail.getText()+"', password = '"+pfPassword.getText()+"' where username = '"+lbUsername.getText()+"'";
+//            int hasil = statement.executeUpdate(query);
+//            System.out.println("berhasil update");
+//            connection.close();
+//            //balikkan lagi ke profile
+//            if(hasil==1){
+//                lbUsername.setText(tfUsername.getText());
+//                lbEmail.setText(tfEmail.getText());
+//                lbPassword.setText(pfPassword.getText());
+//            }      
+//       }else{
+//            
+//       }
+      
+        
+        
+    }
+    
+    @FXML
+    public void hapusAkun(ActionEvent event) throws Exception{
+        Connection connection = sqliteConnect.connect().Connector();
+        Statement statement = connection.createStatement();
+        String query = "DELETE FROM user where id_user='"+idUser+"'";
+        int hasil = statement.executeUpdate(query);
+        if(hasil==1){
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newLogin.fxml"));
+                Parent root = (Parent) loader.load();
+                Scene scene = new Scene(root);
+                scene.getStylesheets().add("/styles/Styles.css");
+                Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    @FXML
+    public void logout(ActionEvent event) throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newLogin.fxml"));
+        Parent root = (Parent) loader.load();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/styles/Styles.css");
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
+    public void selesai(ActionEvent event) throws Exception{                
+        try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Home.fxml"));
+                    Parent root = (Parent) loader.load();
+                    Scene scene = new Scene(root);
+                    scene.getStylesheets().add("/styles/Styles.css");
+                    
+                    HomeController home = loader.getController();
+                    home.setLabelUsername(lbUsername.getText(), idUser);
+                    Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    public void getProfile(String username, String email, String pass, String user){
+        lbUsername.setText(username);
+        lbEmail.setText(email);
+        lbPassword.setText(pass);
+        idUser=user;
+    }
     
 }
