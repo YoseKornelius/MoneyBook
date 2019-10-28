@@ -24,6 +24,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import java.util.regex.Matcher; 
+import java.util.regex.Pattern; 
 
 /**
  * FXML Controller class
@@ -65,6 +67,10 @@ public class RegisterController implements Initializable {
         String email = e.getText();
         String password = pass.getText();
         String konfirmasi = konfpass.getText();
+        String query1 = "SELECT username from user where username ='"+username+"'";
+        ResultSet rs = statement.executeQuery(query1);
+        if(!rs.next() ){
+        if(isValid(email)){
         if(password.equals(konfirmasi)){
             String query = "INSERT INTO user(username,email,password) VALUES('"+username+"','"+email+"','"+password+"')";
             int hasil = statement.executeUpdate(query);
@@ -76,12 +82,16 @@ public class RegisterController implements Initializable {
                 window.setScene(scene);
                 window.show();
             }
-        }else{
-            cek.setText("Password tidak sesuai");
         }
+        }
+        }
+        else{
+            cek.setText("cek kemabali apakah input sudah terisi dengan benar");
+           
+        }
+         connection.close();
+         statement.close();
         
-        connection.close();
-        statement.close();
  
     }
     
@@ -93,6 +103,20 @@ public class RegisterController implements Initializable {
         window.setScene(scene);
         window.show();
     }
+    
+    public static boolean isValid(String email) 
+    { 
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+ 
+                            "[a-zA-Z0-9_+&*-]+)*@" + 
+                            "(?:[a-zA-Z0-9-]+\\.)+[a-z" + 
+                            "A-Z]{2,7}$"; 
+                              
+        Pattern pat = Pattern.compile(emailRegex); 
+        if (email == null) 
+            return false; 
+        return pat.matcher(email).matches(); 
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

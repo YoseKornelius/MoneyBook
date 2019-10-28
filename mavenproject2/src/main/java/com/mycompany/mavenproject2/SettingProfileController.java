@@ -25,6 +25,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import java.util.regex.Matcher; 
+import java.util.regex.Pattern; 
 
 /**
  * FXML Controller class
@@ -52,27 +54,45 @@ public class SettingProfileController implements Initializable {
     
     @FXML
     public void editProfil(ActionEvent event) throws Exception{
-        if(pfPassword.getText().equals(pfKonfirPassword.getText())){  
-            try {
-                Connection connection = sqliteConnect.connect().Connector();
-                Statement statement = connection.createStatement();
-                String update = "UPDATE user SET username = '"+tfUsername.getText()+"', email = '"+tfEmail.getText()+"', password = '"+pfPassword.getText()+"' where id_user = '"+idUser+"'";
-                int hasil = statement.executeUpdate(update);
-                if(hasil==1){
-                    lbUsername.setText(tfUsername.getText());
-                    lbEmail.setText(tfEmail.getText());
-                    lbPassword.setText(pfPassword.getText()); 
-                    tfUsername.setText("");
-                    tfEmail.setText("");
-                    pfPassword.setText("");
-                    pfKonfirPassword.setText("");
-                    statement.close();
-                    connection.close();                    
+        if(tfUsername.getText().equals("")|| tfEmail.getText().equals("")||pfPassword.getText().equals("")|| pfKonfirPassword.getText().equals("")){
+        //TOLONG TAMBAHIN LABEL UNTUK ERROR HANDLING NYA JAVA KU TIBA TIVBA GAK MAU KEBUKA
+        }
+        else{
+            Connection connection = sqliteConnect.connect().Connector();
+            Statement statement = connection.createStatement();
+            String email=tfEmail.getText();
+            String username=tfUsername.getText();
+            String query1 = "SELECT username from user where username ='"+username+"'";
+            String query2 = "SELECT email from user where username ='"+email+"'";
+            ResultSet rs = statement.executeQuery(query1);
+            ResultSet rs2 = statement.executeQuery(query2);
+            if(!rs.next() || !rs2.next()){
+            if(isValid(email)){
+            if(pfPassword.getText().equals(pfKonfirPassword.getText())){  
+                try {
+//                    Connection connection = sqliteConnect.connect().Connector();
+//                    Statement statement = connection.createStatement();
+                    String update = "UPDATE user SET username = '"+tfUsername.getText()+"', email = '"+tfEmail.getText()+"', password = '"+pfPassword.getText()+"' where id_user = '"+idUser+"'";
+                    int hasil = statement.executeUpdate(update);
+                    if(hasil==1){
+                        lbUsername.setText(tfUsername.getText());
+                        lbEmail.setText(tfEmail.getText());
+                        lbPassword.setText(pfPassword.getText()); 
+                        tfUsername.setText("");
+                        tfEmail.setText("");
+                        pfPassword.setText("");
+                        pfKonfirPassword.setText("");
+                        statement.close();
+                        connection.close();                    
+                    }
+
+                } catch (Exception e) {
+                    System.err.print( e.getClass().getName() + ": " + e.getMessage());
                 }
-                
-            } catch (Exception e) {
-                System.err.print( e.getClass().getName() + ": " + e.getMessage());
             }
+            }
+            }
+            
         }
         
 //        if(pfPassword.getText().equals(pfKonfirPassword.getText())){  
@@ -157,6 +177,19 @@ public class SettingProfileController implements Initializable {
         lbEmail.setText(email);
         lbPassword.setText(pass);
         idUser=user;
+    }
+    
+    public static boolean isValid(String email) 
+    { 
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+ 
+                            "[a-zA-Z0-9_+&*-]+)*@" + 
+                            "(?:[a-zA-Z0-9-]+\\.)+[a-z" + 
+                            "A-Z]{2,7}$"; 
+                              
+        Pattern pat = Pattern.compile(emailRegex); 
+        if (email == null) 
+            return false; 
+        return pat.matcher(email).matches(); 
     }
     
 }
