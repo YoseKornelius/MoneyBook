@@ -54,18 +54,22 @@ public class SettingProfileController implements Initializable {
     public void editProfil(ActionEvent event) throws Exception{
         if(pfPassword.getText().equals(pfKonfirPassword.getText())){  
             try {
-                Class.forName("org.sqlite.JDBC");
-                Connection c = DriverManager.getConnection("jdbc:sqlite:MoneyBook.db");
-                c.setAutoCommit(false);
-                Statement stmt;
-                stmt = c.createStatement();
-                
+                Connection connection = sqliteConnect.connect().Connector();
+                Statement statement = connection.createStatement();
                 String update = "UPDATE user SET username = '"+tfUsername.getText()+"', email = '"+tfEmail.getText()+"', password = '"+pfPassword.getText()+"' where id_user = '"+idUser+"'";
-                stmt.executeUpdate(update);
-                System.out.println(update);
-                stmt.close();
-                stmt.close();
-                c.close();
+                int hasil = statement.executeUpdate(update);
+                if(hasil==1){
+                    lbUsername.setText(tfUsername.getText());
+                    lbEmail.setText(tfEmail.getText());
+                    lbPassword.setText(pfPassword.getText()); 
+                    tfUsername.setText("");
+                    tfEmail.setText("");
+                    pfPassword.setText("");
+                    pfKonfirPassword.setText("");
+                    statement.close();
+                    connection.close();                    
+                }
+                
             } catch (Exception e) {
                 System.err.print( e.getClass().getName() + ": " + e.getMessage());
             }
@@ -156,3 +160,6 @@ public class SettingProfileController implements Initializable {
     }
     
 }
+
+
+

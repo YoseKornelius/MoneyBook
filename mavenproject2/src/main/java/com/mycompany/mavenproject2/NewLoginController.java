@@ -66,7 +66,6 @@ public class NewLoginController implements Initializable {
         ResultSet rs = statement.executeQuery(query);
             if(rs.next()){
                 idUser = rs.getString(1);
-                System.out.println("login"+idUser);
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Home.fxml"));
                     Parent root = (Parent) loader.load();
@@ -112,6 +111,7 @@ public class NewLoginController implements Initializable {
     }    
      
 }
+
 
 
 

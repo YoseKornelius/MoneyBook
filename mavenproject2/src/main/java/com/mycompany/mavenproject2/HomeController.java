@@ -58,7 +58,6 @@ public class HomeController implements Initializable {
         if(rs.next()){
             lbAdaDompet.setText("ada dompet");
         }else{
-            System.out.println("Home"+lbIdUser.getText());
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newDompet.fxml"));
             Parent root = (Parent) loader.load();
             Scene scene = new Scene(root);
@@ -124,3 +123,4 @@ public class HomeController implements Initializable {
     
 
 }
+
