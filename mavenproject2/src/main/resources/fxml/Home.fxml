@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.HomeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.HomeController">
    <top>
       <HBox prefHeight="55.0" prefWidth="600.0" style="-fx-background-color: lightblue;" BorderPane.alignment="CENTER">
          <children>
@@ -111,7 +111,7 @@
                                     <Font size="8.0" />
                                  </font>
                               </Label>
-                              <ImageView onMouseClicked="#edit"  fx:id="gmbrSetting" fitHeight="29.0" fitWidth="29.0" layoutX="539.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="gmbrSetting" fitHeight="29.0" fitWidth="29.0" layoutX="539.0" layoutY="6.0" onMouseClicked="#edit" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/user-png-icon-account-avatar-human-male-man-men-people-person-download-svg-download-png-edit-icon-512.png" />
                                  </image>
@@ -135,7 +135,7 @@
       <AnchorPane prefHeight="227.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="14.0" layoutY="14.0" text="Selamat Datang :" />
-            <Label id="lbUsername" fx:id="lbNama" layoutX="113.0" layoutY="14.0" text="Username" />
+            <Label id="lbUsername" fx:id="lbNama" layoutX="140.0" layoutY="14.0" text="Username" />
             <Label layoutX="14.0" layoutY="62.0" text="Pemasukkan" />
             <Label layoutX="14.0" layoutY="90.0" text="Pengeluaran" />
             <Label layoutX="14.0" layoutY="121.0" text="Sisal Saldo" />
@@ -151,7 +151,7 @@
                   <Image url="@../gambar/tambah%20pengeluaran.png" />
                </image>
             </ImageView>
-            <Label id="lbUsername" fx:id="lbIdUser" layoutX="113.0" layoutY="31.0" text="Username" />
+            <Label id="lbUsername" fx:id="lbIdUser" layoutX="140.0" layoutY="35.0" text="Username" />
             <Label fx:id="lbAdaDompet" layoutX="436.0" layoutY="14.0" />
          </children>
       </AnchorPane>
