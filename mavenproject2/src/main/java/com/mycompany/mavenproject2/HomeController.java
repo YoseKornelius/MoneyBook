@@ -34,7 +34,7 @@ import javafx.scene.input.MouseEvent;
  */
 public class HomeController implements Initializable {
     @FXML
-    private Label lbNama, lbIdUser, lbAdaDompet;    
+    private Label lbNama, lbAdaDompet;    
     @FXML
     private Button btnTambahPengeluaran;       
     
@@ -42,18 +42,33 @@ public class HomeController implements Initializable {
     private ImageView imgPemasukkan;
     
     @FXML
+    private ImageView dompet;
+    
+    @FXML
     private ImageView imgTambahPengeluaran, gmbrSetting;
     
     private String userName, idUser;
     
-    
+    @FXML
+    public void tambahDompet(MouseEvent event) throws SQLException, IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newDompet.fxml"));
+        Parent root = (Parent) loader.load();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/styles/Styles.css");
+
+        NewDompetController dompet = loader.getController();
+        dompet.setIdUser(lbNama.getText(),idUser);
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
     
     @FXML
     public void tambahPengeluaran(MouseEvent event) throws SQLException, IOException {
         Connection connection = sqliteConnect.connect().Connector();
         Statement statement;
         statement = connection.createStatement();
-        String query = "SELECT * from dompet where id_user = '"+lbIdUser.getText()+"' ";
+        String query = "SELECT * from dompet where id_user = '"+idUser+"' ";
         ResultSet rs = statement.executeQuery(query);
         if(rs.next()){
             lbAdaDompet.setText("ada dompet");
@@ -64,7 +79,7 @@ public class HomeController implements Initializable {
             scene.getStylesheets().add("/styles/Styles.css");
                     
             NewDompetController dompet = loader.getController();
-            dompet.setIdUser(lbIdUser.getText());
+            dompet.setIdUser(lbNama.getText(),idUser);
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
@@ -79,10 +94,9 @@ public class HomeController implements Initializable {
         Connection connection = sqliteConnect.connect().Connector();
         Statement statement;
         statement = connection.createStatement();
-        String query = "SELECT * from user where id_user = '"+lbIdUser.getText()+"' ";
+        String query = "SELECT * from user where id_user = '"+idUser+"' ";
         ResultSet rs = statement.executeQuery(query);
-        if(rs.next()){                    
-            System.out.println("Home"+lbIdUser.getText());
+        if(rs.next()){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SettingProfile.fxml"));
             Parent root = (Parent) loader.load();
             Scene scene = new Scene(root);
@@ -114,7 +128,6 @@ public class HomeController implements Initializable {
         userName = username;
         idUser = id;
         lbNama.setText(userName);
-        lbIdUser.setText(id);
     }
     public void setIdUser(String user){
         idUser = user;
@@ -123,4 +136,9 @@ public class HomeController implements Initializable {
     
 
 }
+
+
+
+
+
 

@@ -66,6 +66,20 @@ public class NewLoginController implements Initializable {
         ResultSet rs = statement.executeQuery(query);
             if(rs.next()){
                 idUser = rs.getString(1);
+                query = "SELECT * from dompet where id_user ='"+idUser+"'";
+                rs=statement.executeQuery(query);
+                if(!rs.next()){
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newDompet.fxml"));
+                    Parent root = (Parent) loader.load();
+                    Scene scene = new Scene(root);
+                    scene.getStylesheets().add("/styles/Styles.css");
+
+                    NewDompetController dompet = loader.getController();
+                    dompet.setIdUser(username,idUser);
+                    Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
+                }else{
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Home.fxml"));
                     Parent root = (Parent) loader.load();
@@ -79,7 +93,9 @@ public class NewLoginController implements Initializable {
                     stage.show();
                 } catch (Exception e) {
                     e.printStackTrace();
+                }                    
                 }
+
             }else{
                 cek.setText("Username / password salah");
                 /*notif.setText("Username atau Password anda Salah")*/
@@ -111,6 +127,11 @@ public class NewLoginController implements Initializable {
     }    
      
 }
+
+
+
+
+
 
 
 

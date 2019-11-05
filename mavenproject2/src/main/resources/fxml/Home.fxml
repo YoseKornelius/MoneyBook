@@ -101,7 +101,7 @@
                                  </font>
                               </Label>
                               <Line endX="13.833343505859375" endY="-25.0" layoutX="355.0" layoutY="31.0" startX="13.833343505859375" startY="15.666671752929688" />
-                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="465.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="dompet" fitHeight="29.0" fitWidth="29.0" layoutX="465.0" layoutY="5.0" onMouseClicked="#tambahDompet" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/money.png" />
                                  </image>
@@ -134,8 +134,8 @@
    <center>
       <AnchorPane prefHeight="227.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="14.0" layoutY="14.0" text="Selamat Datang :" />
-            <Label id="lbUsername" fx:id="lbNama" layoutX="140.0" layoutY="14.0" text="Username" />
+            <Label layoutX="14.0" layoutY="14.0" text="Selamat Datang ," />
+            <Label id="lbUsername" fx:id="lbNama" layoutX="114.0" layoutY="14.0" text="Username" />
             <Label layoutX="14.0" layoutY="62.0" text="Pemasukkan" />
             <Label layoutX="14.0" layoutY="90.0" text="Pengeluaran" />
             <Label layoutX="14.0" layoutY="121.0" text="Sisal Saldo" />
@@ -151,7 +151,6 @@
                   <Image url="@../gambar/tambah%20pengeluaran.png" />
                </image>
             </ImageView>
-            <Label id="lbUsername" fx:id="lbIdUser" layoutX="140.0" layoutY="35.0" text="Username" />
             <Label fx:id="lbAdaDompet" layoutX="436.0" layoutY="14.0" />
          </children>
       </AnchorPane>

@@ -29,6 +29,7 @@ import javafx.stage.Stage;
  */
 public class NewDompetController implements Initializable {
     private String idUser;
+    private String user;
     /**
      * Initializes the controller class.
      */
@@ -50,12 +51,16 @@ public class NewDompetController implements Initializable {
         String query = "INSERT INTO dompet(id_user, nama_dompet) VALUES('"+id+"','"+namaDompet+"')";
         int hasil = statement.executeUpdate(query);
         if(hasil==1){
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/Home.fxml"));        
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add("/styles/Styles.css");
-            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-            window.setScene(scene);
-            window.show();        
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Home.fxml"));
+        Parent root = (Parent) loader.load();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/styles/Styles.css");
+
+        HomeController home = loader.getController();
+        home.setLabelUsername(user,idUser);
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();        
         }else{
             
         }
@@ -68,8 +73,11 @@ public class NewDompetController implements Initializable {
         // TODO
     }    
     
-    public void setIdUser(String user){
-        idUser = user;
+    public void setIdUser(String user, String iduser){
+        this.idUser = iduser;
+        this.user=user;
     }
     
 }
+
+

@@ -1,6 +1,7 @@
 com\mycompany\mavenproject2\MainApp.class
 com\mycompany\mavenproject2\RegisterController.class
 com\mycompany\mavenproject2\NewDompetController.class
+com\mycompany\mavenproject2\PilihDompetController.class
 com\mycompany\mavenproject2\KategoriController.class
 com\mycompany\mavenproject2\HomeController.class
 com\mycompany\mavenproject2\sqliteConnect.class
