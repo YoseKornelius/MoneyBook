@@ -152,19 +152,19 @@ public class SettingProfileController implements Initializable {
     @FXML
     public void selesai(ActionEvent event) throws Exception{                
         try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Home.fxml"));
-                    Parent root = (Parent) loader.load();
-                    Scene scene = new Scene(root);
-                    scene.getStylesheets().add("/styles/Styles.css");
-                    
-                    HomeController home = loader.getController();
-                    home.setLabelUsername(lbUsername.getText(), idUser);
-                    Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-                    stage.setScene(scene);
-                    stage.show();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Home.fxml"));
+            Parent root = (Parent) loader.load();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add("/styles/Styles.css");
+
+            HomeController home = loader.getController();
+            home.setLabelUsername(lbUsername.getText(), idUser);
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     @Override

@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,6 +23,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -47,7 +49,13 @@ public class HomeController implements Initializable {
     @FXML
     private ImageView imgTambahPengeluaran, gmbrSetting;
     
+    @FXML
     private String userName, idUser;
+    
+    @FXML
+    private ComboBox cbPilihDompet;
+    
+    ArrayList<String> listDompet = new ArrayList<String>();
     
     @FXML
     public void tambahDompet(MouseEvent event) throws SQLException, IOException{
@@ -115,6 +123,9 @@ public class HomeController implements Initializable {
         rs.close();
     }
     
+    public void pilihDompet(MouseEvent event) throws Exception{
+        
+    }
     /**
      * Initializes the controller class.
      */  

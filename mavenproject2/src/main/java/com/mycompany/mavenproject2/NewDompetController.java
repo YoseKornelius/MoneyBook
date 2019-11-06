@@ -34,7 +34,7 @@ public class NewDompetController implements Initializable {
      * Initializes the controller class.
      */
     @FXML
-    private Button btnTambahDompet;
+    private Button btnTambahDompet, btnKembali;
     
     @FXML
     private TextField tfNamaDompet;
@@ -52,20 +52,37 @@ public class NewDompetController implements Initializable {
         int hasil = statement.executeUpdate(query);
         if(hasil==1){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Home.fxml"));
-        Parent root = (Parent) loader.load();
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add("/styles/Styles.css");
+            Parent root = (Parent) loader.load();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add("/styles/Styles.css");
 
-        HomeController home = loader.getController();
-        home.setLabelUsername(user,idUser);
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();        
+            HomeController home = loader.getController();
+            home.setLabelUsername(user,idUser);
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();        
         }else{
             
         }
         statement.close();
         connection.close();
+    }
+    
+    public void kembali(ActionEvent event) throws Exception{
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Home.fxml"));
+            Parent root = (Parent) loader.load();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add("/styles/Styles.css");
+
+            HomeController home = loader.getController();
+            home.setLabelUsername(user, idUser);
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
     @Override

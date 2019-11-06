@@ -80,20 +80,20 @@ public class NewLoginController implements Initializable {
                     stage.setScene(scene);
                     stage.show();
                 }else{
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Home.fxml"));
-                    Parent root = (Parent) loader.load();
-                    Scene scene = new Scene(root);
-                    scene.getStylesheets().add("/styles/Styles.css");
-                    
-                    HomeController home = loader.getController();
-                    home.setLabelUsername(tfUsername.getText(), idUser);
-                    Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-                    stage.setScene(scene);
-                    stage.show();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }                    
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Home.fxml"));
+                        Parent root = (Parent) loader.load();
+                        Scene scene = new Scene(root);
+                        scene.getStylesheets().add("/styles/Styles.css");
+
+                        HomeController home = loader.getController();
+                        home.setLabelUsername(tfUsername.getText(), idUser);
+                        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                        stage.setScene(scene);
+                        stage.show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }                    
                 }
 
             }else{
