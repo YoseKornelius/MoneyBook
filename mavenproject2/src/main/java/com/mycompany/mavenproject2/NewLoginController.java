@@ -81,13 +81,13 @@ public class NewLoginController implements Initializable {
                     stage.show();
                 }else{
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Home.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/pilihDompet.fxml"));
                         Parent root = (Parent) loader.load();
                         Scene scene = new Scene(root);
                         scene.getStylesheets().add("/styles/Styles.css");
 
-                        HomeController home = loader.getController();
-                        home.setLabelUsername(tfUsername.getText(), idUser);
+                        PilihDompetController pilihdompet = loader.getController();
+                        pilihdompet.setUsername(username, idUser);
                         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
                         stage.setScene(scene);
                         stage.show();
@@ -127,6 +127,9 @@ public class NewLoginController implements Initializable {
     }    
      
 }
+
+
+
 
 
 

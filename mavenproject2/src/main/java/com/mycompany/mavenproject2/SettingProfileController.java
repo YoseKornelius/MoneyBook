@@ -38,7 +38,7 @@ public class SettingProfileController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    private String idUser;
+    private String idUser,dompet;
     
     @FXML
     private Label lbUsername, lbEmail, lbPassword;
@@ -158,7 +158,7 @@ public class SettingProfileController implements Initializable {
             scene.getStylesheets().add("/styles/Styles.css");
 
             HomeController home = loader.getController();
-            home.setLabelUsername(lbUsername.getText(), idUser);
+            home.setLabelUsername(lbUsername.getText(), idUser,dompet);
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
@@ -172,11 +172,12 @@ public class SettingProfileController implements Initializable {
         // TODO
     }    
     
-    public void getProfile(String username, String email, String pass, String user){
+    public void getProfile(String username, String email, String pass, String user, String dompet){
         lbUsername.setText(username);
         lbEmail.setText(email);
         lbPassword.setText(pass);
         idUser=user;
+        this.dompet=dompet;
     }
     
     public static boolean isValid(String email) 
@@ -193,6 +194,7 @@ public class SettingProfileController implements Initializable {
     }
     
 }
+
 
 
 

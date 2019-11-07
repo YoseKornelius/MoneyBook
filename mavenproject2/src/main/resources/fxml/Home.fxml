@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.HomeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.HomeController">
    <top>
       <HBox prefHeight="55.0" prefWidth="600.0" style="-fx-background-color: lightblue;" BorderPane.alignment="CENTER">
          <children>
@@ -154,7 +154,7 @@
             </ImageView>
             <Label fx:id="lbAdaDompet" layoutX="436.0" layoutY="14.0" />
             <Label layoutX="15.0" layoutY="31.0" text="Dompet : " />
-            <ComboBox fx:id="cbPilihDompet" layoutX="73.0" layoutY="35.0" onAction="#pilihDompet" prefHeight="25.0" prefWidth="128.0" promptText="Pilih Dompet" />
+            <ComboBox fx:id="cbPilihDompet" layoutX="73.0" layoutY="35.0" onAction="#pilih" onMouseClicked="#cekDompet" prefHeight="25.0" prefWidth="128.0" />
          </children>
       </AnchorPane>
    </right>

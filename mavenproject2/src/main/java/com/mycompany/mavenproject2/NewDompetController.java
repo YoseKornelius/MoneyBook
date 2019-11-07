@@ -30,6 +30,7 @@ import javafx.stage.Stage;
 public class NewDompetController implements Initializable {
     private String idUser;
     private String user;
+    private String dompet;
     /**
      * Initializes the controller class.
      */
@@ -57,7 +58,7 @@ public class NewDompetController implements Initializable {
             scene.getStylesheets().add("/styles/Styles.css");
 
             HomeController home = loader.getController();
-            home.setLabelUsername(user,idUser);
+            home.setLabelUsername(user,idUser,dompet);
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();        
@@ -76,7 +77,7 @@ public class NewDompetController implements Initializable {
             scene.getStylesheets().add("/styles/Styles.css");
 
             HomeController home = loader.getController();
-            home.setLabelUsername(user, idUser);
+            home.setLabelUsername(user, idUser,dompet);
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
@@ -90,11 +91,18 @@ public class NewDompetController implements Initializable {
         // TODO
     }    
     
+    public void setIdUser(String user, String iduser, String dompet){
+        this.idUser = iduser;
+        this.user=user;
+        this.dompet=dompet;
+    }
     public void setIdUser(String user, String iduser){
         this.idUser = iduser;
         this.user=user;
     }
     
 }
+
+
 
 

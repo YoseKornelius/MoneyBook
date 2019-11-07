@@ -14,6 +14,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,9 +57,27 @@ public class HomeController implements Initializable {
     private String userName, idUser;
     
     @FXML
-    private ComboBox cbPilihDompet;
+    private ComboBox<String> cbPilihDompet;
     
-    ArrayList<String> listDompet = new ArrayList<String>();
+    ObservableList<String> listDompet = FXCollections.observableArrayList();
+    public String namaDompet;
+    
+    @FXML
+    public void cekDompet(MouseEvent event){
+Connection connection = sqliteConnect.connect().Connector();
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            String query = "SELECT nama_dompet from dompet where id_user='"+idUser+"'";
+            ResultSet rs = statement.executeQuery(query);
+            while(rs.next()){
+                listDompet.add(rs.getString(1));
+            }
+            cbPilihDompet.setItems(listDompet);
+        } catch (SQLException ex) {
+            Logger.getLogger(PilihDompetController.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+    }
     
     @FXML
     public void tambahDompet(MouseEvent event) throws SQLException, IOException{
@@ -65,7 +87,7 @@ public class HomeController implements Initializable {
         scene.getStylesheets().add("/styles/Styles.css");
 
         NewDompetController dompet = loader.getController();
-        dompet.setIdUser(lbNama.getText(),idUser);
+        dompet.setIdUser(lbNama.getText(),idUser,namaDompet);
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
@@ -111,7 +133,7 @@ public class HomeController implements Initializable {
             scene.getStylesheets().add("/styles/Styles.css");
                     
             SettingProfileController profil = loader.getController();
-            profil.getProfile(rs.getString(2), rs.getString(3), rs.getString(4), idUser);
+            profil.getProfile(rs.getString(2), rs.getString(3), rs.getString(4), idUser,namaDompet);
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
@@ -123,8 +145,9 @@ public class HomeController implements Initializable {
         rs.close();
     }
     
-    public void pilihDompet(MouseEvent event) throws Exception{
-        
+    public void pilih(ActionEvent event){
+        System.out.println("BERHASIL UPDATE");
+        this.namaDompet=cbPilihDompet.getValue();
     }
     /**
      * Initializes the controller class.
@@ -135,10 +158,12 @@ public class HomeController implements Initializable {
         // TODO
     }    
 
-    public void setLabelUsername(String username, String id){
+    public void setLabelUsername(String username, String id, String dompet){
         userName = username;
         idUser = id;
         lbNama.setText(userName);
+        cbPilihDompet.setValue(dompet);
+        namaDompet=dompet;
     }
     public void setIdUser(String user){
         idUser = user;
@@ -147,6 +172,24 @@ public class HomeController implements Initializable {
     
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
