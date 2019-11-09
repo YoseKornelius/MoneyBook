@@ -51,7 +51,7 @@ public class HomeController implements Initializable {
     private ImageView dompet;
     
     @FXML
-    private ImageView imgTambahPengeluaran, gmbrSetting;
+    private ImageView imgTambahPengeluaran, gmbrSetting, kategori;
     
     @FXML
     private String userName, idUser;
@@ -64,7 +64,7 @@ public class HomeController implements Initializable {
     
     @FXML
     public void cekDompet(MouseEvent event){
-Connection connection = sqliteConnect.connect().Connector();
+        Connection connection = sqliteConnect.connect().Connector();
         Statement statement;
         try {
             statement = connection.createStatement();
@@ -88,6 +88,19 @@ Connection connection = sqliteConnect.connect().Connector();
 
         NewDompetController dompet = loader.getController();
         dompet.setIdUser(lbNama.getText(),idUser,namaDompet);
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
+    public void pilihKategori (MouseEvent event) throws SQLException, IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/pilihKategori.fxml"));
+        Parent root = (Parent) loader.load();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/styles/Styles.css");
+        PilihKategoriController kategori = loader.getController();
+        //kategori.setLabelUsername(lbNama.getText(), idUser, dompet);
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();

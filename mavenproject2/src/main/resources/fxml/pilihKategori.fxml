@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.effect.Light.Distant?>
-<?import javafx.scene.effect.Lighting?>
-<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.KategoriController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.HomeController">
    <top>
       <HBox prefHeight="55.0" prefWidth="600.0" style="-fx-background-color: lightblue;" BorderPane.alignment="CENTER">
          <children>
@@ -72,18 +72,8 @@
                                  <font>
                                     <Font size="8.0" />
                                  </font>
-                                 <effect>
-                                    <Lighting>
-                                       <bumpInput>
-                                          <Shadow />
-                                       </bumpInput>
-                                       <light>
-                                         <Light.Distant />
-                                       </light>
-                                    </Lighting>
-                                 </effect>
                               </Label>
-                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="261.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="kategori" fitHeight="29.0" fitWidth="29.0" layoutX="261.0" layoutY="6.0" onMouseClicked="#pilihKategori" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/kategori.png" />
                                  </image>
@@ -116,7 +106,7 @@
                                  </font>
                               </Label>
                               <Line endX="13.833343505859375" endY="-25.0" layoutX="355.0" layoutY="31.0" startX="13.833343505859375" startY="15.666671752929688" />
-                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="465.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="dompet" fitHeight="29.0" fitWidth="29.0" layoutX="465.0" layoutY="5.0" onMouseClicked="#tambahDompet" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/money.png" />
                                  </image>
@@ -146,52 +136,24 @@
          </children>
       </HBox>
    </top>
-   <left>
-      <HBox prefHeight="294.0" prefWidth="154.0" style="-fx-background-color: #edd8f3;" BorderPane.alignment="CENTER">
-         <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <Label layoutX="4.0" layoutY="60.0" text="KATEGORI BAGIAN :">
-                     <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="14.0" layoutY="114.0" text="PEMASUKAN">
-                     <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="13.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="14.0" layoutY="163.0" text="PENGELUARAN">
-                     <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="13.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
-         </children>
-      </HBox>
-   </left>
    <center>
-      <AnchorPane prefHeight="311.0" prefWidth="450.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="227.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="20.0" layoutY="8.0" text="Selamat Datang :" />
-            <Label id="lbUsername" fx:id="lbNama" layoutX="119.0" layoutY="8.0" text="Username" />
-            <ImageView fx:id="imgTambahPengeluaran" fitHeight="50.0" fitWidth="50.0" layoutX="348.0" layoutY="199.0" onMouseClicked="#tambahPengeluaran" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../gambar/kategori.png" />
-               </image>
-            </ImageView>
-            <Label id="lbUsername" fx:id="lbIdUser" layoutX="119.0" layoutY="29.0" text="Username" />
-            <Label layoutX="6.0" layoutY="62.0" text="Label">
-               <font>
-                  <Font name="Berlin Sans FB Demi Bold" size="14.0" />
-               </font>
-            </Label>
-            <TableView layoutX="27.0" layoutY="84.0" prefHeight="200.0" prefWidth="157.0">
+            <Label layoutX="14.0" layoutY="14.0" text="Selamat Datang ," />
+            <Label id="lbUsername" fx:id="lbNama" layoutX="114.0" layoutY="14.0" text="Username" />
+            <Label fx:id="lbAdaDompet" layoutX="436.0" layoutY="14.0" />
+            <Label layoutX="16.0" layoutY="31.0" text="Dompet : " />
+            <ComboBox fx:id="cbPilihDompet" layoutX="74.0" layoutY="35.0" onAction="#pilih" onMouseClicked="#cekDompet" prefHeight="26.0" prefWidth="123.0" />
+            <ComboBox fx:id="cmbPilihKategori" layoutX="74.0" layoutY="66.0" prefHeight="25.0" prefWidth="124.0" />
+            <Label layoutX="16.0" layoutY="70.0" text="Pilih :" />
+            <TableView layoutX="221.0" layoutY="14.0" prefHeight="198.0" prefWidth="187.0">
               <columns>
-                <TableColumn prefWidth="155.20001792907715" text="Kategori" />
+                <TableColumn fx:id="colNama" prefWidth="186.0" text="Nama Kategori" />
               </columns>
             </TableView>
+            <Label layoutX="428.0" layoutY="23.0" text="Nama Kategori" />
+            <TextField layoutX="428.0" layoutY="49.0" />
+            <Button layoutX="428.0" layoutY="87.0" mnemonicParsing="false" text="Tambah" />
          </children>
       </AnchorPane>
    </center>
