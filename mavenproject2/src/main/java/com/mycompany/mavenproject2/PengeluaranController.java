@@ -54,7 +54,7 @@ public class PengeluaranController implements Initializable {
     @FXML
     private DatePicker tgl_pengeluaran;
     
-    public ComboBox<String> cbTambahKategori;
+    
     
     @FXML
     private Label lbNama, lbId, lbNamaDompet;
@@ -158,3 +158,4 @@ public class PengeluaranController implements Initializable {
     }
     
 }
+
