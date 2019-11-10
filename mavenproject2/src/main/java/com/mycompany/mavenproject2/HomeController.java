@@ -208,7 +208,8 @@ public class HomeController implements Initializable {
         scene.getStylesheets().add("/styles/Styles.css");
 
         PengeluaranController pengeluaran = loader.getController();
-        
+        System.out.println(namaDompet);
+        pengeluaran.setIdandName(idUser, lbNama.getText(), namaDompet);        
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
@@ -322,6 +323,8 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        namaDompet = cbPilihDompet.getValue();
+     //   System.out.println(namaDompet);
     }    
 
     public void setLabelUsername(String username, String id, String dompet){
@@ -329,7 +332,9 @@ public class HomeController implements Initializable {
         idUser = id;
         lbNama.setText(userName);
         cbPilihDompet.setValue(dompet);
+        //System.out.println(dompet);
         namaDompet=dompet;
+        System.out.println(namaDompet);
     }
     public void setIdUser(String user){
         idUser = user;
