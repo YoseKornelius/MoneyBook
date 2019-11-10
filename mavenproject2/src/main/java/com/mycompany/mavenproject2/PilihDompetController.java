@@ -70,6 +70,7 @@ public class PilihDompetController implements Initializable {
     
     @FXML
     public void setIsi(MouseEvent event){
+        list.clear();
         Connection connection = sqliteConnect.connect().Connector();
         Statement statement;
         try {
@@ -96,6 +97,8 @@ public class PilihDompetController implements Initializable {
     }
     
 }
+
+
 
 
 
