@@ -48,6 +48,7 @@ public class PilihDompetController implements Initializable {
     @FXML
     public void update(ActionEvent event){
         this.namaDompet = dompet.getValue();
+        System.out.println(namaDompet);
     }
     
     @FXML
