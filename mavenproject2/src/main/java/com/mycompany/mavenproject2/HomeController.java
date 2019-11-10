@@ -315,13 +315,14 @@ public class HomeController implements Initializable {
     
     @FXML
     public void pindahPemasukkan(MouseEvent event) throws SQLException, IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Pemasukkan.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Pengeluaran.fxml"));
         Parent root = (Parent) loader.load();
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
 
         PemasukkanController pemasukkan = loader.getController();
-        
+        System.out.println(namaDompet);
+        //pemasukkan.setIdandName(idUser, lbNama.getText(), namaDompet);        
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
@@ -350,7 +351,9 @@ public class HomeController implements Initializable {
         scene.getStylesheets().add("/styles/Styles.css");
 
         //PeminjamanController peminjaman = loader.getController();
-        
+        PeminjamanController peminjaman = loader.getController();
+        System.out.println(namaDompet);
+        peminjaman.setIdandName(idUser, lbNama.getText(), namaDompet);
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
