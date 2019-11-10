@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -149,6 +150,7 @@
             <ComboBox fx:id="comboJenis" layoutX="20.0" layoutY="47.0" onAction="#pilihJenis" onMouseClicked="#isiComboJenis" prefHeight="26.0" prefWidth="95.0" />
             <ComboBox fx:id="comboBulan" layoutX="130.0" layoutY="47.0" onAction="#pilihBulan" onMouseClicked="#isiComboBulan" prefHeight="26.0" prefWidth="95.0" />
             <ComboBox fx:id="comboKategori" layoutX="239.0" layoutY="47.0" onAction="#pilihKategori" onMouseClicked="#isiComboKategori" prefHeight="26.0" prefWidth="95.0" />
+            <TableView fx:id="table" layoutX="20.0" layoutY="80.0" prefHeight="200.0" prefWidth="563.0" />
          </children>
       </AnchorPane>
    </right>

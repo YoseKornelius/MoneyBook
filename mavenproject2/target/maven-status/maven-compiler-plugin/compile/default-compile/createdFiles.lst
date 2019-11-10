@@ -1,5 +1,6 @@
 com\mycompany\mavenproject2\MainApp.class
 com\mycompany\mavenproject2\PilihKategoriController.class
+com\mycompany\mavenproject2\dataPencarian.class
 com\mycompany\mavenproject2\NewDompetController.class
 com\mycompany\mavenproject2\PilihDompetController.class
 com\mycompany\mavenproject2\KategoriController.class

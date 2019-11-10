@@ -174,20 +174,13 @@
                               <Label layoutX="21.0" layoutY="18.0" text="Tanggal" />
                               <DatePicker layoutX="100.0" layoutY="14.0" />
                               <Label layoutX="19.0" layoutY="57.0" text="Kategori" />
-<<<<<<< HEAD
-                              <ComboBox layoutX="100.0" layoutY="53.0" prefWidth="150.0" />
-=======
                               <ComboBox fx:id="cbTambahKategori" layoutX="100.0" layoutY="53.0" onMouseClicked="#setIsiKategori" prefWidth="150.0" />
->>>>>>> Pengeluaran
                               <Label layoutX="19.0" layoutY="127.0" text="Nominal" />
                               <TextField layoutX="101.0" layoutY="127.0" />
                               <TextField layoutX="101.0" layoutY="90.0" />
                               <Label layoutX="20.0" layoutY="94.0" text="Keterangan" />
                               <Button layoutX="101.0" layoutY="186.0" mnemonicParsing="false" text="Tambah" />
-<<<<<<< HEAD
-=======
                               <Label id="lbUsername" fx:id="lbNamaDompet" layoutX="499.0" layoutY="18.0" text="Username" />
->>>>>>> Pengeluaran
                            </children>
                         </AnchorPane>
                   </content>
