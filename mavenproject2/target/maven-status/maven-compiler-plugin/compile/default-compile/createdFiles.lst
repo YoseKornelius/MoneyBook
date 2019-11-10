@@ -7,6 +7,7 @@ com\mycompany\mavenproject2\PeminjamanController.class
 com\mycompany\mavenproject2\SettingProfileController.class
 com\mycompany\mavenproject2\NewLoginController.class
 com\mycompany\mavenproject2\RegisterController.class
+com\mycompany\mavenproject2\tampilTabel.class
 com\mycompany\mavenproject2\HomeController.class
 com\mycompany\mavenproject2\sqliteConnect.class
 com\mycompany\mavenproject2\PengeluaranController.class
