@@ -58,10 +58,7 @@ public class PengeluaranController implements Initializable {
 
     public ComboBox<String> cbTambahKategori;
 
-    @FXML
-    private TextField txtKeteranganPengeluaran, txtNominalPengeluaran;
-    @FXML
-    private DatePicker tgl_pengeluaran;
+   
     
     
     
@@ -249,4 +246,5 @@ public class PengeluaranController implements Initializable {
     }
 
 }
+
 
