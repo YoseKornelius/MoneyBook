@@ -150,7 +150,7 @@
             <Label layoutX="359.0" layoutY="7.0" text="Selamat Datang :" />
             <Label id="lbUsername" fx:id="lbNama" layoutX="464.0" layoutY="7.0" text="Username" />
             <Label id="lbUsername" fx:id="lbIdUser" layoutX="532.0" layoutY="8.0" text="Username" />
-            <Label fx:id="lbAdaDompet" layoutX="460.0" layoutY="16.0" prefHeight="18.0" prefWidth="68.0" />
+            <Label fx:id="lbAdaDompet" layoutX="279.0" layoutY="3.0" prefHeight="18.0" prefWidth="68.0" />
             <TabPane layoutX="3.0" layoutY="25.0" prefHeight="268.0" prefWidth="594.0" tabClosingPolicy="UNAVAILABLE">
                <tabs>
                   <Tab text="Tambah Peminjaman">
@@ -163,7 +163,7 @@
                               <Label layoutX="13.0" layoutY="94.0" text="Nominal" />
                               <TextField layoutX="90.0" layoutY="91.0" prefHeight="26.0" prefWidth="178.0" />
                               <Label layoutX="9.0" layoutY="127.0" text="Keterangan" />
-                              <TextField layoutX="91.0" layoutY="127.0" prefHeight="26.0" prefWidth="178.0" />
+                              <TextField layoutX="91.0" layoutY="127.0" prefHeight="26.0" prefWidth="178.0" promptText="deskripsi" />
                               <Button layoutX="120.0" layoutY="164.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="119.0" text="Tambah" />
                               <ComboBox layoutX="91.0" layoutY="53.0" prefHeight="26.0" prefWidth="178.0" />
                            </children>
@@ -186,7 +186,7 @@
                               <Label layoutX="369.0" layoutY="44.0" text="Keterangan" />
                               <Label layoutX="374.0" layoutY="82.0" text="Nominal" />
                               <TextField layoutX="446.0" layoutY="6.0" prefHeight="26.0" prefWidth="135.0" />
-                              <TextField layoutX="446.0" layoutY="42.0" prefHeight="26.0" prefWidth="135.0" />
+                              <TextField layoutX="446.0" layoutY="42.0" prefHeight="26.0" prefWidth="135.0" promptText="deskripsi" />
                               <TextField layoutX="445.0" layoutY="80.0" prefHeight="26.0" prefWidth="135.0" />
                               <Button layoutX="540.0" layoutY="127.0" mnemonicParsing="false" text="Edit" />
                            </children>
@@ -209,9 +209,9 @@
                               <Label layoutX="369.0" layoutY="44.0" text="Keterangan" />
                               <Label layoutX="374.0" layoutY="82.0" text="Nominal" />
                               <TextField layoutX="446.0" layoutY="6.0" prefHeight="26.0" prefWidth="135.0" />
-                              <TextField layoutX="446.0" layoutY="42.0" prefHeight="26.0" prefWidth="135.0" />
+                              <TextField layoutX="446.0" layoutY="42.0" prefHeight="26.0" prefWidth="135.0" promptText="deskripsi" />
                               <TextField layoutX="445.0" layoutY="80.0" prefHeight="26.0" prefWidth="135.0" />
-                              <Button layoutX="540.0" layoutY="127.0" mnemonicParsing="false" text="Edit" />
+                              <Button layoutX="530.0" layoutY="127.0" mnemonicParsing="false" text="Hapus" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -224,16 +224,16 @@
                               <Button layoutX="7.0" layoutY="139.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="Cari" />
                               <ComboBox layoutX="2.0" layoutY="24.0" prefWidth="150.0" />
                               <Label layoutX="164.0" layoutY="53.0" text="Rentang Waktu" />
-                              <DatePicker layoutX="162.0" layoutY="71.0" prefHeight="26.0" prefWidth="146.0" />
-                              <DatePicker layoutX="162.0" layoutY="104.0" prefHeight="26.0" prefWidth="146.0" />
+                              <DatePicker layoutX="162.0" layoutY="71.0" prefHeight="26.0" prefWidth="146.0" promptText="DARI" />
+                              <DatePicker layoutX="162.0" layoutY="104.0" prefHeight="26.0" prefWidth="146.0" promptText="SAMPAI" />
                               <Label layoutX="2.0" layoutY="50.0" text="Rentang Nominal" />
-                              <TextField layoutX="3.0" layoutY="71.0" text="min" />
-                              <TextField layoutX="3.0" layoutY="104.0" text="max" />
-                              <TableView layoutX="318.0" layoutY="17.0" prefHeight="200.0" prefWidth="254.0">
+                              <TextField layoutX="3.0" layoutY="71.0" promptText="MIN" />
+                              <TextField layoutX="3.0" layoutY="104.0" promptText="MAX" />
+                              <TableView layoutX="310.0" layoutY="9.0" prefHeight="228.0" prefWidth="283.0">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="Tanggal" />
-                                  <TableColumn prefWidth="75.0" text="Keterangan" />
-                                    <TableColumn prefWidth="75.0" text="Nominal" />
+                                  <TableColumn prefWidth="88.00006103515625" text="Tanggal" />
+                                  <TableColumn prefWidth="107.99993896484375" text="Tgl_pengembalian" />
+                                    <TableColumn prefWidth="87.20001220703125" text="Nominal" />
                                 </columns>
                               </TableView>
                            </children>
