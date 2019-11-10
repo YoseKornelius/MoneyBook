@@ -2,7 +2,13 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,7 +17,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.HomeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.PemasukkanController">
    <top>
       <HBox prefHeight="55.0" prefWidth="600.0" style="-fx-background-color: lightblue;" BorderPane.alignment="CENTER">
          <children>
@@ -26,7 +32,7 @@
                      <children>
                         <AnchorPane prefHeight="54.0" prefWidth="601.0" style="-fx-border-color: black;">
                            <children>
-                              <ImageView fx:id="imgPemasukkan" fitHeight="29.0" fitWidth="29.0" layoutX="14.0" layoutY="2.0" onMouseClicked="#pindahPemasukkan" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgPemasukkan" fitHeight="29.0" fitWidth="29.0" layoutX="14.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/save-money.png" />
                                  </image>
@@ -37,7 +43,7 @@
                                  </font>
                               </Label>
                               <Line endX="13.833343505859375" endY="-25.0" layoutX="45.0" layoutY="30.0" startX="13.833343505859375" startY="15.666671752929688" />
-                              <ImageView fx:id="imgPengeluaran" fitHeight="29.0" fitWidth="29.0" layoutX="74.0" layoutY="6.0" onMouseClicked="#pindahPengeluaran" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="74.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/give-money.png" />
                                  </image>
@@ -48,7 +54,7 @@
                                  </font>
                               </Label>
                               <Line endX="13.833343505859375" endY="-25.0" layoutX="106.0" layoutY="30.0" startX="13.833343505859375" startY="15.666671752929688" />
-                              <ImageView fx:id="imgPeminjaman" fitHeight="29.0" fitWidth="29.0" layoutX="141.0" layoutY="4.0" onMouseClicked="#pindahPeminjaman" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="141.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/peminjaman.png" />
                                  </image>
@@ -70,7 +76,7 @@
                                     <Font size="8.0" />
                                  </font>
                               </Label>
-                              <ImageView fx:id="imgKategori" fitHeight="29.0" fitWidth="29.0" layoutX="261.0" layoutY="6.0" onMouseClicked="#pindahKategori" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="261.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/kategori.png" />
                                  </image>
@@ -103,7 +109,7 @@
                                  </font>
                               </Label>
                               <Line endX="13.833343505859375" endY="-25.0" layoutX="355.0" layoutY="31.0" startX="13.833343505859375" startY="15.666671752929688" />
-                              <ImageView fx:id="dompet" fitHeight="29.0" fitWidth="29.0" layoutX="465.0" layoutY="5.0" onMouseClicked="#tambahDompet" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="465.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/money.png" />
                                  </image>
@@ -113,43 +119,108 @@
                                     <Font size="8.0" />
                                  </font>
                               </Label>
-                              <ImageView fx:id="gmbrSetting" fitHeight="29.0" fitWidth="29.0" layoutX="539.0" layoutY="6.0" onMouseClicked="#edit" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../gambar/user-png-icon-account-avatar-human-male-man-men-people-person-download-svg-download-png-edit-icon-512.png" />
-                                 </image>
-                              </ImageView>
                               <Label layoutX="541.0" layoutY="38.0" text="Setting">
                                  <font>
                                     <Font size="8.0" />
                                  </font>
                               </Label>
                               <Line endX="13.833343505859375" endY="-25.0" layoutX="496.0" layoutY="31.0" startX="13.833343505859375" startY="15.666671752929688" />
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="540.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../gambar/user-png-icon-account-avatar-human-male-man-men-people-person-download-svg-download-png-edit-icon-512.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                      </children>
                   </HBox>
+                  <ImageView fx:id="imgHome" fitHeight="40.0" fitWidth="40.0" layoutX="10.0" layoutY="5.0" onMouseClicked="#pindahHome" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../gambar/home.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </children>
       </HBox>
    </top>
-   <right>
+   <center>
       <AnchorPane prefHeight="227.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="426.0" layoutY="6.0" text="Selamat Datang ," />
-            <Label id="lbUsername" fx:id="lbNama" layoutX="526.0" layoutY="6.0" text="Username" />
-            <Label fx:id="lbAdaDompet" layoutX="436.0" layoutY="14.0" />
-            <Label layoutX="427.0" layoutY="23.0" text="Dompet : " />
-            <ComboBox fx:id="cbPilihDompet" layoutX="485.0" layoutY="27.0" onAction="#pilih" onMouseClicked="#cekDompet" prefHeight="26.0" prefWidth="96.0" />
-            <Label layoutX="20.0" layoutY="21.0" text="Jenis Pencatatan" />
-            <Label layoutX="159.0" layoutY="22.0" text="Bulan" />
-            <Label layoutX="14.0" layoutY="4.0" text="Pencarian" />
-            <Label layoutX="253.0" layoutY="23.0" text="Kategori" />
-            <Button layoutX="343.0" layoutY="47.0" mnemonicParsing="false" text="CARI" />
-            <ComboBox layoutX="20.0" layoutY="47.0" prefHeight="26.0" prefWidth="95.0" />
-            <ComboBox layoutX="130.0" layoutY="47.0" prefHeight="26.0" prefWidth="95.0" />
-            <ComboBox layoutX="239.0" layoutY="47.0" prefHeight="26.0" prefWidth="95.0" />
+            <Label layoutX="359.0" layoutY="7.0" text="Selamat Datang :" />
+            <Label id="lbUsername" fx:id="lbNama" layoutX="464.0" layoutY="7.0" text="Username" />
+            <Label id="lbUsername" fx:id="lbIdUser" layoutX="532.0" layoutY="8.0" text="Username" />
+            <Label fx:id="lbAdaDompet" layoutX="460.0" layoutY="16.0" prefHeight="18.0" prefWidth="68.0" />
+            <TabPane layoutX="3.0" layoutY="25.0" prefHeight="268.0" prefWidth="594.0" tabClosingPolicy="UNAVAILABLE">
+               <tabs>
+                  <Tab text="Tambah Peminjaman">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <DatePicker layoutX="7.0" layoutY="29.0" />
+                              <Label layoutX="14.0" layoutY="6.0" text="Tanggal" />
+                              <Label layoutX="14.0" layoutY="72.0" text="Kategori" />
+                              <Label layoutX="288.0" layoutY="12.0" text="Nominal" />
+                              <TextField layoutX="287.0" layoutY="29.0" />
+                              <Label layoutX="288.0" layoutY="75.0" text="Keterangan" />
+                              <TextField layoutX="287.0" layoutY="92.0" />
+                              <Button layoutX="516.0" layoutY="162.0" mnemonicParsing="false" text="Tambah" />
+                              <ComboBox layoutX="14.0" layoutY="106.0" prefWidth="150.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Edit Peminjaman">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="196.0" prefWidth="469.0">
+                           <children>
+                              <TableView layoutX="23.0" prefHeight="174.0" prefWidth="339.0">
+                                 <columns>
+                                    <TableColumn prefWidth="75.0" text="Tanggal" />
+                                    <TableColumn prefWidth="75.0" text="Kategori" />
+                                    <TableColumn prefWidth="75.0" text="Deskripsi" />
+                                    <TableColumn prefWidth="75.0" text="Nominal" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Hapus peminjaman">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView layoutX="32.0" layoutY="5.0" prefHeight="200.0" prefWidth="253.0">
+                                 <columns>
+                                    <TableColumn prefWidth="75.0" text="C1" />
+                                    <TableColumn prefWidth="75.0" text="C2" />
+                                    <TableColumn prefWidth="75.0" text="Column X" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Cari Peminjaman">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="198.0" prefWidth="596.0">
+                           <children>
+                              <Label layoutX="242.0" layoutY="14.0" text="Kategori" />
+                              <Button layoutX="526.0" layoutY="162.0" mnemonicParsing="false" text="Cari" />
+                              <ComboBox layoutX="232.0" layoutY="51.0" prefWidth="150.0" />
+                              <Label layoutX="473.0" layoutY="14.0" text="Rentang Waktu" />
+                              <DatePicker layoutX="435.0" layoutY="43.0" prefHeight="26.0" prefWidth="146.0" />
+                              <DatePicker layoutX="435.0" layoutY="79.0" prefHeight="26.0" prefWidth="146.0" />
+                              <Label layoutX="14.0" layoutY="15.0" text="Rentang Nominal" />
+                              <TextField layoutX="14.0" layoutY="44.0" text="min" />
+                              <TextField layoutX="14.0" layoutY="92.0" text="max" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+               </tabs>
+            </TabPane>
          </children>
       </AnchorPane>
-   </right>
+   </center>
 </BorderPane>

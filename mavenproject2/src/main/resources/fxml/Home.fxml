@@ -26,7 +26,7 @@
                      <children>
                         <AnchorPane prefHeight="54.0" prefWidth="601.0" style="-fx-border-color: black;">
                            <children>
-                              <ImageView fx:id="imgPemasukkan" fitHeight="29.0" fitWidth="29.0" layoutX="14.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgPemasukkan" fitHeight="29.0" fitWidth="29.0" layoutX="14.0" layoutY="2.0" onMouseClicked="#pindahPemasukkan" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/save-money.png" />
                                  </image>
@@ -37,7 +37,7 @@
                                  </font>
                               </Label>
                               <Line endX="13.833343505859375" endY="-25.0" layoutX="45.0" layoutY="30.0" startX="13.833343505859375" startY="15.666671752929688" />
-                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="74.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgPengeluaran" fitHeight="29.0" fitWidth="29.0" layoutX="74.0" layoutY="6.0" onMouseClicked="#pindahPengeluaran" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/give-money.png" />
                                  </image>
@@ -48,7 +48,7 @@
                                  </font>
                               </Label>
                               <Line endX="13.833343505859375" endY="-25.0" layoutX="106.0" layoutY="30.0" startX="13.833343505859375" startY="15.666671752929688" />
-                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="141.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgPeminjaman" fitHeight="29.0" fitWidth="29.0" layoutX="141.0" layoutY="4.0" onMouseClicked="#pindahPeminjaman" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/peminjaman.png" />
                                  </image>
@@ -70,7 +70,7 @@
                                     <Font size="8.0" />
                                  </font>
                               </Label>
-                              <ImageView fx:id="kategori" fitHeight="29.0" fitWidth="29.0" layoutX="261.0" layoutY="6.0" onMouseClicked="#pilihKategori" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgKategori" fitHeight="29.0" fitWidth="29.0" layoutX="261.0" layoutY="6.0" onMouseClicked="#pindahKategori" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/kategori.png" />
                                  </image>
