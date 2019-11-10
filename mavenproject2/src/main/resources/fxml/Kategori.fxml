@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
@@ -78,7 +77,7 @@
                                           <Shadow />
                                        </bumpInput>
                                        <light>
-                                         <Light.Distant />
+                                  
                                        </light>
                                     </Lighting>
                                  </effect>
@@ -126,7 +125,7 @@
                                     <Font size="8.0" />
                                  </font>
                               </Label>
-                              <ImageView fx:id="gmbrSetting" fitHeight="29.0" fitWidth="29.0" layoutX="539.0" layoutY="6.0" onMouseClicked="#edit" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="539.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/user-png-icon-account-avatar-human-male-man-men-people-person-download-svg-download-png-edit-icon-512.png" />
                                  </image>
@@ -141,6 +140,11 @@
                         </AnchorPane>
                      </children>
                   </HBox>
+                  <ImageView fx:id="imgHome" fitHeight="40.0" fitWidth="40.0" layoutX="10.0" layoutY="8.0" onMouseClicked="#pindahHome" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../gambar/home.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </children>
@@ -176,11 +180,6 @@
          <children>
             <Label layoutX="20.0" layoutY="8.0" text="Selamat Datang :" />
             <Label id="lbUsername" fx:id="lbNama" layoutX="119.0" layoutY="8.0" text="Username" />
-            <ImageView fx:id="imgTambahPengeluaran" fitHeight="50.0" fitWidth="50.0" layoutX="348.0" layoutY="199.0" onMouseClicked="#tambahPengeluaran" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../gambar/kategori.png" />
-               </image>
-            </ImageView>
             <Label id="lbUsername" fx:id="lbIdUser" layoutX="119.0" layoutY="29.0" text="Username" />
             <Label layoutX="6.0" layoutY="62.0" text="Label">
                <font>

@@ -23,15 +23,15 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author YOSE
+ * @author ASUS
  */
-public class PemasukkanController implements Initializable {
+public class PeminjamanController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
     
-    @FXML
+     @FXML
     private ImageView imgHome;
     
     @FXML

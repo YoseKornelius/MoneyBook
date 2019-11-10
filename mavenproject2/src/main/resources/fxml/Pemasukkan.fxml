@@ -17,7 +17,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.PemasukkanController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.PemasukkanController">
    <top>
       <HBox prefHeight="55.0" prefWidth="600.0" style="-fx-background-color: lightblue;" BorderPane.alignment="CENTER">
          <children>
@@ -130,10 +130,20 @@
                                  </font>
                               </Label>
                               <Line endX="13.833343505859375" endY="-25.0" layoutX="496.0" layoutY="31.0" startX="13.833343505859375" startY="15.666671752929688" />
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="540.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../gambar/user-png-icon-account-avatar-human-male-man-men-people-person-download-svg-download-png-edit-icon-512.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                      </children>
                   </HBox>
+                  <ImageView fx:id="imgHome" fitHeight="40.0" fitWidth="40.0" layoutX="9.0" layoutY="4.0" onMouseClicked="#pindahHome" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../gambar/home.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </children>

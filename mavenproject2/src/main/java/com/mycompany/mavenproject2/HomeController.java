@@ -45,13 +45,10 @@ public class HomeController implements Initializable {
     private Button btnTambahPengeluaran;       
     
     @FXML
-    private ImageView imgPemasukkan;
-    
-    @FXML
     private ImageView dompet;
     
     @FXML
-    private ImageView imgTambahPengeluaran, gmbrSetting, kategori;
+    private ImageView imgTambahPengeluaran, gmbrSetting, kategori, imgPemasukkan, imgPengeluaran, imgPeminjaman, imgKategori;
     
     @FXML
     private String userName, idUser;
@@ -80,6 +77,62 @@ public class HomeController implements Initializable {
     }
     
     @FXML
+    public void pindahPemasukkan(MouseEvent event) throws SQLException, IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Pemasukkan.fxml"));
+        Parent root = (Parent) loader.load();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/styles/Styles.css");
+
+        PemasukkanController pemasukkan = loader.getController();
+        
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
+    public void pindahPengeluaran(MouseEvent event) throws SQLException, IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Pengeluaran.fxml"));
+        Parent root = (Parent) loader.load();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/styles/Styles.css");
+
+        PengeluaranController pengeluaran = loader.getController();
+        
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
+    public void pindahPeminjaman(MouseEvent event) throws SQLException, IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/peminjaman.fxml"));
+        Parent root = (Parent) loader.load();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/styles/Styles.css");
+
+        //PeminjamanController peminjaman = loader.getController();
+        
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
+    public void pindahKategori(MouseEvent event) throws SQLException, IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Kategori.fxml"));
+        Parent root = (Parent) loader.load();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/styles/Styles.css");
+
+        //PeminjamanController peminjaman = loader.getController();
+        
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
     public void tambahDompet(MouseEvent event) throws SQLException, IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newDompet.fxml"));
         Parent root = (Parent) loader.load();
@@ -93,18 +146,6 @@ public class HomeController implements Initializable {
         stage.show();
     }
     
-    @FXML
-    public void pilihKategori (MouseEvent event) throws SQLException, IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/pilihKategori.fxml"));
-        Parent root = (Parent) loader.load();
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add("/styles/Styles.css");
-        PilihKategoriController kategori = loader.getController();
-        //kategori.setLabelUsername(lbNama.getText(), idUser, dompet);
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
-    }
     
     @FXML
     public void tambahPengeluaran(MouseEvent event) throws SQLException, IOException {
