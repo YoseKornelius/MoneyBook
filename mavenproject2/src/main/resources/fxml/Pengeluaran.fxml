@@ -17,7 +17,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.PengeluaranController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.PengeluaranController">
    <top>
       <HBox prefHeight="55.0" prefWidth="600.0" style="-fx-background-color: lightblue;" BorderPane.alignment="CENTER">
          <children>
@@ -172,14 +172,15 @@
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
                               <Label layoutX="21.0" layoutY="18.0" text="Tanggal" />
-                              <DatePicker layoutX="100.0" layoutY="14.0" />
+                              <DatePicker fx:id="tgl_pengeluaran" layoutX="100.0" layoutY="14.0" />
                               <Label layoutX="19.0" layoutY="57.0" text="Kategori" />
-                              <ComboBox layoutX="100.0" layoutY="53.0" prefWidth="150.0" />
+                              <ComboBox fx:id="cbTambahKategori" layoutX="100.0" layoutY="53.0" onAction="#getIdKategori" onMouseClicked="#setIsiKategori" prefWidth="150.0" />
                               <Label layoutX="19.0" layoutY="127.0" text="Nominal" />
-                              <TextField layoutX="101.0" layoutY="127.0" />
-                              <TextField layoutX="101.0" layoutY="90.0" />
+                              <TextField fx:id="txtNominalPengeluaran" layoutX="101.0" layoutY="127.0" />
+                              <TextField fx:id="txtKeteranganPengeluaran" layoutX="101.0" layoutY="90.0" />
                               <Label layoutX="20.0" layoutY="94.0" text="Keterangan" />
-                              <Button layoutX="101.0" layoutY="186.0" mnemonicParsing="false" text="Tambah" />
+                              <Button fx:id="btnTambahPengeluaran" layoutX="190.0" layoutY="160.0" mnemonicParsing="false" onAction="#tambahPengeluaran" text="Tambah" />
+                              <Label id="lbUsername" fx:id="lbNamaDompet" layoutX="499.0" layoutY="18.0" text="Username" />
                            </children>
                         </AnchorPane>
                   </content>
@@ -270,6 +271,7 @@
                   </Tab>
               </tabs>
             </TabPane>
+            <Label id="lbUsername" fx:id="lbId" layoutX="359.0" layoutY="6.0" text="Username" />
          </children>
       </AnchorPane>
    </bottom>

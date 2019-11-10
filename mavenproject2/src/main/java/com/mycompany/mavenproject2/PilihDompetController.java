@@ -48,6 +48,7 @@ public class PilihDompetController implements Initializable {
     @FXML
     public void update(ActionEvent event){
         this.namaDompet = dompet.getValue();
+        System.out.println(namaDompet);
     }
     
     @FXML
@@ -70,6 +71,7 @@ public class PilihDompetController implements Initializable {
     
     @FXML
     public void setIsi(MouseEvent event){
+        list.clear();
         Connection connection = sqliteConnect.connect().Connector();
         Statement statement;
         try {
@@ -96,6 +98,8 @@ public class PilihDompetController implements Initializable {
     }
     
 }
+
+
 
 
 
