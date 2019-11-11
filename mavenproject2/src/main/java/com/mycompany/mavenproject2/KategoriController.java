@@ -16,10 +16,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import sun.font.TextLabel;
 
 /**
  * FXML Controller class
@@ -29,7 +31,14 @@ import javafx.stage.Stage;
 public class KategoriController implements Initializable {
 
     @FXML
-    private Label lbNama, lbIdUser;  
+    private Label lbNama, lbIdUser;
+    private String namaDompet;
+    
+    @FXML
+    private TextLabel txtNamaKategori;
+    
+    @FXML
+    private Button btnHapus;
     
     @FXML
     private ImageView katergori;
@@ -41,10 +50,14 @@ public class KategoriController implements Initializable {
         scene.getStylesheets().add("/styles/Styles.css");
 
         HomeController home = loader.getController();
-        
+        home.setLabelUsername(lbNama.getText(), lbIdUser.getText(), namaDompet);
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+    }
+    
+    public void hapusKategori(MouseEvent event){
+        
     }
     
     @Override
@@ -52,8 +65,9 @@ public class KategoriController implements Initializable {
         // TODO
     }    
     
-    public void getNamaAndId(String username, String id){
-        lbNama.setText(username);
-        lbIdUser.setText(id);
+    public void getNamaAndId(String username, String id, String namaDompet){
+        this.lbNama.setText(username);
+        this.lbIdUser.setText(id);
+        this.namaDompet = namaDompet;
     }
 }
