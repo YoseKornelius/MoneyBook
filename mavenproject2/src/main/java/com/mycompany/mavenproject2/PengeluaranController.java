@@ -78,10 +78,15 @@ public class PengeluaranController implements Initializable {
     @FXML
     private TableColumn<tampilTabel, String> colTanggal, colKeterangan, colKategori, colNominal;
     @FXML
-    private TableColumn<tampilTabel, String> colTanggalHapus, colKeteranganHapus, colKategoriHapus, colNominalHapus;
+    private TableColumn<tampilTabel, String> colTanggalHapus = new TableColumn("Tanggal");
+    private TableColumn<tampilTabel, String> colKategoriHapus = new TableColumn("Kategori");
+    private TableColumn<tampilTabel, String> colKeteranganHapus = new TableColumn("Keterangan");
+    private TableColumn<tampilTabel, String> colNominalHapus = new TableColumn("Nominal");
 
     ObservableList<String> list = FXCollections.observableArrayList();
-
+    
+    private String kategoriHapus, tanggalHapus, keteranganHapus, nominalHapus;
+    
     @FXML
     public void pindahHome(MouseEvent event) throws SQLException, IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Home.fxml"));
@@ -100,16 +105,6 @@ public class PengeluaranController implements Initializable {
     public void setIsiKategori(MouseEvent event) {
         Connection connection = sqliteConnect.connect().Connector();
         Statement statement;
-        try {
-            statement = connection.createStatement();
-            String query = "SELECT id_dompet from dompet where nama_dompet='" + lbNamaDompet.getText() + "' and id_user = '" + iduser + "'";
-            ResultSet rs = statement.executeQuery(query);
-            while (rs.next()) {
-                idDompet = rs.getString(1);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(PilihDompetController.class.getName()).log(Level.SEVERE, null, ex);
-        }
         try {
             list.clear();
             statement = connection.createStatement();
@@ -190,6 +185,8 @@ public class PengeluaranController implements Initializable {
     @FXML
     public void isitabel2() {
         try {
+            pengeluarantblHapus.getColumns().clear();
+            pengeluarantblHapus.getColumns().addAll(colTanggalHapus,colKategoriHapus, colKeteranganHapus, colNominalHapus);
             Connection conn;
             Statement st;
             ResultSet rs;
@@ -227,6 +224,10 @@ public class PengeluaranController implements Initializable {
             this.colKeteranganHapus.setCellValueFactory(new PropertyValueFactory("keterangan"));
             this.colNominalHapus.setCellValueFactory(new PropertyValueFactory("nominal"));
             this.colTanggalHapus.setCellValueFactory(new PropertyValueFactory("tgl"));
+            this.colKategoriHapus.setMinWidth(120);
+            this.colKeteranganHapus.setMinWidth(120);
+            this.colNominalHapus.setMinWidth(120);
+            this.colTanggalHapus.setMinWidth(120);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -244,7 +245,41 @@ public class PengeluaranController implements Initializable {
         System.out.println(this.lbNamaDompet.getText());
 
     }
-
+    
+    @FXML
+    public void hapusPengeluaran(MouseEvent event){
+        kategoriHapus = pengeluarantblHapus.getSelectionModel().getSelectedItem().getKategori();
+        tanggalHapus = pengeluarantblHapus.getSelectionModel().getSelectedItem().getTgl();
+        keteranganHapus = pengeluarantblHapus.getSelectionModel().getSelectedItem().getKeterangan();
+        nominalHapus = pengeluarantblHapus.getSelectionModel().getSelectedItem().getNominal();
+    }
+    
+    @FXML
+    public void hapus(ActionEvent event) throws SQLException{
+        Connection connection = sqliteConnect.connect().Connector();
+        Statement statement=connection.createStatement();
+        System.out.println(idDompet);
+        String queryKategori="SELECT id_kategori from kategori where id_dompet='"+idDompet+"' and nama_kategori='"+kategoriHapus+"'";
+        ResultSet rs = statement.executeQuery(queryKategori);
+        while(rs.next()){
+            String idKategori = rs.getString(1).toString();
+            String queryPengeluaran="SELECT id_pengeluaran from pengeluaran where id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"' and nama_pengeluaran='"+keteranganHapus+"'";
+            ResultSet rsP = statement.executeQuery(queryPengeluaran);
+            while(rsP.next()){
+                String idPengeluaran = rs.getString(1).toString();
+                String queryHapus="DELETE from pengeluaran where id_pengeluaran='"+idPengeluaran+"' and id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"' and nama_pengeluaran='"+keteranganHapus+"'";
+                int hasil=statement.executeUpdate(queryHapus);
+                if(hasil==1){
+                    System.out.println("HAPUS BERHASIL");
+                    isitabel2();
+                }else{
+                    System.out.println("HAPUS TIDAK BERHASIL");
+                }
+            }
+        }
+    }
+    
+    @FXML
     public void editPengeluaran(MouseEvent event) throws Exception {
 
         String tanggal, keterangan, nominal;
@@ -276,6 +311,7 @@ public class PengeluaranController implements Initializable {
                 System.out.println("berhasil Update pengeluaran");
                 txtEditKeterangan.clear();
                 txtEditNominal.clear();
+                isitabel();
             }
         } catch (SQLException ex) {
             ex.getMessage();
@@ -288,9 +324,45 @@ public class PengeluaranController implements Initializable {
         lbNama.setText(namauser);
         lbId.setText(iduser);
         this.dompet = dompet;
+        System.out.println(dompet);
         lbNamaDompet.setText(this.dompet);
+        try {
+            Connection connection = sqliteConnect.connect().Connector();
+            Statement statement;
+            statement = connection.createStatement();
+            String query = "SELECT id_dompet from dompet where nama_dompet='" + lbNamaDompet.getText() + "' and id_user = '" + iduser + "'";
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                idDompet = rs.getString(1);
+            }
+            System.out.println(idDompet);
+        } catch (SQLException ex) {
+            Logger.getLogger(PilihDompetController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
