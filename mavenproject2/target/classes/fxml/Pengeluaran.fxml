@@ -208,7 +208,7 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                  <Tab text="Hapus Pengeluaran">
+                  <Tab fx:id="EditPengeluarantabHapus" onSelectionChanged="#isitabel2" text="Hapus Pengeluaran">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
