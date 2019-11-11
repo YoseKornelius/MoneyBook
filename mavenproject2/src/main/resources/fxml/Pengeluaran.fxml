@@ -179,31 +179,31 @@
                               <TextField fx:id="txtNominalPengeluaran" layoutX="101.0" layoutY="127.0" />
                               <TextField fx:id="txtKeteranganPengeluaran" layoutX="101.0" layoutY="90.0" />
                               <Label layoutX="20.0" layoutY="94.0" text="Keterangan" />
-                              <Button fx:id="btnTambahPengeluaran" layoutX="190.0" layoutY="160.0" mnemonicParsing="false" onAction="#tambahPengeluaran" text="Tambah" />
+                              <Button fx:id="btnTambahPengeluaran" layoutX="101.0" layoutY="186.0" mnemonicParsing="false" onAction="#tambahPengeluaran" text="Tambah" />
                               <Label id="lbUsername" fx:id="lbNamaDompet" layoutX="499.0" layoutY="18.0" text="Username" />
                            </children>
                         </AnchorPane>
                   </content>
                 </Tab>
-                <Tab text="Edit Pengeluaran">
+                <Tab fx:id="EditPengeluarantab" onSelectionChanged="#isitabel" text="Edit Pengeluaran">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView layoutX="5.0" layoutY="5.0" prefHeight="200.0" prefWidth="362.0">
+                              <TableView fx:id="pengeluarantbl" layoutX="5.0" layoutY="5.0" onMouseClicked="#editPengeluaran" prefHeight="200.0" prefWidth="362.0">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="Tanggal" />
-                                  <TableColumn prefWidth="75.0" text="Kategori" />
-                                    <TableColumn prefWidth="75.0" text="Keterangan" />
-                                    <TableColumn prefWidth="75.0" text="Nominal" />
+                                  <TableColumn fx:id="colTanggal" prefWidth="75.0" text="Tanggal" />
+                                  <TableColumn fx:id="colKategori" prefWidth="75.0" text="Kategori" />
+                                    <TableColumn fx:id="colKeterangan" prefWidth="75.0" text="Keterangan" />
+                                    <TableColumn fx:id="colNominal" prefWidth="103.6666259765625" text="Nominal" />
                                 </columns>
                               </TableView>
-                              <Button layoutX="448.0" layoutY="130.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Edit" />
+                              <Button fx:id="btnEditPengeluaran" layoutX="448.0" layoutY="130.0" mnemonicParsing="false" onAction="#UpdatePengeluaran" prefHeight="25.0" prefWidth="60.0" text="Edit" />
                               <Label layoutX="378.0" layoutY="14.0" text="Tanggal" />
-                              <DatePicker layoutX="448.0" layoutY="10.0" prefHeight="25.0" prefWidth="129.0" />
+                              <DatePicker fx:id="tglEditPengeluaran" layoutX="448.0" layoutY="10.0" prefHeight="25.0" prefWidth="129.0" />
                               <Label layoutX="378.0" layoutY="45.0" text="Keterangan" />
-                              <TextField layoutX="447.0" layoutY="41.0" prefHeight="25.0" prefWidth="127.0" />
+                              <TextField fx:id="txtEditKeterangan" layoutX="447.0" layoutY="41.0" prefHeight="25.0" prefWidth="127.0" />
                               <Label layoutX="378.0" layoutY="77.0" text="Nominal" />
-                              <TextField layoutX="447.0" layoutY="73.0" prefHeight="25.0" prefWidth="127.0" />
+                              <TextField fx:id="txtEditNominal" layoutX="447.0" layoutY="73.0" prefHeight="25.0" prefWidth="127.0" />
                            </children>
                         </AnchorPane>
                   </content>
@@ -212,12 +212,12 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView layoutX="7.0" layoutY="3.0" prefHeight="200.0" prefWidth="437.0">
+                              <TableView fx:id="pengeluarantblHapus" layoutX="7.0" layoutY="3.0" prefHeight="200.0" prefWidth="437.0">
                                  <columns>
-                                    <TableColumn prefWidth="75.0" text="Tanggal" />
-                                    <TableColumn prefWidth="75.0" text="Kategori" />
-                                    <TableColumn prefWidth="75.0" text="Keterangan" />
-                                    <TableColumn prefWidth="75.0" text="Nominal" />
+                                    <TableColumn fx:id="colTanggalHapus" prefWidth="75.0" text="Tanggal" />
+                                    <TableColumn fx:id="colKategoriHapus" prefWidth="75.0" text="Kategori" />
+                                    <TableColumn fx:id="colKeteranganHapus" prefWidth="75.0" text="Keterangan" />
+                                    <TableColumn fx:id="colNominalHapus" prefWidth="75.0" text="Nominal" />
                                  </columns>
                               </TableView>
                               <Button layoutX="508.0" layoutY="167.0" mnemonicParsing="false" text="Button" />
