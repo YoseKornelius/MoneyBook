@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -28,6 +29,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -50,7 +52,10 @@ public class PengeluaranController implements Initializable {
     @FXML
     private ImageView imgHome;
     private String iduser, namauser, dompet, idDompet, idKategori, tampNama, tampNominal;
-
+    
+    @FXML
+    private Tab EditPengeluarantab, EditPengeluarantabHapus;
+    
     @FXML
     private TextField txtKeteranganPengeluaran, txtNominalPengeluaran, txtEditNominal, txtEditKeterangan;
     @FXML
@@ -62,10 +67,13 @@ public class PengeluaranController implements Initializable {
     private Label lbNama, lbId, lbNamaDompet;
 
     @FXML
-    private TableView<tampilTabel> pengeluarantbl, pengeluarantblHapus;
+    private TableView<tampilTabel> pengeluarantbl;
+    @FXML
+    private TableView<tampilTabel> pengeluarantblHapus;
 
     @FXML
     private TableColumn<tampilTabel, String> colTanggal, colKeterangan, colKategori, colNominal;
+    @FXML
     private TableColumn<tampilTabel, String> colTanggalHapus, colKeteranganHapus, colKategoriHapus, colNominalHapus;
 
     ObservableList<String> list = FXCollections.observableArrayList();
@@ -111,7 +119,7 @@ public class PengeluaranController implements Initializable {
             Logger.getLogger(PilihDompetController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    @FXML
     public void getIdKategori(ActionEvent event) throws Exception {
         Connection connection = sqliteConnect.connect().Connector();
         Statement statement;
@@ -127,7 +135,7 @@ public class PengeluaranController implements Initializable {
             Logger.getLogger(PilihDompetController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    @FXML
     public void tambahPengeluaran(ActionEvent event) throws SQLException {
         // String ket = txtKeteranganPengeluaran.getText();
         try {
@@ -149,7 +157,7 @@ public class PengeluaranController implements Initializable {
             ex.getMessage();
         }
     }
-
+    @FXML
     public void isitabel() {
         try {
             Connection conn;
@@ -165,7 +173,37 @@ public class PengeluaranController implements Initializable {
                 isi.add(new tampilTabel(rs.getString("tanggal_pengeluaran"), rs.getString("nama_kategori"), rs.getString("nama_pengeluaran"), rs.getString("nominal_pengeluaran")));
             }
             this.pengeluarantbl.setItems(isi);
-            this.pengeluarantbl.setItems(isi);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    @FXML
+    public void isitabel2() {
+        try {
+            Connection conn;
+            Statement st;
+            ResultSet rs;
+            conn = sqliteConnect.connect().Connector();
+            st = conn.createStatement();
+            System.out.println("select * from pengeluaran inner join kategori where pengeluaran.id_dompet=(select id_dompet from dompet where nama_dompet='" + this.lbNamaDompet.getText() + "') and pengeluaran.id_kategori=kategori.id_kategori");
+            rs = st.executeQuery("select * from pengeluaran inner join kategori where pengeluaran.id_dompet=(select id_dompet from dompet where nama_dompet='" + this.lbNamaDompet.getText() + "') and pengeluaran.id_kategori=kategori.id_kategori");
+
+            ObservableList<tampilTabel> isi2 = FXCollections.observableArrayList();
+            while (rs.next()) {
+                System.out.println(rs.getString("tanggal_pengeluaran"));
+                System.out.println(rs.getString("nama_kategori"));
+                System.out.println(rs.getString("nama_pengeluaran"));
+                System.out.println(rs.getString("nominal_pengeluaran"));
+                
+                isi2.add(new tampilTabel(rs.getString("tanggal_pengeluaran"), rs.getString("nama_kategori"), rs.getString("nama_pengeluaran"), rs.getString("nominal_pengeluaran")));
+            }
+            this.pengeluarantblHapus.setItems(isi2);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -180,14 +218,23 @@ public class PengeluaranController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        try {
+            this.colKategoriHapus.setCellValueFactory(new PropertyValueFactory("kategori"));
+            this.colKeteranganHapus.setCellValueFactory(new PropertyValueFactory("keterangan"));
+            this.colNominalHapus.setCellValueFactory(new PropertyValueFactory("nominal"));
+            this.colTanggalHapus.setCellValueFactory(new PropertyValueFactory("tgl"));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
-        this.colKategori.setCellValueFactory(new PropertyValueFactory("kategori"));
-        this.colKeterangan.setCellValueFactory(new PropertyValueFactory("keterangan"));
-        this.colNominal.setCellValueFactory(new PropertyValueFactory("nominal"));
-        this.colTanggal.setCellValueFactory(new PropertyValueFactory("tgl"));
-        
-        this.colKategori.setCellValueFactory(new PropertyValueFactory("kategori"));
-
+        try {
+            this.colKategori.setCellValueFactory(new PropertyValueFactory("kategori"));
+            this.colKeterangan.setCellValueFactory(new PropertyValueFactory("keterangan"));
+            this.colNominal.setCellValueFactory(new PropertyValueFactory("nominal"));
+            this.colTanggal.setCellValueFactory(new PropertyValueFactory("tgl"));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
         System.out.println(this.namauser);
         System.out.println(this.dompet);
         System.out.println(this.lbNamaDompet.getText());
@@ -195,7 +242,7 @@ public class PengeluaranController implements Initializable {
     }
 
     public void editPengeluaran(MouseEvent event) throws Exception {
-        
+
         String tanggal, keterangan, nominal;
         tanggal = pengeluarantbl.getSelectionModel().getSelectedItem().getTgl();
         keterangan = pengeluarantbl.getSelectionModel().getSelectedItem().getKeterangan();
@@ -210,16 +257,16 @@ public class PengeluaranController implements Initializable {
         tampNominal = txtEditNominal.getText();
     }
 
-   public void UpdatePengeluaran(ActionEvent event) throws SQLException {        
+    public void UpdatePengeluaran(ActionEvent event) throws SQLException {
         try {
             Connection conn = sqliteConnect.connect().Connector();
             Statement statement;
             statement = conn.createStatement();
-            String query = "UPDATE pengeluaran SET tanggal_pengeluaran = '"+tglEditPengeluaran.getValue()+"',"
-                    + " nama_pengeluaran = '"+txtEditKeterangan.getText()+"', "
-                    + "nominal_pengeluaran = '"+txtEditNominal.getText()+"' "
-                    + "WHERE nama_pengeluaran = '"+tampNama+"'"
-                    + "AND nominal_pengeluaran = '"+tampNominal+"'";
+            String query = "UPDATE pengeluaran SET tanggal_pengeluaran = '" + tglEditPengeluaran.getValue() + "',"
+                    + " nama_pengeluaran = '" + txtEditKeterangan.getText() + "', "
+                    + "nominal_pengeluaran = '" + txtEditNominal.getText() + "' "
+                    + "WHERE nama_pengeluaran = '" + tampNama + "'"
+                    + "AND nominal_pengeluaran = '" + tampNominal + "'";
             int hasil = statement.executeUpdate(query);
             if (hasil == 1) {
                 System.out.println("berhasil Update pengeluaran");
@@ -238,7 +285,6 @@ public class PengeluaranController implements Initializable {
         lbId.setText(iduser);
         this.dompet = dompet;
         lbNamaDompet.setText(this.dompet);
-
     }
 
 }
