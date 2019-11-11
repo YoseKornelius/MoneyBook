@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,6 +30,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
@@ -54,7 +58,7 @@ public class HomeController implements Initializable {
     private String userName, idUser, tampJenis, tampKategori;
     
     @FXML
-    private int tampBulan;
+    private String tampBulan;
     
     @FXML
     private ComboBox<String> cbPilihDompet;
@@ -68,12 +72,25 @@ public class HomeController implements Initializable {
     @FXML
     private ComboBox<String> comboKategori;
     
+    @FXML
+    TableView<dataPencarian> table;
+    
     ObservableList<String> listDompet = FXCollections.observableArrayList();
     ObservableList<String> listJenis = FXCollections.observableArrayList();
     ObservableList<String> listBulan = FXCollections.observableArrayList();
     ObservableList<String> listKategori = FXCollections.observableArrayList();
     public String namaDompet;
     public int idDompet;
+    public String lunas;
+    
+    ObservableList<dataPencarian> data = FXCollections.observableArrayList();
+    
+    TableColumn<dataPencarian, String> kolom1 = new TableColumn("Tanggal");
+    TableColumn<dataPencarian, String> kolom2 = new TableColumn("Jenis Pencatatan");
+    TableColumn<dataPencarian, String> kolom3 = new TableColumn("Kategori");
+    TableColumn<dataPencarian, String> kolom4 = new TableColumn("Nominal");
+    TableColumn<dataPencarian, String> kolom5 = new TableColumn("Status");
+    TableColumn<dataPencarian, String> kolom6 = new TableColumn("Nama Barang");
     
     @FXML
     public void isiComboJenis(MouseEvent event){
@@ -107,30 +124,30 @@ public class HomeController implements Initializable {
     }
     @FXML
     public void pilihBulan(ActionEvent event){
-        if(comboJenis.getValue()=="Januari"){
-            tampBulan = 1;
-        }else if(comboJenis.getValue()=="Februari"){
-            tampBulan = 2;
-        }else if(comboJenis.getValue()=="Maret"){
-            tampBulan = 3;
-        }else if(comboJenis.getValue()=="April"){
-            tampBulan = 4;
-        }else if(comboJenis.getValue()=="Mei"){
-            tampBulan = 5;
-        }else if(comboJenis.getValue()=="Juni"){
-            tampBulan = 6;
-        }else if(comboJenis.getValue()=="Juli"){
-            tampBulan = 7;
-        }else if(comboJenis.getValue()=="Agustus"){
-            tampBulan = 8;
-        }else if(comboJenis.getValue()=="September"){
-            tampBulan = 9;
-        }else if(comboJenis.getValue()=="Oktober"){
-            tampBulan = 10;
-        }else if(comboJenis.getValue()=="November"){
-            tampBulan = 11;
-        }else if(comboJenis.getValue()=="Desember"){
-            tampBulan = 12;
+        if(comboBulan.getValue()=="Januari"){
+            tampBulan = "01";
+        }else if(comboBulan.getValue()=="Februari"){
+            tampBulan = "02";
+        }else if(comboBulan.getValue()=="Maret"){
+            tampBulan = "03";
+        }else if(comboBulan.getValue()=="April"){
+            tampBulan = "04";
+        }else if(comboBulan.getValue()=="Mei"){
+            tampBulan = "05";
+        }else if(comboBulan.getValue()=="Juni"){
+            tampBulan = "06";
+        }else if(comboBulan.getValue()=="Juli"){
+            tampBulan = "07";
+        }else if(comboBulan.getValue()=="Agustus"){
+            tampBulan = "08";
+        }else if(comboBulan.getValue()=="September"){
+            tampBulan = "09";
+        }else if(comboBulan.getValue()=="Oktober"){
+            tampBulan = "10";
+        }else if(comboBulan.getValue()=="November"){
+            tampBulan = "11";
+        }else if(comboBulan.getValue()=="Desember"){
+            tampBulan = "12";
         }
     }
     
@@ -164,8 +181,118 @@ public class HomeController implements Initializable {
     }
     
     @FXML
-    public void cari(ActionEvent event){
-        
+    public void cari(ActionEvent event) throws SQLException{
+        String jenis = null;
+        table.setVisible(true);
+        table.getColumns().remove(kolom5);
+        table.getItems().clear();
+        Connection connection = sqliteConnect.connect().Connector();
+        Statement statement = connection.createStatement();
+        List<String> rowTgl = new ArrayList();
+        List<String> rowNominal = new ArrayList();
+        List<String> rowNama = new ArrayList();
+        if(comboJenis.getValue().toString()=="Pemasukkan"){
+            jenis="Pemasukkan";
+            String queryKategori="SELECT id_kategori from kategori where id_dompet='"+idDompet+"' and nama_kategori='"+tampKategori+"'";
+            ResultSet rs;
+            rs = statement.executeQuery(queryKategori);
+            while(rs.next()){
+                String idKategori = rs.getString(1).toString();
+                String queryPemasukkan="SELECT id_pemasukkan from pemasukkan where id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"'";
+                ResultSet rsP = statement.executeQuery(queryPemasukkan);
+                while(rsP.next()){
+                    String query="SELECT tanggal_pemasukkan from pemasukkan where strftime('%m',tanggal_pemasukkan)='"+tampBulan+"' and id_kategori='"+idKategori+"'";
+                    rs = statement.executeQuery(query);
+                    while(rs.next()){
+                        rowTgl.add(rs.getString(1).toString());
+                    }
+                    String query2="SELECT nominal_pemasukkan from pemasukkan where id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"'";
+                    ResultSet rs2 = statement.executeQuery(query2);
+                    while(rs2.next()){
+                        rowNominal.add(rs.getString(1).toString());
+                    }
+                    String query3="SELECT nama_pemasukkan from pemasukkan where id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"'";
+                    ResultSet rs3=statement.executeQuery(query3);
+                    while(rs3.next()){
+                        rowNama.add(rs3.getString(1));
+                    }
+                }
+
+            }
+            
+        }else if(comboJenis.getValue().toString()=="Pengeluaran"){
+            jenis="Pengeluaran";
+            String queryKategori="SELECT id_kategori from kategori where id_dompet='"+idDompet+"' and nama_kategori='"+tampKategori+"'";
+            ResultSet rs;
+            rs = statement.executeQuery(queryKategori);
+            while(rs.next()){
+                String idKategori = rs.getString(1).toString();
+                String queryPengeluaran="SELECT id_pengeluaran from pengeluaran where id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"'";
+                ResultSet rsP = statement.executeQuery(queryPengeluaran);
+                while(rsP.next()){
+                    String query="SELECT tanggal_pengeluaran from pengeluaran where strftime('%m',tanggal_pengeluaran)='"+tampBulan+"' and id_kategori='"+idKategori+"'";
+                    rs = statement.executeQuery(query);
+                    while(rs.next()){
+                        rowTgl.add(rs.getString(1).toString());
+                    }
+                    String query2="SELECT nominal_pengeluaran from pengeluaran where id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"'";
+                    ResultSet rs2 = statement.executeQuery(query2);
+                    while(rs2.next()){
+                        rowNominal.add(rs.getString(1).toString());
+                    }
+                    String query3="SELECT nama_pengeluaran from pengeluaran where id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"'";
+                    ResultSet rs3=statement.executeQuery(query3);
+                    while(rs3.next()){
+                        rowNama.add(rs3.getString(1));
+                    }
+                }
+            }
+        }else if(comboJenis.getValue().toString()=="Peminjaman"){
+            jenis="Peminjaman";
+            table.getColumns().remove(kolom5);
+            table.getColumns().add(kolom5);
+            
+            String queryKategori="SELECT id_kategori from kategori where id_dompet='"+idDompet+"' and nama_kategori='"+tampKategori+"'";
+            ResultSet rs;
+            rs = statement.executeQuery(queryKategori);
+            while(rs.next()){
+                String idKategori = rs.getString(1).toString();
+                String queryPeminjaman = "SELECT id_pinjaman from peminjaman where id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"'";
+                ResultSet rsP = statement.executeQuery(queryPeminjaman);
+                while(rsP.next()){
+                    String query="SELECT tanggal_pinjaman from peminjaman where strftime('%m',tanggal_pinjaman)='"+tampBulan+"' and id_kategori='"+idKategori+"'";
+                    rs = statement.executeQuery(query);
+                    while(rs.next()){
+                        rowTgl.add(rs.getString(1).toString());
+                    }
+                    String query2="SELECT nominal_pinjaman from peminjaman where id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"'";
+                    ResultSet rs2 = statement.executeQuery(query2);
+                    while(rs2.next()){
+                        rowNominal.add(rs.getString(1).toString());
+                    }
+                    String query3="SELECT tanggal_pengembalian from peminjaman where id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"'";
+                    ResultSet rs3 = statement.executeQuery(query3);
+                    rs3.next();
+                    if(rs3.getString(1)!=null){
+                        lunas="LUNAS";
+                    }else{
+                        lunas="BELUM LUNAS";
+                    }   
+                    String query4="SELECT nama_pinjaman from peminjaman where id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"'";
+                    ResultSet rs4 = statement.executeQuery(query4);
+                    while(rs4.next()){
+                        rowNama.add(rs4.getString(1));
+                    }
+                }
+            }
+        }
+        System.out.println(rowTgl.size());
+        System.out.println(rowNama.size());
+        System.out.println(rowNominal.size());
+        for(int i=0; i<rowNama.size();i++){
+            data.add(new dataPencarian(rowTgl.get(i),jenis, tampKategori, rowNama.get(i), Integer.parseInt(rowNominal.get(i)),lunas));
+        }
+        table.setItems(data);
     }
     
     @FXML
@@ -188,13 +315,14 @@ public class HomeController implements Initializable {
     
     @FXML
     public void pindahPemasukkan(MouseEvent event) throws SQLException, IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Pemasukkan.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Pengeluaran.fxml"));
         Parent root = (Parent) loader.load();
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
 
         PemasukkanController pemasukkan = loader.getController();
-        
+        System.out.println(namaDompet);
+        //pemasukkan.setIdandName(idUser, lbNama.getText(), namaDompet);        
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
@@ -223,7 +351,9 @@ public class HomeController implements Initializable {
         scene.getStylesheets().add("/styles/Styles.css");
 
         //PeminjamanController peminjaman = loader.getController();
-        
+        PeminjamanController peminjaman = loader.getController();
+        System.out.println(namaDompet);
+        peminjaman.setIdandName(idUser, lbNama.getText(), namaDompet);
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
@@ -324,6 +454,20 @@ public class HomeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         namaDompet = cbPilihDompet.getValue();
+        table.setVisible(false);
+        kolom1.setMinWidth(120);
+        kolom2.setMinWidth(120);
+        kolom3.setMinWidth(120);
+        kolom4.setMinWidth(120);
+        kolom5.setMinWidth(90);
+        kolom6.setMinWidth(120);
+        kolom1.setCellValueFactory(new PropertyValueFactory("tanggal"));
+        kolom2.setCellValueFactory(new PropertyValueFactory("jenis"));
+        kolom3.setCellValueFactory(new PropertyValueFactory("kategori"));
+        kolom4.setCellValueFactory(new PropertyValueFactory("nominal"));
+        kolom5.setCellValueFactory(new PropertyValueFactory("lunas"));
+        kolom6.setCellValueFactory(new PropertyValueFactory("nama"));
+        table.getColumns().addAll(kolom1,kolom2,kolom3,kolom6,kolom4);
      //   System.out.println(namaDompet);
     }    
 
@@ -343,6 +487,89 @@ public class HomeController implements Initializable {
     
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

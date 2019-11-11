@@ -83,12 +83,18 @@ public class RegisterController implements Initializable {
                 window.show();
             }
         }
-        }
-        }
         else{
-            cek.setText("cek kemabali apakah input sudah terisi dengan benar");
-           
+        cek.setText("Password tidak sesuai");
         }
+        }
+            else{
+            cek.setText("Harap Cek Kembali Form E-mail");
+            }
+        }
+            else{
+            cek.setText("Username sudah dipakai");
+           
+            }
          connection.close();
          statement.close();
         

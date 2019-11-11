@@ -63,6 +63,10 @@ public class PengeluaranController implements Initializable {
 
     public ComboBox<String> cbTambahKategori;
 
+   
+    
+    
+    
     @FXML
     private Label lbNama, lbId, lbNamaDompet;
 
@@ -288,3 +292,5 @@ public class PengeluaranController implements Initializable {
     }
 
 }
+
+
