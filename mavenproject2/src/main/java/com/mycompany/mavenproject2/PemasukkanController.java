@@ -82,6 +82,8 @@ public class PemasukkanController implements Initializable {
     private TableColumn<tampilTabel, String> colTanggalHapus, colKeteranganHapus, colKategoriHapus, colNominalHapus;
 
     ObservableList<String> list = FXCollections.observableArrayList();
+    
+    private String kategoriHapus, tanggalHapus, keteranganHapus, nominalHapus;
 
     @FXML
     public void pindahHome(MouseEvent event) throws SQLException, IOException {
@@ -191,6 +193,8 @@ public class PemasukkanController implements Initializable {
     @FXML
     public void isitabel2() {
         try {
+            pemasukkantblHapus.getColumns().clear();
+            pemasukkantblHapus.getColumns().addAll(colTanggalHapus,colKategoriHapus, colKeteranganHapus, colNominalHapus);
             Connection conn;
             Statement st;
             ResultSet rs;
@@ -228,6 +232,10 @@ public class PemasukkanController implements Initializable {
             this.colKeteranganHapus.setCellValueFactory(new PropertyValueFactory("keterangan"));
             this.colNominalHapus.setCellValueFactory(new PropertyValueFactory("nominal"));
             this.colTanggalHapus.setCellValueFactory(new PropertyValueFactory("tgl"));
+            this.colKategoriHapus.setMinWidth(120);
+            this.colKeteranganHapus.setMinWidth(120);
+            this.colNominalHapus.setMinWidth(120);
+            this.colTanggalHapus.setMinWidth(120);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -244,6 +252,39 @@ public class PemasukkanController implements Initializable {
         System.out.println(this.dompet);
         System.out.println(this.lbNamaDompet.getText());
 
+    }
+    
+     @FXML
+    public void hapusPemasukkan(MouseEvent event){
+        kategoriHapus = pemasukkantblHapus.getSelectionModel().getSelectedItem().getKategori();
+        tanggalHapus = pemasukkantblHapus.getSelectionModel().getSelectedItem().getTgl();
+        keteranganHapus = pemasukkantblHapus.getSelectionModel().getSelectedItem().getKeterangan();
+        nominalHapus = pemasukkantblHapus.getSelectionModel().getSelectedItem().getNominal();
+    }
+    
+    @FXML
+    public void hapus(ActionEvent event) throws SQLException{
+        Connection connection = sqliteConnect.connect().Connector();
+        Statement statement=connection.createStatement();
+        System.out.println(idDompet);
+        String queryKategori="SELECT id_kategori from kategori where id_dompet='"+idDompet+"' and nama_kategori='"+kategoriHapus+"'";
+        ResultSet rs = statement.executeQuery(queryKategori);
+        while(rs.next()){
+            String idKategori = rs.getString(1).toString();
+            String queryPemasukkan="SELECT id_pemasukkan from pemasukkan where id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"' and nama_pengeluaran='"+keteranganHapus+"'";
+            ResultSet rsP = statement.executeQuery(queryPemasukkan);
+            while(rsP.next()){
+                String idPemasukkan = rs.getString(1).toString();
+                String queryHapus="DELETE from pemasukkan where id_pemasukkan='"+idPemasukkan+"' and id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"' and nama_pemasukkan='"+keteranganHapus+"'";
+                int hasil=statement.executeUpdate(queryHapus);
+                if(hasil==1){
+                    System.out.println("HAPUS BERHASIL");
+                    isitabel2();
+                }else{
+                    System.out.println("HAPUS TIDAK BERHASIL");
+                }
+            }
+        }
     }
 
     public void editPengeluaran(MouseEvent event) throws Exception {
@@ -291,6 +332,19 @@ public class PemasukkanController implements Initializable {
         lbId.setText(iduser);
         this.dompet = dompet;
         lbNamaDompet.setText(this.dompet);
+        try {
+            Connection connection = sqliteConnect.connect().Connector();
+            Statement statement;
+            statement = connection.createStatement();
+            String query = "SELECT id_dompet from dompet where nama_dompet='" + lbNamaDompet.getText() + "' and id_user = '" + iduser + "'";
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                idDompet = rs.getString(1);
+            }
+            System.out.println(idDompet);
+        } catch (SQLException ex) {
+            Logger.getLogger(PilihDompetController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

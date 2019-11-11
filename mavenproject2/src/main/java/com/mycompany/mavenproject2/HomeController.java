@@ -365,8 +365,8 @@ public class HomeController implements Initializable {
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
 
-        //PeminjamanController peminjaman = loader.getController();
-        
+        PeminjamanController peminjaman = loader.getController();
+        peminjaman.setIdandName(idUser, lbNama.getText(), namaDompet);
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();

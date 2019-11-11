@@ -197,15 +197,8 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="pemasukkantblHapus" layoutX="7.0" layoutY="3.0" prefHeight="200.0" prefWidth="302.0">
-                                 <columns>
-                                    <TableColumn fx:id="colTanggalHapus" prefWidth="75.0" text="Tanggal" />
-                                    <TableColumn fx:id="colKategoriHapus" prefWidth="75.0" text="Kategori" />
-                                    <TableColumn fx:id="colKeteranganHapus" prefWidth="75.0" text="Keterangan" />
-                                    <TableColumn fx:id="colNominalHapus" prefWidth="75.0" text="Nominal" />
-                                 </columns>
-                              </TableView>
-                              <Button layoutX="508.0" layoutY="167.0" mnemonicParsing="false" text="Button" />
+                              <TableView fx:id="pemasukkantblHapus" layoutX="7.0" layoutY="3.0" onMouseClicked="#hapusPemasukkan" prefHeight="200.0" prefWidth="429.0" />
+                              <Button fx:id="btnHapus" layoutX="508.0" layoutY="167.0" mnemonicParsing="false" onAction="#hapus" text="Hapus" />
                            </children>
                         </AnchorPane>
                      </content>
