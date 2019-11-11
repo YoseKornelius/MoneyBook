@@ -54,7 +54,7 @@ public class PemasukkanController implements Initializable {
     private String idUser, namaUser, dompet, idDompet, idKategori, tampNama, tampNominal;
     
     @FXML
-    private Tab editPemasukkanTab, EditPemasukkanTabHapus;
+    private Tab editPemasukkanTab, editPemasukkanTabHapus;
     
     @FXML
     private TextField txtKeteranganPemasukkan, txtNominalPemasukkan, txtEditNominal, txtEditKeterangan;
@@ -79,7 +79,10 @@ public class PemasukkanController implements Initializable {
     @FXML
     private TableColumn<tampilTabel, String> colTanggal, colKeterangan, colKategori, colNominal;
     @FXML
-    private TableColumn<tampilTabel, String> colTanggalHapus, colKeteranganHapus, colKategoriHapus, colNominalHapus;
+    private TableColumn<tampilTabel, String> colTanggalHapus = new TableColumn("Tanggal");
+    private TableColumn<tampilTabel, String> colKategoriHapus = new TableColumn("Kategori");
+    private TableColumn<tampilTabel, String> colKeteranganHapus = new TableColumn("Keterangan");
+    private TableColumn<tampilTabel, String> colNominalHapus = new TableColumn("Nominal");
 
     ObservableList<String> list = FXCollections.observableArrayList();
     
@@ -271,7 +274,7 @@ public class PemasukkanController implements Initializable {
         ResultSet rs = statement.executeQuery(queryKategori);
         while(rs.next()){
             String idKategori = rs.getString(1).toString();
-            String queryPemasukkan="SELECT id_pemasukkan from pemasukkan where id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"' and nama_pengeluaran='"+keteranganHapus+"'";
+            String queryPemasukkan="SELECT id_pemasukkan from pemasukkan where id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"' and nama_pemasukkan='"+keteranganHapus+"'";
             ResultSet rsP = statement.executeQuery(queryPemasukkan);
             while(rsP.next()){
                 String idPemasukkan = rs.getString(1).toString();
@@ -286,8 +289,8 @@ public class PemasukkanController implements Initializable {
             }
         }
     }
-
-    public void editPengeluaran(MouseEvent event) throws Exception {
+    @FXML
+    public void editPemasukkan(MouseEvent event) throws Exception {
 
         String tanggal, keterangan, nominal;
         tanggal = pemasukkantbl.getSelectionModel().getSelectedItem().getTgl();
@@ -348,5 +351,9 @@ public class PemasukkanController implements Initializable {
     }
 
 }
+
+
+
+
 
 

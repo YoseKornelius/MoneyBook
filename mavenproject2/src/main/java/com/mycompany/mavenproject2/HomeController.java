@@ -201,6 +201,7 @@ public class HomeController implements Initializable {
                 String queryPemasukkan="SELECT id_pemasukkan from pemasukkan where id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"'";
                 ResultSet rsP = statement.executeQuery(queryPemasukkan);
                 while(rsP.next()){
+                    String idPemasukkan = rsP.getString(1).toString();
                     String query="SELECT tanggal_pemasukkan from pemasukkan where strftime('%m',tanggal_pemasukkan)='"+tampBulan+"' and id_kategori='"+idKategori+"'";
                     rs = statement.executeQuery(query);
                     while(rs.next()){
@@ -230,6 +231,7 @@ public class HomeController implements Initializable {
                 String queryPengeluaran="SELECT id_pengeluaran from pengeluaran where id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"'";
                 ResultSet rsP = statement.executeQuery(queryPengeluaran);
                 while(rsP.next()){
+                    String idPengeluaran=rsP.getString(1).toString();
                     String query="SELECT tanggal_pengeluaran from pengeluaran where strftime('%m',tanggal_pengeluaran)='"+tampBulan+"' and id_kategori='"+idKategori+"'";
                     rs = statement.executeQuery(query);
                     while(rs.next()){
@@ -260,6 +262,7 @@ public class HomeController implements Initializable {
                 String queryPeminjaman = "SELECT id_pinjaman from peminjaman where id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"'";
                 ResultSet rsP = statement.executeQuery(queryPeminjaman);
                 while(rsP.next()){
+                    String idPeminjaman = rsP.getString(1).toString();
                     String query="SELECT tanggal_pinjaman from peminjaman where strftime('%m',tanggal_pinjaman)='"+tampBulan+"' and id_kategori='"+idKategori+"'";
                     rs = statement.executeQuery(query);
                     while(rs.next()){
@@ -270,7 +273,7 @@ public class HomeController implements Initializable {
                     while(rs2.next()){
                         rowNominal.add(rs.getString(1).toString());
                     }
-                    String query3="SELECT tanggal_pengembalian from peminjaman where id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"'";
+                    String query3="SELECT tanggal_pengembalian from peminjaman where id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"' and id_pinjaman='"+idPeminjaman+"'";
                     ResultSet rs3 = statement.executeQuery(query3);
                     rs3.next();
                     if(rs3.getString(1)!=null){
@@ -486,6 +489,26 @@ public class HomeController implements Initializable {
     
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
