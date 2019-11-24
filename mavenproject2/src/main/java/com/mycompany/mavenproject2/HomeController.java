@@ -368,11 +368,13 @@ public class HomeController implements Initializable {
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
 
-        PeminjamanController peminjaman = loader.getController();
-        peminjaman.setIdandName(idUser, lbNama.getText(), namaDompet);
+        KategoriController kategori = loader.getController();
+        kategori.getNamaAndId( lbNama.getText(), idUser, namaDompet);
+        System.out.println(idDompet);
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+        
     }
     
     @FXML
@@ -470,6 +472,7 @@ public class HomeController implements Initializable {
         kolom5.setCellValueFactory(new PropertyValueFactory("lunas"));
         kolom6.setCellValueFactory(new PropertyValueFactory("nama"));
         table.getColumns().addAll(kolom1,kolom2,kolom3,kolom6,kolom4);
+        
      //   System.out.println(namaDompet);
     }    
 
@@ -489,6 +492,16 @@ public class HomeController implements Initializable {
     
 
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
