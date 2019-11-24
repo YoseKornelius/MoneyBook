@@ -370,6 +370,7 @@ public class HomeController implements Initializable {
 
         KategoriController kategori = loader.getController();
         kategori.getNamaAndId( lbNama.getText(), idUser, namaDompet);
+        kategori.tampilkanTable();
         System.out.println(idDompet);
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
@@ -492,6 +493,7 @@ public class HomeController implements Initializable {
     
 
 }
+
 
 
 

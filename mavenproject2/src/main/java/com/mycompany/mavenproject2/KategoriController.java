@@ -44,21 +44,21 @@ public class KategoriController implements Initializable {
 
     @FXML
     private Label lbNama, lbIdUser;
-    private String namaDompet;
+    private String namaDompet, kategoriHapus;
     
     @FXML
-    private TextField txtNamaKategori;
+    private TextField tambahKategori, editKategori;
     
     @FXML
     private Button btnHapus, btnTambah, btnEdit;
     
-    TableColumn<TampilanKategori, String> nomor = new TableColumn("No");
+    @FXML
     TableColumn<TampilanKategori, String> nama = new TableColumn("Nama Kategori");
     
     ObservableList<TampilanKategori> list = FXCollections.observableArrayList();
     
     @FXML
-    private TableView tblKategori;
+    private TableView<TampilanKategori> tblKategori;
     
     private int counter, idDompet;
     
@@ -78,32 +78,60 @@ public class KategoriController implements Initializable {
         stage.show();
     }
     @FXML
-    public void hapusKategori(ActionEvent event){
-        
+    public void hapuskategori(MouseEvent event){
+        kategoriHapus = tblKategori.getSelectionModel().getSelectedItem().getNama();
+        editKategori.setText(kategoriHapus);
     }
-    
     @FXML
-    public void tambahKategori(ActionEvent event) throws SQLException{
+    public void hapus(ActionEvent event) throws SQLException{
         Connection connection = sqliteConnect.connect().Connector();
         Statement statement;
         statement=connection.createStatement();
-        String tambah = txtNamaKategori.getText();
-        String query="INSERT INTO kategori(id_dompet, nama_kategori) VALUES('"+idDompet+"','"+tambah+"')";
+        String query="DELETE from kategori where id_dompet='"+idDompet+"' AND nama_kategori='"+kategoriHapus+"'";
         int hasil = statement.executeUpdate(query);
         if(hasil==1){
             System.out.println("Berhasil");
+            tampilkanTable();
         }else{
             System.out.println("GAGAL");
         }
     }
     
     @FXML
-    public void editKategori(ActionEvent event){
-        
+    public void tambah(ActionEvent event) throws SQLException{
+        Connection connection = sqliteConnect.connect().Connector();
+        Statement statement;
+        statement=connection.createStatement();
+        String yangDiTambah = tambahKategori.getText();
+        String query="INSERT INTO kategori(id_dompet, nama_kategori) VALUES('"+idDompet+"','"+yangDiTambah+"')";
+        int hasil = statement.executeUpdate(query);
+        if(hasil==1){
+            System.out.println("Berhasil");
+            tampilkanTable();
+            tambahKategori.setText("");
+        }else{
+            System.out.println("GAGAL");
+        }
     }
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    @FXML
+    public void edit(ActionEvent event) throws SQLException{
+        Connection connection = sqliteConnect.connect().Connector();
+        Statement statement;
+        statement=connection.createStatement();
+        String yangDiEdit = editKategori.getText();
+        String query="UPDATE kategori SET nama_kategori='"+yangDiEdit+"' where id_dompet='"+idDompet+"' and nama_kategori='"+kategoriHapus+"'";
+        int hasil = statement.executeUpdate(query);
+        if(hasil==1){
+            System.out.println("Berhasil");
+            tampilkanTable();
+        }else{
+            System.out.println("GAGAL");
+        }
+    }
+    
+
+    public void tampilkanTable(){
         try {
             // TODO
             Connection connection = sqliteConnect.connect().Connector();
@@ -115,30 +143,31 @@ public class KategoriController implements Initializable {
             ResultSet rs = statement.executeQuery(query);
             while(rs.next()){
                 idDompet = Integer.parseInt(rs.getString(1));
-                System.out.println(idDompet);
             }
             
         } catch (SQLException ex) {
             Logger.getLogger(PilihDompetController.class.getName()).log(Level.SEVERE, null, ex);
         }
-            System.out.println(idDompet);
-            nomor.setMinWidth(60);
-            nama.setMinWidth(130);
-            nomor.setCellValueFactory(new PropertyValueFactory("no"));
-            nama.setCellValueFactory(new PropertyValueFactory("nama"));
-            tblKategori.getColumns().addAll(nomor,nama);
+            list.clear();
+            tblKategori.getItems().clear();
+            tblKategori.getColumns().clear();
+            tblKategori.getColumns().addAll(nama);
             String hasil="SELECT nama_kategori from kategori where id_dompet='"+idDompet+"'";
             
             ResultSet rs = statement.executeQuery(hasil);
             while(rs.next()){
-                counter++;
-                String noUrut = String.valueOf(counter);
-                list.add(new TampilanKategori(noUrut, rs.getString(1)));
+                list.add(new TampilanKategori(rs.getString(1)));
             }
             tblKategori.setItems(list);
         } catch (SQLException ex) {
             Logger.getLogger(KategoriController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+            this.nama.setMinWidth(130);
+            this.nama.setCellValueFactory(new PropertyValueFactory("nama"));
     }    
     
     public void getNamaAndId(String username, String id, String namaDompet){
@@ -148,6 +177,42 @@ public class KategoriController implements Initializable {
         System.out.println(username);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
