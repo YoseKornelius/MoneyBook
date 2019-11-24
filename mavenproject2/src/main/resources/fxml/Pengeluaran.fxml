@@ -17,20 +17,20 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.PengeluaranController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="746.0" prefWidth="989.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.PengeluaranController">
    <top>
       <HBox prefHeight="55.0" prefWidth="600.0" style="-fx-background-color: lightblue;" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane prefHeight="55.0" prefWidth="600.0">
+            <AnchorPane prefHeight="106.0" prefWidth="990.0">
                <children>
-                  <Label layoutX="219.0" layoutY="12.0" text="MooneyBook" textFill="#881010">
+                  <Label layoutX="407.0" layoutY="10.0" text="MooneyBook" textFill="#881010">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="28.0" />
                      </font>
                   </Label>
-                  <HBox layoutY="51.0" prefHeight="54.0" prefWidth="600.0" style="-fx-background-color: lightgreen;">
+                  <HBox layoutY="51.0" prefHeight="54.0" prefWidth="989.0" style="-fx-background-color: lightgreen;">
                      <children>
-                        <AnchorPane prefHeight="54.0" prefWidth="601.0" style="-fx-border-color: black;">
+                        <AnchorPane prefHeight="54.0" prefWidth="998.0" style="-fx-border-color: black;">
                            <children>
                               <ImageView fx:id="imgPemasukkan" fitHeight="29.0" fitWidth="29.0" layoutX="14.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -145,6 +145,10 @@
                                     <Font size="8.0" />
                                  </font>
                               </Label>
+                              <Label id="lbUsername" fx:id="lbNamaDompet" layoutX="771.0" layoutY="23.0" text="Username" />
+                              <Label layoutX="772.0" layoutY="4.0" text="Selamat Datang ," />
+                              <Label id="lbUsername" fx:id="lbNama" layoutX="872.0" layoutY="4.0" text="Username" />
+                              <Label id="lbUsername" fx:id="lbId" layoutX="705.0" layoutY="4.0" text="Username" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -159,17 +163,15 @@
          </children>
       </HBox>
    </top>
-   <bottom>
+   <center>
       <AnchorPane prefHeight="330.0" prefWidth="602.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="426.0" layoutY="6.0" text="Selamat Datang ," />
-            <Label id="lbUsername" fx:id="lbNama" layoutX="526.0" layoutY="6.0" text="Username" />
             <Label fx:id="lbAdaDompet" layoutX="471.0" layoutY="24.0" prefHeight="18.0" prefWidth="25.0" />
-            <TabPane layoutX="5.0" layoutY="25.0" prefHeight="266.0" prefWidth="588.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane layoutX="5.0" layoutY="25.0" prefHeight="550.0" prefWidth="878.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab text="Tambah Pengeluaran">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="306.0" prefWidth="638.0">
                            <children>
                               <Label layoutX="21.0" layoutY="18.0" text="Tanggal" />
                               <DatePicker fx:id="tgl_pengeluaran" layoutX="100.0" layoutY="14.0" />
@@ -180,7 +182,6 @@
                               <TextField fx:id="txtKeteranganPengeluaran" layoutX="101.0" layoutY="90.0" />
                               <Label layoutX="20.0" layoutY="94.0" text="Keterangan" />
                               <Button fx:id="btnTambahPengeluaran" layoutX="101.0" layoutY="186.0" mnemonicParsing="false" onAction="#tambahPengeluaran" text="Tambah" />
-                              <Label id="lbUsername" fx:id="lbNamaDompet" layoutX="499.0" layoutY="18.0" text="Username" />
                            </children>
                         </AnchorPane>
                   </content>
@@ -271,8 +272,7 @@
                   </Tab>
               </tabs>
             </TabPane>
-            <Label id="lbUsername" fx:id="lbId" layoutX="359.0" layoutY="6.0" text="Username" />
          </children>
       </AnchorPane>
-   </bottom>
+   </center>
 </BorderPane>
