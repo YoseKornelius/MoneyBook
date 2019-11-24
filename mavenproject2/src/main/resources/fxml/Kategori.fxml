@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
@@ -14,20 +15,20 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.KategoriController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="749.0" prefWidth="989.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.KategoriController">
    <top>
       <HBox prefHeight="55.0" prefWidth="600.0" style="-fx-background-color: lightblue;" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane prefHeight="55.0" prefWidth="600.0">
+            <AnchorPane prefHeight="106.0" prefWidth="988.0">
                <children>
                   <Label layoutX="219.0" layoutY="12.0" text="MooneyBook" textFill="#881010">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="28.0" />
                      </font>
                   </Label>
-                  <HBox layoutY="51.0" prefHeight="54.0" prefWidth="600.0" style="-fx-background-color: lightgreen;">
+                  <HBox layoutY="51.0" prefHeight="54.0" prefWidth="989.0" style="-fx-background-color: lightgreen;">
                      <children>
-                        <AnchorPane prefHeight="54.0" prefWidth="601.0" style="-fx-border-color: black;">
+                        <AnchorPane prefHeight="54.0" prefWidth="990.0" style="-fx-border-color: black;">
                            <children>
                               <ImageView fx:id="imgPemasukkan" fitHeight="29.0" fitWidth="29.0" layoutX="14.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -50,25 +51,25 @@
                                     <Font size="8.0" />
                                  </font>
                               </Label>
-                              <Line endX="13.833343505859375" endY="-25.0" layoutX="106.0" layoutY="30.0" startX="13.833343505859375" startY="15.666671752929688" />
-                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="141.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                              <Line endX="13.833343505859375" endY="-25.0" layoutX="127.0" layoutY="30.0" startX="13.833343505859375" startY="15.666671752929688" />
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="173.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/peminjaman.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="134.0" layoutY="34.0" text="Peminjaman">
+                              <Label layoutX="166.0" layoutY="35.0" text="Peminjaman">
                                  <font>
                                     <Font size="8.0" />
                                  </font>
                               </Label>
-                              <Line endX="13.833343505859375" endY="-25.0" layoutX="172.0" layoutY="30.0" startX="13.833343505859375" startY="15.666671752929688" />
-                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="202.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                              <Line endX="13.833343505859375" endY="-25.0" layoutX="218.0" layoutY="30.0" startX="13.833343505859375" startY="15.666671752929688" />
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="266.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/budget.png" />
                                  </image>
                               </ImageView>
-                              <Line endX="13.833343505859375" endY="-25.0" layoutX="232.0" layoutY="29.0" startX="13.833343505859375" startY="15.666671752929688" />
-                              <Label layoutX="199.0" layoutY="34.0" text="Anggaran">
+                              <Line endX="13.833343505859375" endY="-25.0" layoutX="312.0" layoutY="31.0" startX="13.833343505859375" startY="15.666671752929688" />
+                              <Label layoutX="263.0" layoutY="34.0" text="Anggaran">
                                  <font>
                                     <Font size="8.0" />
                                  </font>
@@ -83,60 +84,66 @@
                                     </Lighting>
                                  </effect>
                               </Label>
-                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="261.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="349.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/kategori.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="261.0" layoutY="34.0" text="Kategori">
+                              <Label layoutX="349.0" layoutY="34.0" text="Kategori">
                                  <font>
                                     <Font size="8.0" />
                                  </font>
                               </Label>
-                              <Line endX="13.833343505859375" endY="-25.0" layoutX="293.0" layoutY="30.0" startX="13.833343505859375" startY="15.666671752929688" />
-                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="324.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                              <Line endX="13.833343505859375" endY="-25.0" layoutX="394.0" layoutY="30.0" startX="13.833343505859375" startY="15.666671752929688" />
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="436.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/llaporan.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="324.0" layoutY="34.0" text="Laporan">
+                              <Label layoutX="436.0" layoutY="35.0" text="Laporan">
                                  <font>
                                     <Font size="8.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="398.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="525.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/laporan%20bulanan.png" />
                                  </image>
                               </ImageView>
-                              <Line endX="13.833343505859375" endY="-25.0" layoutX="437.0" layoutY="31.0" startX="13.833343505859375" startY="15.666671752929688" />
-                              <Label layoutX="382.0" layoutY="34.0" text="Laporan Bulanan">
+                              <Line endX="13.833343505859375" endY="-25.0" layoutX="575.0" layoutY="30.0" startX="13.833343505859375" startY="15.666671752929688" />
+                              <Label layoutX="510.0" layoutY="34.0" text="Laporan Bulanan">
                                  <font>
                                     <Font size="8.0" />
                                  </font>
                               </Label>
-                              <Line endX="13.833343505859375" endY="-25.0" layoutX="355.0" layoutY="31.0" startX="13.833343505859375" startY="15.666671752929688" />
-                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="465.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                              <Line endX="13.833343505859375" endY="-25.0" layoutX="479.0" layoutY="31.0" startX="13.833343505859375" startY="15.666671752929688" />
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="615.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/money.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="465.0" layoutY="35.0" text="DOMPET">
+                              <Label layoutX="615.0" layoutY="34.0" text="DOMPET">
                                  <font>
                                     <Font size="8.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="539.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="697.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/user-png-icon-account-avatar-human-male-man-men-people-person-download-svg-download-png-edit-icon-512.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="541.0" layoutY="38.0" text="Setting">
+                              <Label layoutX="698.0" layoutY="36.0" text="Setting">
                                  <font>
                                     <Font size="8.0" />
                                  </font>
                               </Label>
-                              <Line endX="13.833343505859375" endY="-25.0" layoutX="496.0" layoutY="31.0" startX="13.833343505859375" startY="15.666671752929688" />
+                              <Line endX="13.833343505859375" endY="-25.0" layoutX="656.0" layoutY="29.0" startX="13.833343505859375" startY="15.666671752929688" />
+                              <Label layoutX="795.0" layoutY="3.0" text="Selamat Datang :" />
+                              <Label id="lbUsername" fx:id="lbNama" layoutX="894.0" layoutY="3.0" text="Username">
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding></Label>
+                              <Label id="lbUsername" fx:id="lbIdUser" layoutX="894.0" layoutY="24.0" text="Username" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -154,15 +161,43 @@
    <center>
       <AnchorPane prefHeight="311.0" prefWidth="450.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="20.0" layoutY="8.0" text="Selamat Datang :" />
-            <Label id="lbUsername" fx:id="lbNama" layoutX="119.0" layoutY="8.0" text="Username" />
-            <Label id="lbUsername" fx:id="lbIdUser" layoutX="119.0" layoutY="29.0" text="Username" />
-            <TableView fx:id="tblKategori" layoutX="253.0" layoutY="14.0" prefHeight="264.0" prefWidth="194.0" />
-            <Label layoutX="20.0" layoutY="72.0" text="Nama Kategori" />
-            <TextField fx:id="txtNamaKategori" layoutX="20.0" layoutY="98.0" prefHeight="26.0" prefWidth="194.0" />
-            <Button fx:id="btnHapus" layoutX="20.0" layoutY="135.0" mnemonicParsing="false" onAction="#hapusKategori" text="Hapus" />
-            <Button fx:id="btnTambah" layoutX="89.0" layoutY="135.0" mnemonicParsing="false" onAction="#tambahKategori" text="Tambah" />
-            <Button fx:id="btnEdit" layoutX="169.0" layoutY="134.0" mnemonicParsing="false" onAction="#editKategori" text="Edit" />
+            <TableView layoutX="13.0" layoutY="20.0" prefHeight="555.0" prefWidth="446.0">
+              <columns>
+                <TableColumn prefWidth="155.20001792907715" text="Kategori" />
+              </columns>
+            </TableView>
+            <Label layoutX="569.0" layoutY="11.0" text="Tambah Kategori">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="572.0" layoutY="52.0" text="Nama Kategori">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <TextField layoutX="574.0" layoutY="90.0" prefHeight="38.0" prefWidth="265.0" />
+            <Button layoutX="754.0" layoutY="152.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="84.0" text="TAMBAH" />
+            <Line endX="403.20001220703125" layoutX="588.0" layoutY="241.0" startX="-138.39999389648438" startY="-0.399993896484375" />
+            <Label layoutX="569.0" layoutY="257.0" text="Edit Kategori">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="572.0" layoutY="298.0" text="Nama Kategori">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <TextField layoutX="574.0" layoutY="336.0" prefHeight="38.0" prefWidth="265.0" />
+            <Button layoutX="754.0" layoutY="398.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="84.0" text="EDIT" />
+            <Line endX="403.20001220703125" layoutX="598.0" layoutY="475.0" startX="-138.39999389648438" startY="-0.399993896484375" />
+            <Button layoutX="798.0" layoutY="532.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="84.0" text="HAPUS" />
+            <Label layoutX="501.0" layoutY="488.0" text="Hapus Kategori">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </center>

@@ -12,146 +12,146 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.HomeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="749.0" prefWidth="989.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.HomeController">
    <top>
-      <HBox prefHeight="55.0" prefWidth="600.0" style="-fx-background-color: lightblue;" BorderPane.alignment="CENTER">
+      <HBox prefHeight="106.0" prefWidth="1001.0" style="-fx-background-color: lightblue;" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane prefHeight="55.0" prefWidth="600.0">
+            <AnchorPane prefHeight="106.0" prefWidth="986.0">
                <children>
-                  <Label layoutX="219.0" layoutY="12.0" text="MooneyBook" textFill="#881010">
-                     <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="28.0" />
-                     </font>
-                  </Label>
-                  <HBox layoutY="51.0" prefHeight="54.0" prefWidth="600.0" style="-fx-background-color: lightgreen;">
+                  <HBox layoutY="51.0" prefHeight="54.0" prefWidth="986.0" style="-fx-background-color: lightgreen;">
                      <children>
-                        <AnchorPane prefHeight="54.0" prefWidth="601.0" style="-fx-border-color: black;">
+                        <AnchorPane prefHeight="54.0" prefWidth="1039.0" style="-fx-border-color: black;">
                            <children>
-                              <ImageView fx:id="imgPemasukkan" fitHeight="29.0" fitWidth="29.0" layoutX="14.0" layoutY="2.0" onMouseClicked="#pindahPemasukkan" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgPemasukkan" fitHeight="29.0" fitWidth="29.0" layoutX="16.0" layoutY="3.0" onMouseClicked="#pindahPemasukkan" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/save-money.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="6.0" layoutY="34.0" text="Pemasukkan">
+                              <Label layoutX="8.0" layoutY="35.0" text="Pemasukkan">
                                  <font>
                                     <Font size="8.0" />
                                  </font>
                               </Label>
-                              <Line endX="13.833343505859375" endY="-25.0" layoutX="45.0" layoutY="30.0" startX="13.833343505859375" startY="15.666671752929688" />
-                              <ImageView fx:id="imgPengeluaran" fitHeight="29.0" fitWidth="29.0" layoutX="74.0" layoutY="6.0" onMouseClicked="#pindahPengeluaran" pickOnBounds="true" preserveRatio="true">
+                              <Line endX="13.833343505859375" endY="-25.0" layoutX="56.0" layoutY="31.0" startX="13.833343505859375" startY="15.666671752929688" />
+                              <ImageView fx:id="imgPengeluaran" fitHeight="29.0" fitWidth="29.0" layoutX="93.0" layoutY="6.0" onMouseClicked="#pindahPengeluaran" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/give-money.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="67.0" layoutY="34.0" text="Pengeluaran">
+                              <Label layoutX="86.0" layoutY="34.0" text="Pengeluaran">
                                  <font>
                                     <Font size="8.0" />
                                  </font>
                               </Label>
-                              <Line endX="13.833343505859375" endY="-25.0" layoutX="106.0" layoutY="30.0" startX="13.833343505859375" startY="15.666671752929688" />
-                              <ImageView fx:id="imgPeminjaman" fitHeight="29.0" fitWidth="29.0" layoutX="141.0" layoutY="4.0" onMouseClicked="#pindahPeminjaman" pickOnBounds="true" preserveRatio="true">
+                              <Line endX="13.833343505859375" endY="-25.0" layoutX="131.0" layoutY="31.0" startX="13.833343505859375" startY="15.666671752929688" />
+                              <ImageView fx:id="imgPeminjaman" fitHeight="29.0" fitWidth="29.0" layoutX="173.0" layoutY="6.0" onMouseClicked="#pindahPeminjaman" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/peminjaman.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="134.0" layoutY="34.0" text="Peminjaman">
+                              <Label layoutX="166.0" layoutY="36.0" text="Peminjaman">
                                  <font>
                                     <Font size="8.0" />
                                  </font>
                               </Label>
-                              <Line endX="13.833343505859375" endY="-25.0" layoutX="172.0" layoutY="30.0" startX="13.833343505859375" startY="15.666671752929688" />
-                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="202.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                              <Line endX="13.833343505859375" endY="-25.0" layoutX="210.0" layoutY="31.0" startX="13.833343505859375" startY="15.666671752929688" />
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="255.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/budget.png" />
                                  </image>
                               </ImageView>
-                              <Line endX="13.833343505859375" endY="-25.0" layoutX="232.0" layoutY="29.0" startX="13.833343505859375" startY="15.666671752929688" />
-                              <Label layoutX="199.0" layoutY="34.0" text="Anggaran">
+                              <Line endX="13.833343505859375" endY="-25.0" layoutX="288.0" layoutY="30.0" startX="13.833343505859375" startY="15.666671752929688" />
+                              <Label layoutX="252.0" layoutY="35.0" text="Anggaran">
                                  <font>
                                     <Font size="8.0" />
                                  </font>
                               </Label>
-                              <ImageView fx:id="imgKategori" fitHeight="29.0" fitWidth="29.0" layoutX="261.0" layoutY="6.0" onMouseClicked="#pindahKategori" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgKategori" fitHeight="29.0" fitWidth="29.0" layoutX="333.0" layoutY="6.0" onMouseClicked="#pindahKategori" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/kategori.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="261.0" layoutY="34.0" text="Kategori">
+                              <Label layoutX="333.0" layoutY="34.0" text="Kategori">
                                  <font>
                                     <Font size="8.0" />
                                  </font>
                               </Label>
-                              <Line endX="13.833343505859375" endY="-25.0" layoutX="293.0" layoutY="30.0" startX="13.833343505859375" startY="15.666671752929688" />
-                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="324.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                              <Line endX="13.833343505859375" endY="-25.0" layoutX="372.0" layoutY="32.0" startX="13.833343505859375" startY="15.666671752929688" />
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="412.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/llaporan.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="324.0" layoutY="34.0" text="Laporan">
+                              <Label layoutX="412.0" layoutY="37.0" text="Laporan">
                                  <font>
                                     <Font size="8.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="398.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="498.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/laporan%20bulanan.png" />
                                  </image>
                               </ImageView>
-                              <Line endX="13.833343505859375" endY="-25.0" layoutX="437.0" layoutY="31.0" startX="13.833343505859375" startY="15.666671752929688" />
-                              <Label layoutX="382.0" layoutY="34.0" text="Laporan Bulanan">
+                              <Line endX="13.833343505859375" endY="-25.0" layoutX="542.0" layoutY="31.0" startX="13.833343505859375" startY="15.666671752929688" />
+                              <Label layoutX="482.0" layoutY="33.0" text="Laporan Bulanan">
                                  <font>
                                     <Font size="8.0" />
                                  </font>
                               </Label>
-                              <Line endX="13.833343505859375" endY="-25.0" layoutX="355.0" layoutY="31.0" startX="13.833343505859375" startY="15.666671752929688" />
-                              <ImageView fx:id="dompet" fitHeight="29.0" fitWidth="29.0" layoutX="465.0" layoutY="5.0" onMouseClicked="#tambahDompet" pickOnBounds="true" preserveRatio="true">
+                              <Line endX="13.833343505859375" endY="-25.0" layoutX="452.0" layoutY="31.0" startX="13.833343505859375" startY="15.666671752929688" />
+                              <ImageView fx:id="dompet" fitHeight="29.0" fitWidth="29.0" layoutX="583.0" layoutY="7.0" onMouseClicked="#tambahDompet" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/money.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="465.0" layoutY="35.0" text="DOMPET">
+                              <Label layoutX="583.0" layoutY="37.0" text="DOMPET">
                                  <font>
                                     <Font size="8.0" />
                                  </font>
                               </Label>
-                              <ImageView fx:id="gmbrSetting" fitHeight="29.0" fitWidth="29.0" layoutX="539.0" layoutY="6.0" onMouseClicked="#edit" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="gmbrSetting" fitHeight="29.0" fitWidth="29.0" layoutX="662.0" layoutY="6.0" onMouseClicked="#edit" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../gambar/user-png-icon-account-avatar-human-male-man-men-people-person-download-svg-download-png-edit-icon-512.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="541.0" layoutY="38.0" text="Setting">
+                              <Label layoutX="665.0" layoutY="38.0" text="Setting">
                                  <font>
                                     <Font size="8.0" />
                                  </font>
                               </Label>
-                              <Line endX="13.833343505859375" endY="-25.0" layoutX="496.0" layoutY="31.0" startX="13.833343505859375" startY="15.666671752929688" />
+                              <Line endX="13.833343505859375" endY="-25.0" layoutX="629.0" layoutY="31.0" startX="13.833343505859375" startY="15.666671752929688" />
+                              <Label layoutX="806.0" layoutY="3.0" text="Selamat Datang ," />
+                              <Label id="lbUsername" fx:id="lbNama" layoutX="906.0" layoutY="3.0" text="Username" />
+                              <Label layoutX="807.0" layoutY="20.0" text="Dompet : " />
+                              <ComboBox fx:id="cbPilihDompet" layoutX="865.0" layoutY="24.0" onAction="#pilih" onMouseClicked="#cekDompet" prefHeight="26.0" prefWidth="96.0" />
                            </children>
                         </AnchorPane>
                      </children>
                   </HBox>
+                  <Label layoutX="469.0" layoutY="10.0" text="MooneyBook" textFill="#881010">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="28.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>
       </HBox>
    </top>
-   <right>
-      <AnchorPane prefHeight="227.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+   <center>
+      <AnchorPane prefHeight="627.0" prefWidth="991.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="426.0" layoutY="6.0" text="Selamat Datang ," />
-            <Label id="lbUsername" fx:id="lbNama" layoutX="526.0" layoutY="6.0" text="Username" />
             <Label fx:id="lbAdaDompet" layoutX="436.0" layoutY="14.0" />
-            <Label layoutX="427.0" layoutY="23.0" text="Dompet : " />
-            <ComboBox fx:id="cbPilihDompet" layoutX="485.0" layoutY="27.0" onAction="#pilih" onMouseClicked="#cekDompet" prefHeight="26.0" prefWidth="96.0" />
             <Label layoutX="20.0" layoutY="21.0" text="Jenis Pencatatan" />
             <Label layoutX="159.0" layoutY="22.0" text="Bulan" />
-            <Label layoutX="14.0" layoutY="4.0" text="Pencarian" />
-            <Label layoutX="253.0" layoutY="23.0" text="Kategori" />
-            <Button fx:id="tombolCari" layoutX="343.0" layoutY="47.0" mnemonicParsing="false" onAction="#cari" text="CARI" />
+            <Label layoutX="19.0" layoutY="5.0" text="Pencarian" />
+            <Label layoutX="258.0" layoutY="20.0" text="Kategori" />
+            <Button fx:id="tombolCari" layoutX="372.0" layoutY="52.0" mnemonicParsing="false" onAction="#cari" text="CARI" />
             <ComboBox fx:id="comboJenis" layoutX="20.0" layoutY="47.0" onAction="#pilihJenis" onMouseClicked="#isiComboJenis" prefHeight="26.0" prefWidth="95.0" />
             <ComboBox fx:id="comboBulan" layoutX="130.0" layoutY="47.0" onAction="#pilihBulan" onMouseClicked="#isiComboBulan" prefHeight="26.0" prefWidth="95.0" />
             <ComboBox fx:id="comboKategori" layoutX="239.0" layoutY="47.0" onAction="#pilihKategori" onMouseClicked="#isiComboKategori" prefHeight="26.0" prefWidth="95.0" />
-            <TableView fx:id="table" layoutX="20.0" layoutY="80.0" prefHeight="200.0" prefWidth="563.0" />
+            <TableView fx:id="table" layoutX="28.0" layoutY="109.0" prefHeight="514.0" prefWidth="941.0" />
          </children>
       </AnchorPane>
-   </right>
+   </center>
 </BorderPane>
