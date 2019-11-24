@@ -17,7 +17,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.PeminjamanController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.PeminjamanController">
    <top>
       <HBox prefHeight="55.0" prefWidth="600.0" style="-fx-background-color: lightblue;" BorderPane.alignment="CENTER">
          <children>
@@ -167,7 +167,7 @@
             <Label fx:id="lbAdaDompet" layoutX="471.0" layoutY="24.0" prefHeight="18.0" prefWidth="25.0" />
             <TabPane layoutX="5.0" layoutY="25.0" prefHeight="266.0" prefWidth="588.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab text="Tambah Pengeluaran">
+                <Tab text="Tambah Peminjaman">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -185,7 +185,7 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                <Tab fx:id="EditPeminjamantab" onSelectionChanged="#isitabel" text="Edit Pengeluaran">
+                <Tab fx:id="EditPeminjamantab" onSelectionChanged="#isitabel" text="Edit Peminjaman">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -208,17 +208,17 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                  <Tab fx:id="EditPeminjamantabHapus" onSelectionChanged="#isitabel2" text="Hapus Pengeluaran">
+                  <Tab fx:id="EditPeminjamantabHapus" onSelectionChanged="#isitabel2" text="Hapus Peminjaman">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
                               <TableView fx:id="peminjamantblHapus" layoutX="7.0" layoutY="3.0" onMouseClicked="#hapuspeminjaman" prefHeight="200.0" prefWidth="437.0" />
-                              <Button fx:id="tombolHapus" layoutX="508.0" layoutY="167.0" mnemonicParsing="false" onAction="#hapus" text="Button" />
+                              <Button fx:id="tombolHapus" layoutX="457.0" layoutY="28.0" mnemonicParsing="false" onAction="#hapus" text="Hapus" />
                            </children>
                         </AnchorPane>
                     </content>
                   </Tab>
-                  <Tab text="Cari Pengeluaran">
+                  <Tab text="Cari Peminjaman">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="289.0" prefWidth="588.0">
                            <children>

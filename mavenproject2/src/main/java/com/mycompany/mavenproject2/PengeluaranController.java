@@ -13,6 +13,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import static java.time.temporal.TemporalQueries.localDate;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
@@ -286,10 +290,10 @@ public class PengeluaranController implements Initializable {
         tanggal = pengeluarantbl.getSelectionModel().getSelectedItem().getTgl();
         keterangan = pengeluarantbl.getSelectionModel().getSelectedItem().getKeterangan();
         nominal = pengeluarantbl.getSelectionModel().getSelectedItem().getNominal();
-//         SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
-//        String dateInString = tanggal;
-//        tglEditPengeluaran = formatter.parse(dateInString);
-//        tglEditPengeluaran?.setValue(LOCAL_VALUE(tanggal));
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(tanggal, formatter);
+        tglEditPengeluaran.setValue(localDate);
         txtEditKeterangan.setText(keterangan);
         txtEditNominal.setText(nominal);
         tampNama = txtEditKeterangan.getText();
@@ -312,10 +316,12 @@ public class PengeluaranController implements Initializable {
                 txtEditKeterangan.clear();
                 txtEditNominal.clear();
                 isitabel();
+                tglEditPengeluaran.setValue(null);
             }
         } catch (SQLException ex) {
             ex.getMessage();
         }
+        
     }
 
     public void setIdandName(String iduser, String Username, String dompet) {
