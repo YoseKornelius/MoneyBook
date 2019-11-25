@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.Format;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
@@ -296,10 +298,10 @@ public class PemasukkanController implements Initializable {
         tanggal = pemasukkantbl.getSelectionModel().getSelectedItem().getTgl();
         keterangan = pemasukkantbl.getSelectionModel().getSelectedItem().getKeterangan();
         nominal = pemasukkantbl.getSelectionModel().getSelectedItem().getNominal();
-//         SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
-//        String dateInString = tanggal;
-//        tglEditPengeluaran = formatter.parse(dateInString);
-//        tglEditPengeluaran?.setValue(LOCAL_VALUE(tanggal));
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(tanggal, formatter);
+        tglEditPemasukkan.setValue(localDate);
         txtEditKeterangan.setText(keterangan);
         txtEditNominal.setText(nominal);
         tampNama = txtEditKeterangan.getText();
@@ -322,6 +324,7 @@ public class PemasukkanController implements Initializable {
                 txtEditKeterangan.clear();
                 txtEditNominal.clear();
                 isitabel();
+                tglEditPemasukkan.setValue(null);
             }
         } catch (SQLException ex) {
             ex.getMessage();

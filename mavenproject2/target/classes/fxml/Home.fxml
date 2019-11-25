@@ -13,7 +13,11 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< HEAD
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="749.0" prefWidth="989.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.HomeController">
+=======
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.HomeController">
+>>>>>>> DoniTingkatLanjut
    <top>
       <HBox prefHeight="106.0" prefWidth="1001.0" style="-fx-background-color: lightblue;" BorderPane.alignment="CENTER">
          <children>
@@ -142,8 +146,13 @@
          </children>
       </HBox>
    </top>
+<<<<<<< HEAD
    <center>
       <AnchorPane prefHeight="627.0" prefWidth="991.0" BorderPane.alignment="CENTER">
+=======
+   <left>
+      <AnchorPane prefHeight="357.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+>>>>>>> DoniTingkatLanjut
          <children>
             <Label fx:id="lbAdaDompet" layoutX="436.0" layoutY="14.0" />
             <Label layoutX="20.0" layoutY="21.0" text="Jenis Pencatatan" />
@@ -154,8 +163,25 @@
             <ComboBox fx:id="comboJenis" layoutX="20.0" layoutY="47.0" onAction="#pilihJenis" onMouseClicked="#isiComboJenis" prefHeight="26.0" prefWidth="95.0" />
             <ComboBox fx:id="comboBulan" layoutX="130.0" layoutY="47.0" onAction="#pilihBulan" onMouseClicked="#isiComboBulan" prefHeight="26.0" prefWidth="95.0" />
             <ComboBox fx:id="comboKategori" layoutX="239.0" layoutY="47.0" onAction="#pilihKategori" onMouseClicked="#isiComboKategori" prefHeight="26.0" prefWidth="95.0" />
+<<<<<<< HEAD
             <TableView fx:id="table" layoutX="28.0" layoutY="109.0" prefHeight="514.0" prefWidth="941.0" />
          </children>
       </AnchorPane>
    </center>
+=======
+            <TableView fx:id="table" layoutX="17.0" layoutY="175.0" prefHeight="171.0" prefWidth="563.0" />
+            <Label layoutX="19.0" layoutY="85.0" text="Pemasukkan" />
+            <Label layoutX="19.0" layoutY="106.0" text="Pengeluaran" />
+            <Label layoutX="19.0" layoutY="133.0" text="label" />
+            <Line endX="100.0" layoutX="122.0" layoutY="129.0" startX="-100.0" />
+            <Label layoutX="150.0" layoutY="85.0" text="RP." />
+            <Label layoutX="150.0" layoutY="106.0" text="RP." />
+            <Label layoutX="150.0" layoutY="133.0" text="RP." />
+            <Label fx:id="lbJumlahPemasukkan" layoutX="178.0" layoutY="85.0" text="0" />
+            <Label fx:id="lbJumlahPengeluaran" layoutX="178.0" layoutY="106.0" text="0" />
+            <Label fx:id="lbJumlahSisaSaldo" layoutX="178.0" layoutY="133.0" text="0" />
+         </children>
+      </AnchorPane>
+   </left>
+>>>>>>> DoniTingkatLanjut
 </BorderPane>

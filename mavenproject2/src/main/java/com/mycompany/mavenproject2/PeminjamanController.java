@@ -12,6 +12,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -308,10 +310,10 @@ public class PeminjamanController implements Initializable {
         tanggal = peminjamantbl.getSelectionModel().getSelectedItem().getTgl();
         keterangan = peminjamantbl.getSelectionModel().getSelectedItem().getKeterangan();
         nominal = peminjamantbl.getSelectionModel().getSelectedItem().getNominal();
-//         SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
-//        String dateInString = tanggal;
-//        tglEditPengeluaran = formatter.parse(dateInString);
-//        tglEditPengeluaran?.setValue(LOCAL_VALUE(tanggal));
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.parse(tanggal, formatter);
+        tglEditPeminjaman.setValue(localDate);
         txtEditKeterangan.setText(keterangan);
         txtEditNominal.setText(nominal);
         tampNama = txtEditKeterangan.getText();
@@ -333,6 +335,7 @@ public class PeminjamanController implements Initializable {
                 System.out.println("berhasil Update peminjaman");
                 txtEditKeterangan.clear();
                 txtEditNominal.clear();
+                tglEditPeminjaman.setValue(null);
                 isitabel();
             }
         } catch (SQLException ex) {

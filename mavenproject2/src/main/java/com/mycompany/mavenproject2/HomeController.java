@@ -44,7 +44,7 @@ import javafx.scene.input.MouseEvent;
  */
 public class HomeController implements Initializable {
     @FXML
-    private Label lbNama, lbAdaDompet;    
+    private Label lbNama, lbAdaDompet, lbJumlahPemasukkan, lbJumlahPengeluaran, lbJumlahSisaSaldo;    
     @FXML
     private Button btnTambahPengeluaran, tombolCari;       
     
@@ -450,6 +450,7 @@ public class HomeController implements Initializable {
         this.namaDompet=cbPilihDompet.getValue();
         listKategori.clear();
         comboKategori.autosize();
+        updateSaldo();
     }
     /**
      * Initializes the controller class.
@@ -458,7 +459,8 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        namaDompet = cbPilihDompet.getValue();
+        //namaDompet = cbPilihDompet.getValue();
+        getNamaDompet(lunas);
         table.setVisible(false);
         kolom1.setMinWidth(120);
         kolom2.setMinWidth(120);
@@ -475,6 +477,7 @@ public class HomeController implements Initializable {
         table.getColumns().addAll(kolom1,kolom2,kolom3,kolom6,kolom4);
         
      //   System.out.println(namaDompet);
+       //updateSaldo();
     }    
 
     public void setLabelUsername(String username, String id, String dompet){
@@ -490,7 +493,47 @@ public class HomeController implements Initializable {
         idUser = user;
     }
     
+    public void getNamaDompet(String nama){
+        this.namaDompet = nama;
+        System.out.println("nama ini dompet : " + namaDompet);
+        System.out.println("nama checkbox dompet : "+ cbPilihDompet.getValue());
+        updateSaldo();
+    }
     
+    public void updateSaldo(){
+        int pemasukkan = 0, pengeluaran = 0, sisaAkhir = 0;
+        String idDompet = "";
+        try {
+            Connection conn = sqliteConnect.connect().Connector();
+            Statement stat = conn.createStatement();
+            String qrIdDompet = "SELECT id_dompet from dompet WHERE nama_dompet = '"+cbPilihDompet.getValue()+"' AND id_user = '"+idUser+"'";
+            System.out.println("nama dompet ke 2 : " + cbPilihDompet.getValue());
+            ResultSet rsdompet = stat.executeQuery(qrIdDompet);
+            while(rsdompet.next()){
+                idDompet = rsdompet.getString(1);
+                System.out.println("id dompet " + namaDompet + "adalah : " + idDompet);
+            }
+            
+            String qr = "SELECT nominal_pemasukkan FROM pemasukkan WHERE id_dompet = '" + idDompet + "'";            
+            ResultSet rs = stat.executeQuery(qr);
+            while(rs.next()){
+                pemasukkan += Integer.parseInt(rs.getString(1));
+                System.out.println(rs.getString(1));
+            }
+            
+            String qrPengeluaran = "SELECT nominal_pengeluaran FROM pengeluaran WHERE id_dompet = '" + idDompet + "'";            
+            ResultSet rsPengeluaran = stat.executeQuery(qrPengeluaran);
+            while(rsPengeluaran.next()){
+                pengeluaran += Integer.parseInt(rsPengeluaran.getString(1));
+                System.out.println(rsPengeluaran.getString(1));
+            }
+            lbJumlahSisaSaldo.setText(Integer.toString(pemasukkan - pengeluaran));
+            lbJumlahPemasukkan.setText(Integer.toString(pemasukkan));
+            lbJumlahPengeluaran.setText(Integer.toString(pengeluaran));
+            //lbJumlahPemasukkan.setText("10000");
+        } catch (Exception e) {
+        }
+    }
 
 }
 

@@ -214,7 +214,7 @@
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
                               <TableView fx:id="pengeluarantblHapus" layoutX="7.0" layoutY="3.0" onMouseClicked="#hapusPengeluaran" prefHeight="200.0" prefWidth="437.0" />
-                              <Button fx:id="tombolHapus" layoutX="508.0" layoutY="167.0" mnemonicParsing="false" onAction="#hapus" text="Button" />
+                              <Button fx:id="tombolHapus" layoutX="455.0" layoutY="26.0" mnemonicParsing="false" onAction="#hapus" text="Hapus" />
                            </children>
                         </AnchorPane>
                     </content>
