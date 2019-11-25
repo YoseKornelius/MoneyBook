@@ -18,13 +18,16 @@ public class sqliteConnect {
     public Connection Connector(){
         try{
             Class.forName("org.sqlite.JDBC");
-            Connection conn = DriverManager.getConnection("jdbc:sqlite:MoneyBook.db");
-            return conn;
+            Connection konek = DriverManager.getConnection("jdbc:sqlite:MoneyBook.db");
+            return konek;
         }catch(Exception c){
             return null;
         }
     }
 }
+
+
+
 
 
 

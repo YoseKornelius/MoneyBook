@@ -209,19 +209,12 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                  <Tab text="Hapus Pengeluaran">
+                  <Tab fx:id="EditPengeluarantabHapus" onSelectionChanged="#isitabel2" text="Hapus Pengeluaran">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="pengeluarantblHapus" layoutX="7.0" layoutY="3.0" prefHeight="548.0" prefWidth="480.0">
-                                 <columns>
-                                    <TableColumn fx:id="colTanggalHapus" prefWidth="75.0" text="Tanggal" />
-                                    <TableColumn fx:id="colKategoriHapus" prefWidth="75.0" text="Kategori" />
-                                    <TableColumn fx:id="colKeteranganHapus" prefWidth="75.0" text="Keterangan" />
-                                    <TableColumn fx:id="colNominalHapus" prefWidth="75.0" text="Nominal" />
-                                 </columns>
-                              </TableView>
-                              <Button layoutX="502.0" layoutY="489.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="115.0" text="Button" />
+                              <TableView fx:id="pengeluarantblHapus" layoutX="7.0" layoutY="3.0" onMouseClicked="#hapusPengeluaran" prefHeight="200.0" prefWidth="437.0" />
+                              <Button fx:id="tombolHapus" layoutX="508.0" layoutY="167.0" mnemonicParsing="false" onAction="#hapus" text="Button" />
                            </children>
                         </AnchorPane>
                     </content>

@@ -201,6 +201,7 @@ public class HomeController implements Initializable {
                 String queryPemasukkan="SELECT id_pemasukkan from pemasukkan where id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"'";
                 ResultSet rsP = statement.executeQuery(queryPemasukkan);
                 while(rsP.next()){
+                    String idPemasukkan = rsP.getString(1).toString();
                     String query="SELECT tanggal_pemasukkan from pemasukkan where strftime('%m',tanggal_pemasukkan)='"+tampBulan+"' and id_kategori='"+idKategori+"'";
                     rs = statement.executeQuery(query);
                     while(rs.next()){
@@ -230,6 +231,7 @@ public class HomeController implements Initializable {
                 String queryPengeluaran="SELECT id_pengeluaran from pengeluaran where id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"'";
                 ResultSet rsP = statement.executeQuery(queryPengeluaran);
                 while(rsP.next()){
+                    String idPengeluaran=rsP.getString(1).toString();
                     String query="SELECT tanggal_pengeluaran from pengeluaran where strftime('%m',tanggal_pengeluaran)='"+tampBulan+"' and id_kategori='"+idKategori+"'";
                     rs = statement.executeQuery(query);
                     while(rs.next()){
@@ -260,6 +262,7 @@ public class HomeController implements Initializable {
                 String queryPeminjaman = "SELECT id_pinjaman from peminjaman where id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"'";
                 ResultSet rsP = statement.executeQuery(queryPeminjaman);
                 while(rsP.next()){
+                    String idPeminjaman = rsP.getString(1).toString();
                     String query="SELECT tanggal_pinjaman from peminjaman where strftime('%m',tanggal_pinjaman)='"+tampBulan+"' and id_kategori='"+idKategori+"'";
                     rs = statement.executeQuery(query);
                     while(rs.next()){
@@ -270,7 +273,7 @@ public class HomeController implements Initializable {
                     while(rs2.next()){
                         rowNominal.add(rs.getString(1).toString());
                     }
-                    String query3="SELECT tanggal_pengembalian from peminjaman where id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"'";
+                    String query3="SELECT tanggal_pengembalian from peminjaman where id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"' and id_pinjaman='"+idPeminjaman+"'";
                     ResultSet rs3 = statement.executeQuery(query3);
                     rs3.next();
                     if(rs3.getString(1)!=null){
@@ -315,14 +318,13 @@ public class HomeController implements Initializable {
     
     @FXML
     public void pindahPemasukkan(MouseEvent event) throws SQLException, IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Pengeluaran.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Pemasukkan.fxml"));
         Parent root = (Parent) loader.load();
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
 
-        PemasukkanController pemasukkan = loader.getController();
-        System.out.println(namaDompet);
-        //pemasukkan.setIdandName(idUser, lbNama.getText(), namaDompet);        
+        PemasukkanController masuk = loader.getController();
+        masuk.setIdandName(idUser, lbNama.getText(), namaDompet);
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
@@ -366,11 +368,14 @@ public class HomeController implements Initializable {
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
 
-        //PeminjamanController peminjaman = loader.getController();
-        
+        KategoriController kategori = loader.getController();
+        kategori.getNamaAndId( lbNama.getText(), idUser, namaDompet);
+        kategori.tampilkanTable();
+        System.out.println(idDompet);
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+        
     }
     
     @FXML
@@ -468,6 +473,7 @@ public class HomeController implements Initializable {
         kolom5.setCellValueFactory(new PropertyValueFactory("lunas"));
         kolom6.setCellValueFactory(new PropertyValueFactory("nama"));
         table.getColumns().addAll(kolom1,kolom2,kolom3,kolom6,kolom4);
+        
      //   System.out.println(namaDompet);
     }    
 
@@ -487,6 +493,37 @@ public class HomeController implements Initializable {
     
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

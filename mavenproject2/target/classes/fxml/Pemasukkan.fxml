@@ -18,7 +18,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="749.0" prefWidth="989.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.PengeluaranController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="749.0" prefWidth="989.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.PemasukkanController">
    <top>
       <HBox prefHeight="55.0" prefWidth="600.0" style="-fx-background-color: lightblue;" BorderPane.alignment="CENTER">
          <children>
@@ -167,23 +167,23 @@
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
                               <Label layoutX="17.0" layoutY="24.0" text="Tanggal" />
-                              <DatePicker fx:id="tgl_pengeluaran" layoutX="100.0" layoutY="14.0" prefHeight="41.0" prefWidth="202.0" />
+                              <DatePicker fx:id="tgl_pemasukkan" layoutX="100.0" layoutY="14.0" prefHeight="41.0" prefWidth="202.0" />
                               <Label layoutX="16.0" layoutY="93.0" text="Kategori" />
                               <ComboBox fx:id="cbTambahKategori" layoutX="100.0" layoutY="80.0" onAction="#getIdKategori" onMouseClicked="#setIsiKategori" prefHeight="46.0" prefWidth="197.0" />
                               <Label layoutX="18.0" layoutY="220.0" text="Nominal" />
-                              <TextField fx:id="txtNominalPengeluaran" layoutX="101.0" layoutY="205.0" prefHeight="43.0" prefWidth="200.0" />
-                              <TextField fx:id="txtKeteranganPengeluaran" layoutX="101.0" layoutY="140.0" prefHeight="47.0" prefWidth="196.0" />
+                              <TextField fx:id="txtNominalPemasukkan" layoutX="101.0" layoutY="205.0" prefHeight="43.0" prefWidth="200.0" />
+                              <TextField fx:id="txtKeteranganPemasukkan" layoutX="101.0" layoutY="140.0" prefHeight="47.0" prefWidth="196.0" />
                               <Label layoutX="14.0" layoutY="155.0" text="Keterangan" />
-                              <Button fx:id="btnTambahPengeluaran" layoutX="247.0" layoutY="275.0" mnemonicParsing="false" onAction="#tambahPengeluaran" text="Tambah" />
+                              <Button fx:id="btnTambahPemasukkan" layoutX="247.0" layoutY="275.0" mnemonicParsing="false" onAction="#tambahPengeluaran" text="Tambah" />
                            </children>
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab fx:id="EditPengeluarantab" onSelectionChanged="#isitabel" text="Edit Pemasukkan">
+                  <Tab fx:id="editPemasukkanTab" onSelectionChanged="#isitabel" text="Edit Pemasukkan">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="529.0" prefWidth="915.0">
                            <children>
-                              <TableView fx:id="pengeluarantbl" layoutX="5.0" layoutY="5.0" onMouseClicked="#editPengeluaran" prefHeight="542.0" prefWidth="440.0">
+                              <TableView fx:id="pemasukkantbl" layoutX="5.0" layoutY="5.0" onMouseClicked="#editPemasukkan" prefHeight="542.0" prefWidth="440.0">
                                  <columns>
                                     <TableColumn fx:id="colTanggal" prefWidth="75.0" text="Tanggal" />
                                     <TableColumn fx:id="colKategori" prefWidth="75.0" text="Kategori" />
@@ -191,9 +191,9 @@
                                     <TableColumn fx:id="colNominal" prefWidth="103.6666259765625" text="Nominal" />
                                  </columns>
                               </TableView>
-                              <Button fx:id="btnEditPengeluaran" layoutX="715.0" layoutY="194.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="78.0" text="Edit" />
+                              <Button fx:id="btnEditPemasukkan" layoutX="715.0" layoutY="194.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="78.0" text="Edit" />
                               <Label layoutX="522.0" layoutY="50.0" text="Tanggal" />
-                              <DatePicker fx:id="tglEditPengeluaran" layoutX="592.0" layoutY="44.0" prefHeight="30.0" prefWidth="182.0" />
+                              <DatePicker fx:id="tglEditPemasukkan" layoutX="592.0" layoutY="44.0" prefHeight="30.0" prefWidth="182.0" />
                               <Label layoutX="514.0" layoutY="100.0" text="Keterangan" />
                               <TextField fx:id="txtEditKeterangan" layoutX="600.0" layoutY="95.0" prefHeight="27.0" prefWidth="201.0" />
                               <Label layoutX="519.0" layoutY="140.0" text="Nominal" />
@@ -202,19 +202,12 @@
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab text="Hapus Pemasukkan">
+                  <Tab fx:id="editPemasukkanTabHapus" onSelectionChanged="#isitabel2" text="Hapus Pemasukkan">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView layoutX="7.0" layoutY="3.0" prefHeight="485.0" prefWidth="534.0">
-                                 <columns>
-                                    <TableColumn prefWidth="75.0" text="Tanggal" />
-                                    <TableColumn prefWidth="75.0" text="Kategori" />
-                                    <TableColumn prefWidth="75.0" text="Keterangan" />
-                                    <TableColumn prefWidth="75.0" text="Nominal" />
-                                 </columns>
-                              </TableView>
-                              <Button layoutX="560.0" layoutY="456.0" mnemonicParsing="false" text="Button" />
+                              <TableView fx:id="pemasukkantblHapus" layoutX="7.0" layoutY="3.0" onMouseClicked="#hapusPemasukkan" prefHeight="200.0" prefWidth="429.0" />
+                              <Button fx:id="btnHapus" layoutX="508.0" layoutY="167.0" mnemonicParsing="false" onAction="#hapus" text="Hapus" />
                            </children>
                         </AnchorPane>
                      </content>

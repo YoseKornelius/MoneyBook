@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Lighting?>
@@ -162,36 +161,39 @@
    <center>
       <AnchorPane prefHeight="311.0" prefWidth="450.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView layoutX="13.0" layoutY="20.0" prefHeight="555.0" prefWidth="446.0">
-              <columns>
-                <TableColumn prefWidth="155.20001792907715" text="Kategori" />
-              </columns>
-            </TableView>
-            <Label layoutX="569.0" layoutY="64.0" text="Tambah Kategori">
+            <TableView fx:id="tblKategori" layoutX="13.0" layoutY="20.0" onMouseClicked="#hapuskategori" prefHeight="555.0" prefWidth="446.0" />
+            <Label layoutX="569.0" layoutY="11.0" text="Tambah Kategori">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label layoutX="572.0" layoutY="105.0" text="Nama Kategori">
+            <Label layoutX="572.0" layoutY="52.0" text="Nama Kategori">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <TextField layoutX="574.0" layoutY="143.0" prefHeight="38.0" prefWidth="265.0" />
-            <Button layoutX="754.0" layoutY="205.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="84.0" text="Tambah" />
-            <Line endX="403.20001220703125" layoutX="588.0" layoutY="294.0" startX="-138.39999389648438" startY="-0.399993896484375" />
-            <Label layoutX="569.0" layoutY="310.0" text="Hapus Kategori">
+            <TextField fx:id="tambahKategori" layoutX="574.0" layoutY="90.0" prefHeight="38.0" prefWidth="265.0" />
+            <Button fx:id="btnTambah" layoutX="754.0" layoutY="152.0" mnemonicParsing="false" onAction="#tambah" prefHeight="42.0" prefWidth="84.0" text="TAMBAH" />
+            <Line endX="403.20001220703125" layoutX="588.0" layoutY="241.0" startX="-128.5999755859375" />
+            <Label layoutX="569.0" layoutY="257.0" text="Edit Kategori">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label layoutX="572.0" layoutY="351.0" text="Nama Kategori">
+            <Label layoutX="572.0" layoutY="298.0" text="Nama Kategori">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <TextField layoutX="574.0" layoutY="389.0" prefHeight="38.0" prefWidth="265.0" />
-            <Button layoutX="754.0" layoutY="451.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="84.0" text="Hapus" />
+            <TextField fx:id="editKategori" layoutX="574.0" layoutY="336.0" prefHeight="38.0" prefWidth="265.0" />
+            <Button fx:id="btnEdit" layoutX="754.0" layoutY="398.0" mnemonicParsing="false" onAction="#edit" prefHeight="42.0" prefWidth="84.0" text="EDIT" />
+            <Line endX="403.20001220703125" layoutX="598.0" layoutY="475.0" startX="-138.39999389648438" startY="-0.399993896484375" />
+            <Button fx:id="btnHapus" layoutX="798.0" layoutY="532.0" mnemonicParsing="false" onAction="#hapus" prefHeight="42.0" prefWidth="84.0" text="HAPUS" />
+            <Label layoutX="501.0" layoutY="488.0" text="Hapus Kategori">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </center>
