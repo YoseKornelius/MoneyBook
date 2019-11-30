@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="749.0" prefWidth="989.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.LaporanController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="749.0" prefWidth="989.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.LaporanController">
        <top>
       <HBox prefHeight="55.0" prefWidth="600.0" style="-fx-background-color: lightblue;" BorderPane.alignment="CENTER">
          <children>
@@ -170,7 +170,7 @@
             <Label layoutX="293.0" layoutY="15.0" text="Tanggal akhir" />
             <DatePicker fx:id="tglAkhir" layoutX="367.0" layoutY="11.0" prefHeight="33.0" prefWidth="178.0" />
             <TableView fx:id="table" layoutX="22.0" layoutY="60.0" prefHeight="591.0" prefWidth="524.0" />
-            <ComboBox fx:id="cbDetail" layoutX="561.0" layoutY="14.0" prefWidth="150.0" />
+            <ComboBox fx:id="cbDetail" layoutX="561.0" layoutY="14.0" onAction="#pilihJenis" onMouseClicked="#cekJenis" prefWidth="150.0" promptText="Pilih Jenis" />
          </children>
       </AnchorPane>
    </center>

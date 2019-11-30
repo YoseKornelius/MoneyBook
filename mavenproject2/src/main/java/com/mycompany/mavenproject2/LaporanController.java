@@ -46,19 +46,37 @@ public class LaporanController implements Initializable {
 
     @FXML
     private ComboBox<String> cbPilihDompet;
+    @FXML
     private ComboBox<String> comboKategori;
+    @FXML
     private ComboBox<String> cbDetail;
 
     @FXML
     DatePicker tglAwal, tglAkhir;
-
+    
+    private String jenis;
+    
     public String namaDompet;
     public int idDompet;
 
     ObservableList<String> listDompet = FXCollections.observableArrayList();
-    ObservableList<String> listDetail = FXCollections.observableArrayList("Semnua", "Pemasukkan", "Pengeluaran", "Peminjaman");
+    ObservableList<String> listDetail = FXCollections.observableArrayList();
     ObservableList<String> listKategori = FXCollections.observableArrayList();
-
+    
+    @FXML
+    public void pilihJenis(ActionEvent event){
+        this.jenis=cbDetail.getValue().toString();
+    }
+    
+    @FXML
+    public void cekJenis(MouseEvent event){
+        listDetail.clear();
+        listDetail.add("Pemasukkan");
+        listDetail.add("Pengeluaran");
+        listDetail.add("Peminjaman");
+        cbDetail.setItems(listDetail);
+    }
+    
     @FXML
     public void pindahHome(MouseEvent event) throws SQLException, IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Home.fxml"));
@@ -79,7 +97,6 @@ public class LaporanController implements Initializable {
         this.namaDompet = cbPilihDompet.getValue();
         listKategori.clear();
         updateSaldo();
-        cbDetail.setItems(listDetail);
     }
 
     @FXML
@@ -103,7 +120,7 @@ public class LaporanController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO  
-        cbDetail.setValue("Semua");
+//        cbDetail.setValue("Semua");
     }
 
     public void setIdandName(String iduser, String Username, ComboBox<String> dompet, String namaDompet) {
@@ -159,3 +176,9 @@ public class LaporanController implements Initializable {
     }
 
 }
+
+
+
+
+
+
