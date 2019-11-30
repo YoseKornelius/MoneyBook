@@ -73,6 +73,7 @@ public class KategoriController implements Initializable {
 
         HomeController home = loader.getController();
         home.setLabelUsername(lbNama.getText(), lbIdUser.getText(), namaDompet);
+        home.updateSaldo();
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
@@ -177,6 +178,7 @@ public class KategoriController implements Initializable {
         System.out.println(username);
     }
 }
+
 
 
 

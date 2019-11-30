@@ -99,6 +99,7 @@ public class PemasukkanController implements Initializable {
 
         HomeController home = loader.getController();
         home.setLabelUsername(lbNama.getText(), idUser, dompet);
+        home.updateSaldo();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
@@ -354,6 +355,7 @@ public class PemasukkanController implements Initializable {
     }
 
 }
+
 
 
 

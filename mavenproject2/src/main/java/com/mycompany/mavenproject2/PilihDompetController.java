@@ -62,6 +62,7 @@ public class PilihDompetController implements Initializable {
             HomeController home = loader.getController();
             home.setLabelUsername(user, idUser,namaDompet);
             home.getNamaDompet(dompet.getValue());
+            home.updateSaldo();
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
@@ -99,6 +100,7 @@ public class PilihDompetController implements Initializable {
     }
     
 }
+
 
 
 

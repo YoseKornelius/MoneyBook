@@ -549,41 +549,44 @@ public class HomeController implements Initializable {
     }
     
     public void updateSaldo(){
-        int pemasukkan = 0, pengeluaran = 0, sisaAkhir = 0;
-        String idDompet = "";
-        try {
-            Connection conn = sqliteConnect.connect().Connector();
-            Statement stat = conn.createStatement();
-            String qrIdDompet = "SELECT id_dompet from dompet WHERE nama_dompet = '"+cbPilihDompet.getValue()+"' AND id_user = '"+idUser+"'";
-            System.out.println("nama dompet ke 2 : " + cbPilihDompet.getValue());
-            ResultSet rsdompet = stat.executeQuery(qrIdDompet);
-            while(rsdompet.next()){
-                idDompet = rsdompet.getString(1);
-                System.out.println("id dompet " + namaDompet + "adalah : " + idDompet);
+        if (cbPilihDompet.getValue() != null) {
+            int pemasukkan = 0, pengeluaran = 0, sisaAkhir = 0;
+            String idDompet = "";
+            try {
+                Connection conn = sqliteConnect.connect().Connector();
+                Statement stat = conn.createStatement();
+                String qrIdDompet = "SELECT id_dompet from dompet WHERE nama_dompet = '" + cbPilihDompet.getValue() + "' AND id_user = '" + idUser + "'";
+                System.out.println("nama dompet ke 2 : " + cbPilihDompet.getValue());
+                ResultSet rsdompet = stat.executeQuery(qrIdDompet);
+                while (rsdompet.next()) {
+                    idDompet = rsdompet.getString(1);
+                    System.out.println("id dompet " + namaDompet + "adalah : " + idDompet);
+                }
+
+                String qr = "SELECT nominal_pemasukkan FROM pemasukkan WHERE id_dompet = '" + idDompet + "'";
+                ResultSet rs = stat.executeQuery(qr);
+                while (rs.next()) {
+                    pemasukkan += Integer.parseInt(rs.getString(1));
+                    System.out.println(rs.getString(1));
+                }
+
+                String qrPengeluaran = "SELECT nominal_pengeluaran FROM pengeluaran WHERE id_dompet = '" + idDompet + "'";
+                ResultSet rsPengeluaran = stat.executeQuery(qrPengeluaran);
+                while (rsPengeluaran.next()) {
+                    pengeluaran += Integer.parseInt(rsPengeluaran.getString(1));
+                    System.out.println(rsPengeluaran.getString(1));
+                }
+                lbJumlahSisaSaldo.setText(Integer.toString(pemasukkan - pengeluaran));
+                lbJumlahPemasukkan.setText(Integer.toString(pemasukkan));
+                lbJumlahPengeluaran.setText(Integer.toString(pengeluaran));
+                //lbJumlahPemasukkan.setText("10000");
+            } catch (Exception e) {
             }
-            
-            String qr = "SELECT nominal_pemasukkan FROM pemasukkan WHERE id_dompet = '" + idDompet + "'";            
-            ResultSet rs = stat.executeQuery(qr);
-            while(rs.next()){
-                pemasukkan += Integer.parseInt(rs.getString(1));
-                System.out.println(rs.getString(1));
-            }
-            
-            String qrPengeluaran = "SELECT nominal_pengeluaran FROM pengeluaran WHERE id_dompet = '" + idDompet + "'";            
-            ResultSet rsPengeluaran = stat.executeQuery(qrPengeluaran);
-            while(rsPengeluaran.next()){
-                pengeluaran += Integer.parseInt(rsPengeluaran.getString(1));
-                System.out.println(rsPengeluaran.getString(1));
-            }
-            lbJumlahSisaSaldo.setText(Integer.toString(pemasukkan - pengeluaran));
-            lbJumlahPemasukkan.setText(Integer.toString(pemasukkan));
-            lbJumlahPengeluaran.setText(Integer.toString(pengeluaran));
-            //lbJumlahPemasukkan.setText("10000");
-        } catch (Exception e) {
         }
     }
 
 }
+
 
 
 

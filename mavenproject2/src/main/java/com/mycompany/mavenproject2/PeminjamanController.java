@@ -97,6 +97,7 @@ public class PeminjamanController implements Initializable {
 
         HomeController home = loader.getController();
         home.setLabelUsername(lbNama.getText(), iduser, dompet);
+        home.updateSaldo();
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
@@ -344,6 +345,7 @@ public class PeminjamanController implements Initializable {
     }
     
 }
+
 
 
 

@@ -154,7 +154,53 @@
             <ComboBox fx:id="comboJenis" layoutX="20.0" layoutY="47.0" onAction="#pilihJenis" onMouseClicked="#isiComboJenis" prefHeight="26.0" prefWidth="95.0" />
             <ComboBox fx:id="comboBulan" layoutX="130.0" layoutY="47.0" onAction="#pilihBulan" onMouseClicked="#isiComboBulan" prefHeight="26.0" prefWidth="95.0" />
             <ComboBox fx:id="comboKategori" layoutX="239.0" layoutY="47.0" onAction="#pilihKategori" onMouseClicked="#isiComboKategori" prefHeight="26.0" prefWidth="95.0" />
-            <TableView fx:id="table" layoutX="28.0" layoutY="109.0" prefHeight="514.0" prefWidth="941.0" />
+            <TableView fx:id="table" layoutX="28.0" layoutY="249.0" prefHeight="374.0" prefWidth="942.0" />
+            <Label layoutX="30.0" layoutY="111.0" prefHeight="24.0" prefWidth="76.0" text="Pemasukan">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="30.0" layoutY="140.0" prefHeight="24.0" prefWidth="93.0" text="Pengeluaran">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="30.0" layoutY="178.0" prefHeight="24.0" prefWidth="76.0" text="Sisa uang">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Line endX="155.800048828125" layoutX="130.0" layoutY="173.0" startX="-100.0" />
+            <Label layoutX="164.0" layoutY="114.0" text="Rp">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="164.0" layoutY="143.0" text="Rp">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="164.0" layoutY="181.0" text="Rp">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbJumlahPemasukkan" layoutX="189.0" layoutY="114.0" text="0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbJumlahPengeluaran" layoutX="189.0" layoutY="143.0" text="0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbJumlahSisaSaldo" layoutX="189.0" layoutY="181.0" text="0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </center>

@@ -159,6 +159,7 @@ public class SettingProfileController implements Initializable {
 
             HomeController home = loader.getController();
             home.setLabelUsername(lbUsername.getText(), idUser,dompet);
+            home.updateSaldo();
             Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
@@ -194,6 +195,7 @@ public class SettingProfileController implements Initializable {
     }
     
 }
+
 
 
 
