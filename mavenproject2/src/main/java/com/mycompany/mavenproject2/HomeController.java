@@ -346,6 +346,21 @@ public class HomeController implements Initializable {
     }
     
     @FXML
+    public void pindahAnggaran(MouseEvent event) throws SQLException, IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Anggaran.fxml"));
+        Parent root = (Parent) loader.load();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/styles/Styles.css");
+
+        AnggaranController anggaran = loader.getController();
+        System.out.println(namaDompet);
+        anggaran.setIdandName(idUser, lbNama.getText(), namaDompet);        
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    @FXML
     public void pindahPeminjaman(MouseEvent event) throws SQLException, IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/peminjaman.fxml"));
         Parent root = (Parent) loader.load();
@@ -371,6 +386,39 @@ public class HomeController implements Initializable {
         KategoriController kategori = loader.getController();
         kategori.getNamaAndId( lbNama.getText(), idUser, namaDompet);
         kategori.tampilkanTable();
+        System.out.println(idDompet);
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+        
+    }
+    
+    @FXML
+    public void pindahLaporanBulanan(MouseEvent event) throws SQLException, IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/laporanBulanan.fxml"));
+        Parent root = (Parent) loader.load();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/styles/Styles.css");
+
+        LaporanBulananController laporanBulanan = loader.getController();
+//        laporanBulanan.getNamaAndId( lbNama.getText(), idUser, namaDompet);
+//        laporanBulanan.tampilkanTable();
+        System.out.println(idDompet);
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+        
+    }
+    
+        public void pindahLaporan(MouseEvent event) throws SQLException, IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/laporan.fxml"));
+        Parent root = (Parent) loader.load();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/styles/Styles.css");
+
+        LaporanController laporan = loader.getController();
+//        laporan.getNamaAndId( lbNama.getText(), idUser, namaDompet);
+//        laporan.tampilkanTable();
         System.out.println(idDompet);
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);

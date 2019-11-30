@@ -8,47 +8,47 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.SettingProfileController">
+<AnchorPane id="AnchorPane" prefHeight="748.0" prefWidth="989.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.SettingProfileController">
     <stylesheets>
         <URL value="@/styles/settingprofile.css" />
     </stylesheets>
    <children>
-      <AnchorPane layoutX="-1.0" layoutY="-1.0" prefHeight="70.0" prefWidth="607.0" style="-fx-background-color: lightBlue; -fx-border-color: pink;">
+      <AnchorPane layoutX="-1.0" layoutY="-1.0" prefHeight="70.0" prefWidth="991.0" style="-fx-background-color: lightBlue; -fx-border-color: pink;">
          <children>
-            <Label layoutX="223.0" layoutY="19.0" text="MooneyBook" textFill="#881010">
+            <Label layoutX="460.0" layoutY="20.0" text="MooneyBook" textFill="#881010">
                <font>
                   <Font name="Berlin Sans FB Demi Bold" size="28.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="69.0" prefHeight="331.0" prefWidth="265.0" style="-fx-background-color: lightgreen; -fx-border-color: pink;">
+      <AnchorPane layoutY="69.0" prefHeight="678.0" prefWidth="266.0" style="-fx-background-color: lightgreen; -fx-border-color: pink;">
          <children>
             <Label layoutX="105.0" layoutY="14.0" text="Profil">
                <font>
                   <Font size="24.0" />
                </font></Label>
             <Label layoutX="14.0" layoutY="67.0" text="Username" />
-            <Label fx:id="lbUsername" layoutX="14.0" layoutY="88.0" prefHeight="19.0" prefWidth="149.0" style="-fx-background-color: lightblue;">
+            <Label fx:id="lbUsername" layoutX="14.0" layoutY="88.0" prefHeight="19.0" prefWidth="211.0" style="-fx-background-color: lightblue;">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
             <Label layoutX="14.0" layoutY="113.0" text="Email" />
-            <Label fx:id="lbEmail" layoutX="14.0" layoutY="134.0" prefHeight="19.0" prefWidth="149.0" style="-fx-background-color: lightblue;">
+            <Label fx:id="lbEmail" layoutX="14.0" layoutY="134.0" prefHeight="19.0" prefWidth="215.0" style="-fx-background-color: lightblue;">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
             <Label layoutX="14.0" layoutY="162.0" text="Password" />
-            <Label fx:id="lbPassword" layoutX="14.0" layoutY="183.0" prefHeight="19.0" prefWidth="149.0" style="-fx-background-color: lightblue;">
+            <Label fx:id="lbPassword" layoutX="14.0" layoutY="183.0" prefHeight="19.0" prefWidth="216.0" style="-fx-background-color: lightblue;">
                <font>
                   <Font size="13.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="266.0" layoutY="69.0" prefHeight="331.0" prefWidth="340.0" style="-fx-background-color: lightyellow; -fx-border-color: pink;">
+      <AnchorPane layoutX="266.0" layoutY="69.0" prefHeight="679.0" prefWidth="721.0" style="-fx-background-color: lightyellow; -fx-border-color: pink;">
          <children>
             <Label layoutX="72.0" layoutY="14.0" text="Edit Profil">
                <font>
@@ -58,15 +58,15 @@
             <Label layoutX="25.0" layoutY="68.0" text="Username" />
             <Label layoutX="25.0" layoutY="114.0" text="Email" />
             <Label fx:id="lbPassword1" layoutX="25.0" layoutY="163.0" text="Password" />
-            <TextField fx:id="tfUsername" layoutX="25.0" layoutY="85.0" />
-            <TextField fx:id="tfEmail" layoutX="25.0" layoutY="131.0" />
+            <TextField fx:id="tfUsername" layoutX="25.0" layoutY="85.0" prefHeight="26.0" prefWidth="223.0" />
+            <TextField fx:id="tfEmail" layoutX="25.0" layoutY="131.0" prefHeight="26.0" prefWidth="219.0" />
             <Label fx:id="lbPassword11" layoutX="25.0" layoutY="213.0" text="Konfirmasi Password" />
-            <Button fx:id="btnEditProfil" layoutX="25.0" layoutY="268.0" mnemonicParsing="false" onAction="#editProfil" prefHeight="25.0" prefWidth="149.0" text="Edit Profil" />
-            <Button fx:id="btnHapusAkun" layoutX="210.0" layoutY="131.0" mnemonicParsing="false" onAction="#hapusAkun" prefHeight="25.0" prefWidth="84.0" text="Hapus Akun" />
-            <Button fx:id="btnLogout" layoutX="209.0" layoutY="184.0" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="84.0" text="Logout" />
-            <Button fx:id="btnSelesai" layoutX="210.0" layoutY="231.0" mnemonicParsing="false" onAction="#selesai" prefHeight="25.0" prefWidth="84.0" text="Selesai" />
-            <PasswordField fx:id="pfPassword" layoutX="25.0" layoutY="184.0" />
-            <PasswordField fx:id="pfKonfirPassword" layoutX="25.0" layoutY="231.0" />
+            <Button fx:id="btnEditProfil" layoutX="44.0" layoutY="309.0" mnemonicParsing="false" onAction="#editProfil" prefHeight="25.0" prefWidth="149.0" text="Edit Profil" />
+            <Button fx:id="btnHapusAkun" layoutX="578.0" layoutY="311.0" mnemonicParsing="false" onAction="#hapusAkun" prefHeight="25.0" prefWidth="84.0" text="Hapus Akun" />
+            <Button fx:id="btnLogout" layoutX="414.0" layoutY="310.0" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="84.0" text="Logout" />
+            <Button fx:id="btnSelesai" layoutX="252.0" layoutY="307.0" mnemonicParsing="false" onAction="#selesai" prefHeight="25.0" prefWidth="84.0" text="Selesai" />
+            <PasswordField fx:id="pfPassword" layoutX="25.0" layoutY="184.0" prefHeight="26.0" prefWidth="217.0" />
+            <PasswordField fx:id="pfKonfirPassword" layoutX="25.0" layoutY="231.0" prefHeight="26.0" prefWidth="218.0" />
          </children></AnchorPane>
    </children>
 </AnchorPane>

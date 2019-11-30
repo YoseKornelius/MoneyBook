@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.mycompany.mavenproject2;
 
 import java.io.IOException;
@@ -7,17 +11,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.Format;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
-import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,18 +24,31 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javax.swing.Action;
 
+/**
+ * FXML Controller class
+ *
+ * @author YOSE
+ */
+public class LaporanBulananController implements Initializable {
 
-public class AnggaranController implements Initializable {
-    
+    @FXML
+    public void pindahHome(MouseEvent event) throws SQLException, IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Home.fxml"));
+        Parent root = (Parent) loader.load();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/styles/Styles.css");
+
+        HomeController home = loader.getController();
+        home.setLabelUsername(lbNama.getText(), idUser, dompet);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
     @FXML
     private ImageView imgHome;
     private String idUser, namaUser, dompet, idDompet, idKategori, tampNama, tampNominal;
@@ -60,12 +69,11 @@ public class AnggaranController implements Initializable {
     
     
     @FXML
-    private Label lbNama, lbId, lbNamaDompet;
-
-   
-    
-
-    public void setIdandName(String iduser, String Username, String dompet) {
+    private Label lbNama, lbId, lbNamaDompet;    
+    /**
+     * Initializes the controller class.
+     */
+        public void setIdandName(String iduser, String Username, String dompet) {
         this.idUser = iduser;
         this.namaUser = Username;
         lbNama.setText(namaUser);
@@ -85,12 +93,16 @@ public class AnggaranController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(PilihDompetController.class.getName()).log(Level.SEVERE, null, ex);
         }
-   
+        
+      
        
     }
-
+    
+    
+    
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }    
+    
 }
