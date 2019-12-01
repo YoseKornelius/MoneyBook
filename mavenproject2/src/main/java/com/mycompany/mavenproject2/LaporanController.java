@@ -129,12 +129,14 @@ public class LaporanController implements Initializable {
             }
             this.table.setItems(data);
         } else if (cbDetail.getValue() == "Peminjaman") {
+            System.out.println(idDompet);
             table.getColumns().addAll(colTanggalPemasukkan, colNamaPemasukkan, colNominalPemasukkan, colTglPengembalian, colStatus);
             String query = "SELECT nama_pinjaman, nominal_pinjaman, tanggal_pinjaman, tanggal_pengembalian, lunas FROM peminjaman WHERE id_dompet = '" + idDompet + "'";
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 String tanggal = rs.getString("tanggal_pinjaman");
                 String tanggalPengeluaran = rs.getString("tanggal_pengembalian");
+                System.out.println(tanggalPengeluaran);
                 String nama = rs.getString("nama_pinjaman");
                 String nominal = rs.getString("nominal_pinjaman");
                 String status = rs.getString("lunas");
@@ -163,7 +165,11 @@ public class LaporanController implements Initializable {
                     row.createCell(j).setCellValue("");
                 }
             }
-        }     
+        }   
+//        try {
+//            File file = FileChooser.showOpenDialog(stage);
+//        } catch (Exception e) {
+//        }
 
         FileOutputStream fileout = new FileOutputStream("D:" + "\\" + "contoh" + ".xls");
         workbook.write(fileout);
@@ -233,7 +239,7 @@ public class LaporanController implements Initializable {
         this.colTanggalPemasukkan.setCellValueFactory(new PropertyValueFactory("Tanggal"));
         this.colNamaPemasukkan.setCellValueFactory(new PropertyValueFactory("Nama"));
         this.colNominalPemasukkan.setCellValueFactory(new PropertyValueFactory("Nominal"));
-        this.colTglPengembalian.setCellValueFactory(new PropertyValueFactory("Tgl Pengembalian"));
+        this.colTglPengembalian.setCellValueFactory(new PropertyValueFactory("tglPengembalian"));
         this.colStatus.setCellValueFactory(new PropertyValueFactory("Status"));
 
         this.colNamaPemasukkan.setMinWidth(100);
@@ -278,8 +284,7 @@ public class LaporanController implements Initializable {
 
     public void updateSaldo() {
         if (cbPilihDompet.getValue() != null) {
-            int pemasukkan = 0, pengeluaran = 0, sisaAkhir = 0;
-            String idDompet = "";
+            int pemasukkan = 0, pengeluaran = 0, sisaAkhir = 0;            
             try {
                 Connection conn = sqliteConnect.connect().Connector();
                 Statement stat = conn.createStatement();
