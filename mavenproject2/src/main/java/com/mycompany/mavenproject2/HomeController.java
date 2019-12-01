@@ -406,6 +406,9 @@ public class HomeController implements Initializable {
         LaporanBulananController laporanBulanan = loader.getController();
 //        laporanBulanan.getNamaAndId( lbNama.getText(), idUser, namaDompet);
 //        laporanBulanan.tampilkanTable();
+        laporanBulanan.setIdandName(idUser, userName, namaDompet);
+        laporanBulanan.getNamaDompet(cbPilihDompet.getValue());
+        laporanBulanan.updateSaldo();
         System.out.println(idDompet);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
@@ -592,3 +595,5 @@ public class HomeController implements Initializable {
     }
 
 }
+
+
