@@ -25,9 +25,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -50,18 +54,45 @@ public class LaporanController implements Initializable {
     private ComboBox<String> comboKategori;
     @FXML
     private ComboBox<String> cbDetail;
-
+    
+    @FXML
+    private TableView table;
+    @FXML
+    private Button tombolConf;
+    
     @FXML
     DatePicker tglAwal, tglAkhir;
     
     private String jenis;
     
-    public String namaDompet;
-    public int idDompet;
+    public String namaDompet, user, idUser,idDompet;
+    
+    @FXML
+    private TableColumn<tampilkanLaporan, String> colPemasukkan = new TableColumn("Pemasukkan");
 
     ObservableList<String> listDompet = FXCollections.observableArrayList();
     ObservableList<String> listDetail = FXCollections.observableArrayList();
     ObservableList<String> listKategori = FXCollections.observableArrayList();
+    
+    @FXML
+    public void laporanTabel(ActionEvent event) throws SQLException{
+        table.getColumns().clear();
+        table.getColumns().addAll(colPemasukkan);
+        ObservableList<tampilkanLaporan> isi = FXCollections.observableArrayList();
+        Connection conn = sqliteConnect.connect().Connector();
+        Statement statement;
+        statement = conn.createStatement();
+        if(cbDetail.getValue()=="Pemasukkan"){
+            System.out.println(idDompet);
+            System.out.println(tglAwal.getValue());
+            String query="select nominal_pemasukkan from pemasukkan where id_dompet='"+idDompet+"' and (tanggal_pemasukkan between '"+tglAwal.getValue()+"' and '"+tglAkhir.getValue()+"')";
+            ResultSet rs = statement.executeQuery(query);
+            while(rs.next()){
+                isi.add(new tampilkanLaporan(rs.getString("nominal_pemasukkan")));
+            }
+            this.table.setItems(isi);
+        }
+    }
     
     @FXML
     public void pilihJenis(ActionEvent event){
@@ -119,8 +150,9 @@ public class LaporanController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO  
-//        cbDetail.setValue("Semua");
+        // TODO
+        this.colPemasukkan.setCellValueFactory(new PropertyValueFactory("pemasukkan"));
+        this.colPemasukkan.setMinWidth(110);
     }
 
     public void setIdandName(String iduser, String Username, ComboBox<String> dompet, String namaDompet) {
@@ -128,6 +160,22 @@ public class LaporanController implements Initializable {
         this.lbNama.setText(Username);
         // this.cbPilihDompet = dompet;
         //this.cbPilihDompet.setValue(namaDompet);
+        this.namaDompet=namaDompet;
+        this.idUser=iduser;
+        this.user=Username;
+        try {
+            Connection connection = sqliteConnect.connect().Connector();
+            Statement statement;
+            statement = connection.createStatement();
+            String query = "SELECT id_dompet from dompet where nama_dompet='" + namaDompet + "' and id_user = '" + iduser + "'";
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                idDompet = rs.getString(1);
+            }
+            System.out.println(idDompet);
+        } catch (SQLException ex) {
+            Logger.getLogger(PilihDompetController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void getNamaDompet(String nama) {
@@ -176,6 +224,21 @@ public class LaporanController implements Initializable {
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
