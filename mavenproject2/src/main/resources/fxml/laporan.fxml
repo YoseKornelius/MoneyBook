@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="749.0" prefWidth="989.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.LaporanController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="749.0" prefWidth="989.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.LaporanController">
        <top>
       <HBox prefHeight="55.0" prefWidth="600.0" style="-fx-background-color: lightblue;" BorderPane.alignment="CENTER">
          <children>
@@ -156,7 +156,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="tombolConf" layoutX="837.0" layoutY="476.0" mnemonicParsing="false" onAction="#laporanTabel" prefHeight="61.0" prefWidth="121.0" text="CONFIRM" />
+            <Button fx:id="tombolConf" layoutX="724.0" layoutY="14.0" mnemonicParsing="false" onAction="#laporanTabel" prefHeight="25.0" prefWidth="90.0" text="CONFIRM" />
 <!--            onAction="#conf"-->
             <Label layoutX="572.0" layoutY="99.0" text="PEMASUKKAN : " />
             <Label layoutX="572.0" layoutY="151.0" text="PNGELUARAN : " />
@@ -171,6 +171,7 @@
             <DatePicker fx:id="tglAkhir" layoutX="367.0" layoutY="11.0" prefHeight="33.0" prefWidth="178.0" />
             <TableView fx:id="table" layoutX="22.0" layoutY="60.0" prefHeight="591.0" prefWidth="524.0" />
             <ComboBox fx:id="cbDetail" layoutX="561.0" layoutY="14.0" onAction="#pilihJenis" onMouseClicked="#cekJenis" prefWidth="150.0" promptText="Pilih Jenis" />
+            <Button fx:id="btnEksport" layoutX="840.0" layoutY="14.0" mnemonicParsing="false" onAction="#eksport" text="Eksport" />
          </children>
       </AnchorPane>
    </center>

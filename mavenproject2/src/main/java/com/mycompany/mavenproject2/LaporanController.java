@@ -5,6 +5,9 @@
  */
 package com.mycompany.mavenproject2;
 
+import static java.awt.SystemColor.window;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -13,6 +16,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,6 +38,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
 import javafx.stage.Stage;
 
 /**
@@ -54,60 +64,129 @@ public class LaporanController implements Initializable {
     private ComboBox<String> comboKategori;
     @FXML
     private ComboBox<String> cbDetail;
-    
+
     @FXML
-    private TableView table;
+    private TableView<tampilkanLaporan> table;
     @FXML
     private Button tombolConf;
-    
+
     @FXML
     DatePicker tglAwal, tglAkhir;
-    
-    private String jenis;
-    
-    public String namaDompet, user, idUser,idDompet;
-    
+
     @FXML
-    private TableColumn<tampilkanLaporan, String> colPemasukkan = new TableColumn("Pemasukkan");
+    Button btnEksport;
+
+    private String jenis;
+
+    public String namaDompet, user, idUser, idDompet;
+
+    @FXML
+    private TableColumn<tampilkanLaporan, String> colTanggalPemasukkan = new TableColumn("Tanggal");
+    private TableColumn<tampilkanLaporan, String> colNamaPemasukkan = new TableColumn("Nama");
+    private TableColumn<tampilkanLaporan, String> colNominalPemasukkan = new TableColumn("Nominal");
+    private TableColumn<tampilkanLaporan, String> colTglPengembalian = new TableColumn("Tgl Pengembalian");
+    private TableColumn<tampilkanLaporan, String> colStatus = new TableColumn("Status");
+
+    ObservableList<tampilkanLaporan> data = FXCollections.observableArrayList();
 
     ObservableList<String> listDompet = FXCollections.observableArrayList();
     ObservableList<String> listDetail = FXCollections.observableArrayList();
     ObservableList<String> listKategori = FXCollections.observableArrayList();
-    
+
     @FXML
-    public void laporanTabel(ActionEvent event) throws SQLException{
+    public void laporanTabel(ActionEvent event) throws SQLException {
         table.getColumns().clear();
-        table.getColumns().addAll(colPemasukkan);
+        table.getItems().clear();
+        List<String> rowTgl = new ArrayList();
+        List<String> rowNominal = new ArrayList();
+        List<String> rowNama = new ArrayList();
         ObservableList<tampilkanLaporan> isi = FXCollections.observableArrayList();
         Connection conn = sqliteConnect.connect().Connector();
         Statement statement;
         statement = conn.createStatement();
-        if(cbDetail.getValue()=="Pemasukkan"){
+        if (cbDetail.getValue() == "Pemasukkan") {
+            table.getColumns().addAll(colTanggalPemasukkan, colNamaPemasukkan, colNominalPemasukkan);
             System.out.println(idDompet);
             System.out.println(tglAwal.getValue());
-            String query="select nominal_pemasukkan from pemasukkan where id_dompet='"+idDompet+"' and (tanggal_pemasukkan between '"+tglAwal.getValue()+"' and '"+tglAkhir.getValue()+"')";
+            String query = "select tanggal_pemasukkan, nama_pemasukkan, nominal_pemasukkan from pemasukkan where id_dompet='" + idDompet + "' and (tanggal_pemasukkan between '" + tglAwal.getValue() + "' and '" + tglAkhir.getValue() + "')";
             ResultSet rs = statement.executeQuery(query);
-            while(rs.next()){
-                isi.add(new tampilkanLaporan(rs.getString("nominal_pemasukkan")));
+            while (rs.next()) {
+                String tanggal = rs.getString("tanggal_pemasukkan");
+                String nama = rs.getString("nama_pemasukkan");
+                String nominal = rs.getString("nominal_pemasukkan");
+                data.add(new tampilkanLaporan(tanggal, nama, nominal));
             }
-            this.table.setItems(isi);
+            this.table.setItems(data);
+        } else if (cbDetail.getValue() == "Pengeluaran") {
+            table.getColumns().addAll(colTanggalPemasukkan, colNamaPemasukkan, colNominalPemasukkan);
+            String query = "select tanggal_pengeluaran, nama_pengeluaran, nominal_pengeluaran from pengeluaran where id_dompet='" + idDompet + "' and (tanggal_pengeluaran between '" + tglAwal.getValue() + "' and '" + tglAkhir.getValue() + "')";
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                String tanggal = rs.getString("tanggal_pengeluaran");
+                String nama = rs.getString("nama_pengeluaran");
+                String nominal = rs.getString("nominal_pengeluaran");
+                data.add(new tampilkanLaporan(tanggal, nama, nominal));
+            }
+            this.table.setItems(data);
+        } else if (cbDetail.getValue() == "Peminjaman") {
+            table.getColumns().addAll(colTanggalPemasukkan, colNamaPemasukkan, colNominalPemasukkan, colTglPengembalian, colStatus);
+            String query = "SELECT nama_pinjaman, nominal_pinjaman, tanggal_pinjaman, tanggal_pengembalian, lunas FROM peminjaman WHERE id_dompet = '" + idDompet + "'";
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                String tanggal = rs.getString("tanggal_pinjaman");
+                String tanggalPengeluaran = rs.getString("tanggal_pengembalian");
+                String nama = rs.getString("nama_pinjaman");
+                String nominal = rs.getString("nominal_pinjaman");
+                String status = rs.getString("lunas");
+                data.add(new tampilkanLaporan(tanggal, nama, nominal, tanggalPengeluaran, status));
+            }
+            this.table.setItems(data);
         }
     }
-    
+
     @FXML
-    public void pilihJenis(ActionEvent event){
-        this.jenis=cbDetail.getValue().toString();
+    public void eksport(ActionEvent event) throws IOException {
+        Workbook workbook = new HSSFWorkbook();
+        org.apache.poi.ss.usermodel.Sheet spreadsheet = workbook.createSheet("sample");
+        Row row = spreadsheet.createRow(0);
+
+        for (int i = 0; i < table.getColumns().size(); i++) {
+            row.createCell(i).setCellValue(table.getColumns().get(i).getText());
+        }
+
+        for (int i = 0; i < table.getItems().size(); i++) {
+            row = spreadsheet.createRow(i + 1);
+            for (int j = 0; j < table.getColumns().size(); j++) {
+                if (table.getColumns().get(j).getCellData(i) != null) {
+                    row.createCell(j).setCellValue(table.getColumns().get(j).getCellData(i).toString());
+                } else {
+                    row.createCell(j).setCellValue("");
+                }
+            }
+        }     
+
+        FileOutputStream fileout = new FileOutputStream("D:" + "\\" + "contoh" + ".xls");
+        workbook.write(fileout);
+
+        //System.out.println(path + "\\" + this.namatxt.getText() + ".xlsx");
+        System.out.println("berhasil bambang");
+        System.out.println("berhasil export");
     }
-    
+
     @FXML
-    public void cekJenis(MouseEvent event){
+    public void pilihJenis(ActionEvent event) {
+        this.jenis = cbDetail.getValue().toString();
+    }
+
+    @FXML
+    public void cekJenis(MouseEvent event) {
         listDetail.clear();
         listDetail.add("Pemasukkan");
         listDetail.add("Pengeluaran");
         listDetail.add("Peminjaman");
         cbDetail.setItems(listDetail);
     }
-    
+
     @FXML
     public void pindahHome(MouseEvent event) throws SQLException, IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Home.fxml"));
@@ -151,8 +230,18 @@ public class LaporanController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        this.colPemasukkan.setCellValueFactory(new PropertyValueFactory("pemasukkan"));
-        this.colPemasukkan.setMinWidth(110);
+        this.colTanggalPemasukkan.setCellValueFactory(new PropertyValueFactory("Tanggal"));
+        this.colNamaPemasukkan.setCellValueFactory(new PropertyValueFactory("Nama"));
+        this.colNominalPemasukkan.setCellValueFactory(new PropertyValueFactory("Nominal"));
+        this.colTglPengembalian.setCellValueFactory(new PropertyValueFactory("Tgl Pengembalian"));
+        this.colStatus.setCellValueFactory(new PropertyValueFactory("Status"));
+
+        this.colNamaPemasukkan.setMinWidth(100);
+        this.colTanggalPemasukkan.setMinWidth(80);
+        this.colNominalPemasukkan.setMinWidth(80);
+        this.colTglPengembalian.setMinWidth(80);
+        this.colStatus.setMinWidth(60);
+
     }
 
     public void setIdandName(String iduser, String Username, ComboBox<String> dompet, String namaDompet) {
@@ -160,9 +249,9 @@ public class LaporanController implements Initializable {
         this.lbNama.setText(Username);
         // this.cbPilihDompet = dompet;
         //this.cbPilihDompet.setValue(namaDompet);
-        this.namaDompet=namaDompet;
-        this.idUser=iduser;
-        this.user=Username;
+        this.namaDompet = namaDompet;
+        this.idUser = iduser;
+        this.user = Username;
         try {
             Connection connection = sqliteConnect.connect().Connector();
             Statement statement;
@@ -174,7 +263,8 @@ public class LaporanController implements Initializable {
             }
             System.out.println(idDompet);
         } catch (SQLException ex) {
-            Logger.getLogger(PilihDompetController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PilihDompetController.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -224,24 +314,3 @@ public class LaporanController implements Initializable {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
