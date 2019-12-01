@@ -17,4 +17,5 @@ com\mycompany\mavenproject2\HomeController.class
 com\mycompany\mavenproject2\sqliteConnect.class
 com\mycompany\mavenproject2\PengeluaranController.class
 com\mycompany\mavenproject2\tampilkanLaporan.class
+com\mycompany\mavenproject2\tampilkanLaporanBulanan.class
 com\mycompany\mavenproject2\PemasukkanController.class
