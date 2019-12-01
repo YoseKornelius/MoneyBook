@@ -15,6 +15,7 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
@@ -28,6 +29,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -274,19 +278,27 @@ public class PemasukkanController implements Initializable {
         System.out.println(idDompet);
         String queryKategori="SELECT id_kategori from kategori where id_dompet='"+idDompet+"' and nama_kategori='"+kategoriHapus+"'";
         ResultSet rs = statement.executeQuery(queryKategori);
+        
         while(rs.next()){
             String idKategori = rs.getString(1).toString();
             String queryPemasukkan="SELECT id_pemasukkan from pemasukkan where id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"' and nama_pemasukkan='"+keteranganHapus+"'";
             ResultSet rsP = statement.executeQuery(queryPemasukkan);
-            while(rsP.next()){
-                String idPemasukkan = rs.getString(1).toString();
-                String queryHapus="DELETE from pemasukkan where id_pemasukkan='"+idPemasukkan+"' and id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"' and nama_pemasukkan='"+keteranganHapus+"'";
-                int hasil=statement.executeUpdate(queryHapus);
-                if(hasil==1){
-                    System.out.println("HAPUS BERHASIL");
-                    isitabel2();
-                }else{
-                    System.out.println("HAPUS TIDAK BERHASIL");
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation dialog"); 
+            alert.setHeaderText(null);
+            alert.setContentText("are you sure want to delete");
+            Optional <ButtonType> action = alert.showAndWait();
+            if(action.get() == ButtonType.OK){
+                while(rsP.next()){
+                    String idPemasukkan = rs.getString(1).toString();
+                    String queryHapus="DELETE from pemasukkan where id_pemasukkan='"+idPemasukkan+"' and id_dompet='"+idDompet+"' and id_kategori='"+idKategori+"' and nama_pemasukkan='"+keteranganHapus+"'";
+                    int hasil=statement.executeUpdate(queryHapus);
+                    if(hasil==1){
+                        System.out.println("HAPUS BERHASIL");
+                        isitabel2();
+                    }else{
+                        System.out.println("HAPUS TIDAK BERHASIL");
+                    }
                 }
             }
         }

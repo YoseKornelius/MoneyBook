@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,6 +28,8 @@ import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import java.util.regex.Matcher; 
 import java.util.regex.Pattern; 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 /**
  * FXML Controller class
@@ -119,10 +122,17 @@ public class SettingProfileController implements Initializable {
     
     @FXML
     public void hapusAkun(ActionEvent event) throws Exception{
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation dialog"); 
+        alert.setHeaderText(null);
+        alert.setContentText("are you sure want to delete");
+        Optional <ButtonType> action = alert.showAndWait();
+        if(action.get() == ButtonType.OK) {
         Connection connection = sqliteConnect.connect().Connector();
         Statement statement = connection.createStatement();
         String query = "DELETE FROM user where id_user='"+idUser+"'";
         int hasil = statement.executeUpdate(query);
+        
         if(hasil==1){
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/newLogin.fxml"));
@@ -135,6 +145,7 @@ public class SettingProfileController implements Initializable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
         }
     }
     
