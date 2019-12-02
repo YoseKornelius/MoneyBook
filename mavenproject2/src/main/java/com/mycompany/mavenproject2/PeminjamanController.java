@@ -58,9 +58,9 @@ public class PeminjamanController implements Initializable {
     private Tab EditPeminjamantab, EditPeminjamantabHapus;
     
     @FXML
-    private TextField txtKeteranganPeminjaman, txtNominalPeminjaman, txtEditNominal, txtEditKeterangan;
+    private TextField txtKeteranganPeminjaman, txtNominalPeminjaman, txtEditNominal, txtEditKeterangan, txtLunas;
     @FXML
-    private DatePicker tgl_peminjaman, tglEditPeminjaman;
+    private DatePicker tgl_peminjaman, tglEditPeminjaman, tglEditPeminjaman1;
 
     public ComboBox<String> cbTambahKategori;
 
@@ -77,16 +77,18 @@ public class PeminjamanController implements Initializable {
     private TableView<tampilTabel> peminjamantblHapus;
 
     @FXML
-    private TableColumn<tampilTabel, String> colTanggal, colKeterangan, colKategori, colNominal;
+    private TableColumn<tampilTabel, String> colTanggal, colKeterangan, colKategori, colNominal, colTanggalPengembalian, colLunas;
     @FXML
     private TableColumn<tampilTabel, String> colTanggalHapus = new TableColumn("Tanggal");
     private TableColumn<tampilTabel, String> colKategoriHapus = new TableColumn("Kategori");
     private TableColumn<tampilTabel, String> colKeteranganHapus = new TableColumn("Keterangan");
     private TableColumn<tampilTabel, String> colNominalHapus = new TableColumn("Nominal");
+    private TableColumn<tampilTabel, String> colTglPengembalianHapus = new TableColumn("T_Pengembalian");
+    private TableColumn<tampilTabel, String> colPelunasanHapus = new TableColumn("Lunas");
 
     ObservableList<String> list = FXCollections.observableArrayList();
     
-    private String kategoriHapus, tanggalHapus, keteranganHapus, nominalHapus;
+    private String kategoriHapus, tanggalHapus, keteranganHapus, nominalHapus, tglPengembalianHapus, lunasHapus;
     
     @FXML
     public void pindahHome(MouseEvent event) throws SQLException, IOException{
@@ -97,6 +99,7 @@ public class PeminjamanController implements Initializable {
 
         HomeController home = loader.getController();
         home.setLabelUsername(lbNama.getText(), iduser, dompet);
+        home.updateSaldo();
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
@@ -195,7 +198,7 @@ public class PeminjamanController implements Initializable {
 
             ObservableList<tampilTabel> isi = FXCollections.observableArrayList();
             while (rs.next()) {
-                isi.add(new tampilTabel(rs.getString("tanggal_pinjaman"), rs.getString("nama_kategori"), rs.getString("nama_pinjaman"), rs.getString("nominal_pinjaman")));
+                isi.add(new tampilTabel(rs.getString("tanggal_pinjaman"), rs.getString("nama_kategori"), rs.getString("nama_pinjaman"), rs.getString("nominal_pinjaman"), rs.getString("tanggal_pengembalian"), rs.getString("lunas")));
             }
             this.peminjamantbl.setItems(isi);
         } catch (Exception e) {
@@ -212,7 +215,7 @@ public class PeminjamanController implements Initializable {
     public void isitabel2() {
         try {
             peminjamantblHapus.getColumns().clear();
-            peminjamantblHapus.getColumns().addAll(colTanggalHapus,colKategoriHapus, colKeteranganHapus, colNominalHapus);
+            peminjamantblHapus.getColumns().addAll(colTanggalHapus,colKategoriHapus, colKeteranganHapus, colNominalHapus, colTglPengembalianHapus, colPelunasanHapus);
             Connection conn;
             Statement st;
             ResultSet rs;
@@ -228,7 +231,7 @@ public class PeminjamanController implements Initializable {
                 System.out.println(rs.getString("nama_pinjaman"));
                 System.out.println(rs.getString("nominal_pinjaman"));
                 
-                isi2.add(new tampilTabel(rs.getString("tanggal_pinjaman"), rs.getString("nama_kategori"), rs.getString("nama_pinjaman"), rs.getString("nominal_pinjaman")));
+                isi2.add(new tampilTabel(rs.getString("tanggal_pinjaman"), rs.getString("nama_kategori"), rs.getString("nama_pinjaman"), rs.getString("nominal_pinjaman"), rs.getString("tanggal_pengembalian"), rs.getString("lunas")));
             }
             this.peminjamantblHapus.setItems(isi2);
         } catch (Exception e) {
@@ -250,10 +253,14 @@ public class PeminjamanController implements Initializable {
             this.colKeteranganHapus.setCellValueFactory(new PropertyValueFactory("keterangan"));
             this.colNominalHapus.setCellValueFactory(new PropertyValueFactory("nominal"));
             this.colTanggalHapus.setCellValueFactory(new PropertyValueFactory("tgl"));
-            this.colKategoriHapus.setMinWidth(120);
-            this.colKeteranganHapus.setMinWidth(120);
-            this.colNominalHapus.setMinWidth(120);
-            this.colTanggalHapus.setMinWidth(120);
+            this.colTglPengembalianHapus.setCellValueFactory(new PropertyValueFactory("tglPengembalian"));
+            this.colPelunasanHapus.setCellValueFactory(new PropertyValueFactory("lunas"));
+            this.colKategoriHapus.setMinWidth(100);
+            this.colKeteranganHapus.setMinWidth(100);
+            this.colNominalHapus.setMinWidth(100);
+            this.colTanggalHapus.setMinWidth(100);
+            this.colTglPengembalianHapus.setMinWidth(100);
+            this.colPelunasanHapus.setMinWidth(100);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -263,6 +270,8 @@ public class PeminjamanController implements Initializable {
             this.colKeterangan.setCellValueFactory(new PropertyValueFactory("keterangan"));
             this.colNominal.setCellValueFactory(new PropertyValueFactory("nominal"));
             this.colTanggal.setCellValueFactory(new PropertyValueFactory("tgl"));
+            this.colTanggalPengembalian.setCellValueFactory(new PropertyValueFactory("tglPengembalian"));
+            this.colLunas.setCellValueFactory(new PropertyValueFactory("lunas"));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -276,6 +285,8 @@ public class PeminjamanController implements Initializable {
         tanggalHapus = peminjamantblHapus.getSelectionModel().getSelectedItem().getTgl();
         keteranganHapus = peminjamantblHapus.getSelectionModel().getSelectedItem().getKeterangan();
         nominalHapus = peminjamantblHapus.getSelectionModel().getSelectedItem().getNominal();
+        tglPengembalianHapus = peminjamantblHapus.getSelectionModel().getSelectedItem().getTglPengembalian();
+        lunasHapus = peminjamantblHapus.getSelectionModel().getSelectedItem().getLunas();
     }
     
     @FXML
@@ -306,18 +317,24 @@ public class PeminjamanController implements Initializable {
     @FXML
     public void editPeminjaman(MouseEvent event) throws Exception {
 
-        String tanggal, keterangan, nominal;
+        String tanggal, keterangan, nominal, tanggalPengembalian,pelunasan;
         tanggal = peminjamantbl.getSelectionModel().getSelectedItem().getTgl();
         keterangan = peminjamantbl.getSelectionModel().getSelectedItem().getKeterangan();
         nominal = peminjamantbl.getSelectionModel().getSelectedItem().getNominal();
+        tanggalPengembalian=peminjamantbl.getSelectionModel().getSelectedItem().getTglPengembalian();
+        pelunasan=peminjamantbl.getSelectionModel().getSelectedItem().getLunas();
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDate = LocalDate.parse(tanggal, formatter);
+        LocalDate localDate2;
+        localDate2 = LocalDate.parse(tanggalPengembalian, formatter);
         tglEditPeminjaman.setValue(localDate);
         txtEditKeterangan.setText(keterangan);
         txtEditNominal.setText(nominal);
         tampNama = txtEditKeterangan.getText();
         tampNominal = txtEditNominal.getText();
+        tglEditPeminjaman1.setValue(localDate2);
+        txtLunas.setText(pelunasan);
     }
     @FXML
     public void UpdatePeminjaman(ActionEvent event) throws SQLException {
@@ -327,7 +344,9 @@ public class PeminjamanController implements Initializable {
             statement = conn.createStatement();
             String query = "UPDATE peminjaman SET tanggal_pinjaman = '" + tglEditPeminjaman.getValue() + "',"
                     + " nama_pinjaman = '" + txtEditKeterangan.getText() + "', "
-                    + "nominal_pinjaman = '" + txtEditNominal.getText() + "' "
+                    + "nominal_pinjaman = '" + txtEditNominal.getText() + "', "
+                    + "tanggal_pengembalian = '" + tglEditPeminjaman1.getValue() + "', "
+                    + "lunas = '" + txtLunas.getText() + "' "
                     + "WHERE nama_pinjaman = '" + tampNama + "'"
                     + "AND nominal_pinjaman = '" + tampNominal + "'";
             int hasil = statement.executeUpdate(query);
@@ -344,6 +363,34 @@ public class PeminjamanController implements Initializable {
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

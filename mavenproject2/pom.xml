@@ -12,6 +12,25 @@
             <artifactId>sqlite-jdbc</artifactId>
             <version>3.7.2</version>
         </dependency>
+        
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.17</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.17</version>
+        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/net.raumzeitfalle.fx/filechooser -->
+        <dependency>
+            <groupId>net.raumzeitfalle.fx</groupId>
+            <artifactId>filechooser</artifactId>
+            <version>0.0.4</version>
+        </dependency>
     </dependencies>
     <name>mavenproject2</name>
 

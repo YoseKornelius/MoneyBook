@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="749.0" prefWidth="989.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.LaporanController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="749.0" prefWidth="989.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.mavenproject2.LaporanController">
        <top>
       <HBox prefHeight="55.0" prefWidth="600.0" style="-fx-background-color: lightblue;" BorderPane.alignment="CENTER">
          <children>
@@ -136,13 +136,13 @@
                               <Label id="lbUsername" fx:id="lbId" layoutX="742.0" layoutY="6.0" text="Username" />
                               <Label fx:id="lbAdaDompet" layoutX="740.0" layoutY="27.0" prefHeight="22.0" prefWidth="73.0" />
                               <Label layoutX="823.0" layoutY="29.0" text="Dompet :" />
-                              <ComboBox fx:id="cbPilihDompet" layoutX="882.0" layoutY="26.0"  prefHeight="26.0" prefWidth="110.0" />
+                              <ComboBox fx:id="cbPilihDompet" layoutX="877.0" layoutY="25.0" onAction="#pilih" onMouseClicked="#cekDompet" prefHeight="26.0" prefWidth="110.0" />
 <!--                              onAction="#pilih" onMouseClicked="#cekDompet"-->
                            </children>
                         </AnchorPane>
                      </children>
                   </HBox>
-                  <ImageView fx:id="imgHome" fitHeight="40.0" fitWidth="40.0" layoutX="12.0" layoutY="6.0"  pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imgHome" fitHeight="40.0" fitWidth="40.0" layoutX="12.0" layoutY="6.0" onMouseClicked="#pindahHome" pickOnBounds="true" preserveRatio="true">
                       <!--onMouseClicked="#pindahHome"-->
                      <image>
                         <Image url="@../gambar/home.png" />
@@ -156,20 +156,23 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="table" layoutX="22.0" layoutY="54.0" prefHeight="591.0" prefWidth="524.0" />
-            <Button fx:id="tombolConf" layoutX="837.0" layoutY="476.0" mnemonicParsing="false"  prefHeight="61.0" prefWidth="121.0" text="CONFIRM" />
+            <Button fx:id="tombolConf" layoutX="724.0" layoutY="14.0" mnemonicParsing="false" onAction="#laporanTabel" prefHeight="25.0" prefWidth="90.0" text="CONFIRM" />
 <!--            onAction="#conf"-->
             <Label layoutX="572.0" layoutY="99.0" text="PEMASUKKAN : " />
             <Label layoutX="572.0" layoutY="151.0" text="PNGELUARAN : " />
-            <Label fx:id="lbPemasukkan" layoutX="687.0" layoutY="100.0" text="NOMINAL" />
-            <Label fx:id="lbPengeluaran" layoutX="687.0" layoutY="152.0" text="NOMINAL" />
+            <Label fx:id="lbJumlahPemasukkan" layoutX="687.0" layoutY="100.0" text="NOMINAL" />
+            <Label fx:id="lbJumlahPengeluaran" layoutX="687.0" layoutY="152.0" text="NOMINAL" />
             <Label layoutX="573.0" layoutY="198.0" text="JUMLAH         : " />
-            <Label fx:id="lbTotal" layoutX="688.0" layoutY="199.0" text="NOMINAL" />
+            <Label fx:id="lbJumlahSisaSaldo" layoutX="688.0" layoutY="199.0" text="NOMINAL" />
             <Line endX="100.0" layoutX="759.0" layoutY="179.0" startX="-100.0" />
             <Label layoutX="22.0" layoutY="14.0" text="Tanggal awal" />
-            <DatePicker layoutX="96.0" layoutY="10.0" prefHeight="33.0" prefWidth="178.0" />
+            <DatePicker fx:id="tglAwal" layoutX="96.0" layoutY="10.0" prefHeight="33.0" prefWidth="178.0" />
             <Label layoutX="293.0" layoutY="15.0" text="Tanggal akhir" />
             <DatePicker fx:id="tglAkhir" layoutX="367.0" layoutY="11.0" prefHeight="33.0" prefWidth="178.0" />
+            <TableView fx:id="table" layoutX="22.0" layoutY="60.0" prefHeight="591.0" prefWidth="524.0" />
+            <ComboBox fx:id="cbDetail" layoutX="561.0" layoutY="14.0" onAction="#pilihJenis" onMouseClicked="#cekJenis" prefWidth="150.0" promptText="Pilih Jenis" />
+            <Button fx:id="btnEksport" layoutX="840.0" layoutY="14.0" mnemonicParsing="false" onAction="#eksport" text="Eksport" />
+            <Label fx:id="lbPeringatanEksport" layoutX="789.0" layoutY="52.0" textFill="RED" />
          </children>
       </AnchorPane>
    </center>

@@ -139,7 +139,7 @@
                         <Font name="Berlin Sans FB Demi Bold" size="28.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="45.0" fitWidth="46.0" layoutX="4.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="45.0" fitWidth="46.0" layoutX="4.0" layoutY="2.0" onMouseClicked="#pindahHome" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../gambar/home.png" />
                      </image>
@@ -195,7 +195,7 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <TextField layoutX="458.0" layoutY="421.0" prefHeight="38.0" prefWidth="265.0" />
+            <TextField fx:id="txtEdit" layoutX="458.0" layoutY="421.0" prefHeight="38.0" prefWidth="265.0" />
             <ComboBox fx:id="comboKategori1" layoutX="454.0" layoutY="326.0" onAction="#pilihKategori1" onMouseClicked="#isiComboKategori1" prefHeight="42.0" prefWidth="214.0" />
             <Label fx:id="lbNamaDompet" layoutX="868.0" layoutY="13.0" text="Dompet" />
          </children>

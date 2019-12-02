@@ -133,8 +133,8 @@
                               <Label layoutX="823.0" layoutY="8.0" text="Selamat Datang ," />
                               <Label id="lbUsername" fx:id="lbNama" layoutX="923.0" layoutY="8.0" text="Username" />
                               <Label id="lbUsername" fx:id="lbId" layoutX="756.0" layoutY="8.0" text="Username" />
-                              <ComboBox layoutX="874.0" layoutY="27.0" prefHeight="26.0" prefWidth="111.0" />
                               <Label layoutX="823.0" layoutY="30.0" text="Dompet :" />
+                              <Label id="lbUsername" fx:id="lbNamaDompet" layoutX="901.0" layoutY="29.0" text="Username" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -211,8 +211,8 @@
                                   <TableColumn fx:id="colKategori" prefWidth="75.0" text="Kategori" />
                                     <TableColumn fx:id="colKeterangan" prefWidth="75.0" text="Keterangan" />
                                     <TableColumn fx:id="colNominal" prefWidth="103.6666259765625" text="Nominal" />
-                                    <TableColumn fx:id="colCicilan" prefWidth="75.0" text="Cicilan" />
                                     <TableColumn fx:id="colTanggalPengembalian" prefWidth="99.20001220703125" text="T_Pengembalian" />
+                                    <TableColumn fx:id="colLunas" prefWidth="75.0" text="Lunas" />
                                 </columns>
                               </TableView>
                               <Button fx:id="btnEditPeminjaman" layoutX="835.0" layoutY="306.0" mnemonicParsing="false" onAction="#UpdatePeminjaman" prefHeight="41.0" prefWidth="72.0" text="Edit">
@@ -237,17 +237,12 @@
                               <Label layoutX="632.0" layoutY="64.0" text="Tanggal" />
                               <DatePicker fx:id="tglEditPeminjaman1" layoutX="702.0" layoutY="67.0" prefHeight="36.0" prefWidth="201.0" />
                               <Label layoutX="614.0" layoutY="83.0" text="Pengembalian" />
-                              <Label layoutX="632.0" layoutY="244.0" text="Nominal">
+                              <Label layoutX="625.0" layoutY="247.0" text="Pelunasan">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="txtEditNominal1" layoutX="701.0" layoutY="240.0" prefHeight="33.0" prefWidth="206.0" />
-                              <Label layoutX="635.0" layoutY="263.0" text="Ciciilan">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
+                              <TextField fx:id="txtLunas" layoutX="701.0" layoutY="240.0" prefHeight="33.0" prefWidth="206.0" />
                            </children>
                         </AnchorPane>
                   </content>
@@ -316,7 +311,6 @@
                   </Tab>
               </tabs>
             </TabPane>
-            <Label id="lbUsername" fx:id="lbNamaDompet" layoutX="711.0" layoutY="4.0" text="Username" />
          </children>
       </AnchorPane>
    </center>
