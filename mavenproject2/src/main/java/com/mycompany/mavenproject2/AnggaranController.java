@@ -54,7 +54,7 @@ public class AnggaranController implements Initializable {
 
     
     @FXML
-    private TextField txtNominalAnggaran,editAnggaran;
+    private TextField txtNominalAnggaran,txtEdit;
 
     @FXML
     TableColumn<TampilanAnggaran, String> nominal = new TableColumn("Nominal");
@@ -81,12 +81,29 @@ public class AnggaranController implements Initializable {
    ObservableList<String> listDompet = FXCollections.observableArrayList();
    ObservableList<TampilanAnggaran> list = FXCollections.observableArrayList();
    
-   public String namaDompet, kategoriHapus;
+   public String namaDompet, kategoriHapus, nominalHapus;
    public int idDompet1;
     
+   @FXML
+    public void pindahHome(MouseEvent event) throws SQLException, IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Home.fxml"));
+        Parent root = (Parent) loader.load();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/styles/Styles.css");
+
+        HomeController home = loader.getController();
+        home.setLabelUsername(lbNama.getText(), idUser, dompet);
+        home.getNamaDompet(cbPilihDompet.getValue());
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+   
     public void getNamaDompet(String nama){
         this.namaDompet = nama;
         System.out.println("nama ini dompet : " + namaDompet);
+        
+        cbPilihDompet.setValue(namaDompet);
         System.out.println("nama checkbox dompet : "+ cbPilihDompet.getValue());
     }
     
@@ -113,7 +130,7 @@ public class AnggaranController implements Initializable {
         this.namaDompet=cbPilihDompet.getValue();
         listKategori.clear();
         comboKategori.autosize();
-        
+        tampilkanTable();
         //updateSaldo();
     }
    
@@ -189,7 +206,7 @@ public class AnggaranController implements Initializable {
                 while(rs.next()){
                     listKategori1.add(rs.getString(1));
                 }
-                comboKategori1.setItems(listKategori);
+                comboKategori1.setItems(listKategori1);
             }
             
         } catch (SQLException ex) {
@@ -244,8 +261,10 @@ public class AnggaranController implements Initializable {
     
     @FXML
     public void hapusanggaran(MouseEvent event){
-        kategoriHapus = tblAnggaran.getSelectionModel().getSelectedItem().getNominal();
-        editAnggaran.setText(kategoriHapus);
+        nominalHapus = tblAnggaran.getSelectionModel().getSelectedItem().getNominal();
+        kategoriHapus=tblAnggaran.getSelectionModel().getSelectedItem().getKategori();
+        txtEdit.setText(nominalHapus);
+        comboKategori1.setValue(kategoriHapus);
     }
     
     @FXML
@@ -259,7 +278,7 @@ public class AnggaranController implements Initializable {
             Connection connection = sqliteConnect.connect().Connector();
             Statement statement;
             statement=connection.createStatement();
-            String query="DELETE from anggaran where id_dompet='"+idDompet+"' AND nominal='"+kategoriHapus+"'";
+            String query="DELETE from anggaran where id_dompet='"+idDompet+"' AND nominal='"+nominalHapus+"'";
             int hasil = statement.executeUpdate(query);
             if(hasil==1){
                 System.out.println("Berhasil");
@@ -276,10 +295,10 @@ public class AnggaranController implements Initializable {
         Connection connection = sqliteConnect.connect().Connector();
         Statement statement;
         statement=connection.createStatement();
-        String yangDiEdit = editAnggaran.getText();
+        String yangDiEdit = txtEdit.getText();
         System.out.println(yangDiEdit);
-        System.out.println(editAnggaran.getText());
-        String query="UPDATE anggaran SET nominal='"+yangDiEdit+"' where id_dompet='"+idDompet+"' and nominal='"+kategoriHapus+"'";
+        System.out.println(txtEdit.getText());
+        String query="UPDATE anggaran SET nominal='"+yangDiEdit+"' where id_dompet='"+idDompet+"' and nominal='"+nominalHapus+"'";
         int hasil = statement.executeUpdate(query);
         if(hasil==1){
             System.out.println("Berhasil");
@@ -306,22 +325,17 @@ public class AnggaranController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(PilihDompetController.class.getName()).log(Level.SEVERE, null, ex);
         }
+            System.out.println(idDompet1);
             list.clear();
             tblAnggaran.getItems().clear();
             tblAnggaran.getColumns().clear();
             tblAnggaran.getColumns().addAll(nominal,namaKategori);
-            String hasil="SELECT nominal from anggaran where id_dompet='"+idDompet1+"'";
-            
-            
+            String hasil="SELECT nominal, nama_kategori from anggaran inner join kategori where anggaran.Id_kategori=kategori.id_kategori and anggaran.Id_dompet='"+idDompet1+"'";
             ResultSet rs = statement.executeQuery(hasil);
             while(rs.next()){
-                String hasil1 = "SELECT nama_kategori from kategori where id_dompet='"+idDompet1+"'and id_kategori='"+namaDompet+"'";
-                ResultSet rsp = statement.executeQuery(hasil1);
-                while (rsp.next()) {
-                    
-                list.add(new TampilanAnggaran(rs.getString("nominal"), rsp.getString("nama_kategori")));    
-                }
-                
+                System.out.println(rs.getString("nominal"));
+                System.out.println(rs.getString("nama_kategori"));
+                list.add(new TampilanAnggaran(rs.getString("nominal"), rs.getString("nama_kategori")));
             }
             tblAnggaran.setItems(list);
         } catch (SQLException ex) {
@@ -363,5 +377,25 @@ public class AnggaranController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
          this.nominal.setMinWidth(130);
          this.nominal.setCellValueFactory(new PropertyValueFactory("nominal"));
+         this.namaKategori.setCellValueFactory(new PropertyValueFactory("kategori"));
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

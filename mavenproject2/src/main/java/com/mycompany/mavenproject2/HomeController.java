@@ -360,6 +360,7 @@ public class HomeController implements Initializable {
         System.out.println(namaDompet);
         anggaran.setIdandName(idUser, lbNama.getText(), namaDompet); 
         anggaran.getNamaDompet(cbPilihDompet.getValue());
+        anggaran.tampilkanTable();
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
@@ -597,5 +598,6 @@ public class HomeController implements Initializable {
     }
 
 }
+
 
 
