@@ -158,7 +158,7 @@
             <Label layoutX="32.0" layoutY="18.0" text="Bulan" />
             <ComboBox fx:id="comboBulan" layoutX="83.0" layoutY="14.0" onAction="#pilihBulan" onMouseClicked="#cekBulan" prefWidth="150.0" />
 <!--            onAction="#pilihBulan" onMouseClicked="#isiComboBulan"-->
-            <Button fx:id="tombolConf" layoutX="837.0" layoutY="476.0" mnemonicParsing="false" onAction="#LaporanBulanan" prefHeight="61.0" prefWidth="121.0" text="CONFIRM" />
+            <Button fx:id="tombolConf" layoutX="562.0" layoutY="18.0" mnemonicParsing="false" onAction="#LaporanBulanan" prefHeight="44.0" prefWidth="110.0" text="CONFIRM" />
 <!--             onAction="#conf"-->
             <Label layoutX="561.0" layoutY="100.0" text="PEMASUKKAN   : " />
             <Label layoutX="562.0" layoutY="152.0" text="PENGELUARAN : " />
@@ -169,6 +169,8 @@
             <Line endX="100.0" layoutX="759.0" layoutY="179.0" startX="-100.0" />
             <TableView fx:id="tabelPengeluaran" layoutX="24.0" layoutY="257.0" prefHeight="137.0" prefWidth="524.0" />
             <TableView fx:id="tabelPeminjaman" layoutX="24.0" layoutY="438.0" prefHeight="144.0" prefWidth="524.0" />
+            <Button fx:id="btnExport" layoutX="696.0" layoutY="18.0" mnemonicParsing="false" onAction="#eksport" prefHeight="43.0" prefWidth="106.0" text="Export" />
+            <Label fx:id="lbPeringatanEksport" layoutX="303.0" layoutY="18.0" />
          </children>
       </AnchorPane>
    </center>

@@ -5,6 +5,8 @@
  */
 package com.mycompany.mavenproject2;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -33,7 +35,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
 
 /**
  * FXML Controller class
@@ -96,6 +102,9 @@ public class LaporanBulananController implements Initializable {
     @FXML
     private Label lbSisa;
     
+    @FXML
+    private Label lbPeringatanEksport;
+    
     private String tampBulan;
     
     @FXML
@@ -139,6 +148,128 @@ public class LaporanBulananController implements Initializable {
       
        
     }
+    
+        @FXML
+    public void eksport(ActionEvent event) throws IOException {
+        if (tabelPemasukkan.getItems().isEmpty()) {
+            lbPeringatanEksport.setText("TIdak bisa Eksport Tabel Kosong!");
+        } else {
+            lbPeringatanEksport.setText("");
+            final Stage primaryStage = null;
+            Workbook workbook = new HSSFWorkbook();
+            org.apache.poi.ss.usermodel.Sheet spreadsheet = workbook.createSheet("sample");
+            Row row = spreadsheet.createRow(0);
+
+            for (int i = 0; i < tabelPemasukkan.getColumns().size(); i++) {
+                row.createCell(i).setCellValue(tabelPemasukkan.getColumns().get(i).getText());
+            }
+
+            for (int i = 0; i < tabelPemasukkan.getItems().size(); i++) {
+                row = spreadsheet.createRow(i + 1);
+                for (int j = 0; j < tabelPemasukkan.getColumns().size(); j++) {
+                    if (tabelPemasukkan.getColumns().get(j).getCellData(i) != null) {
+                        row.createCell(j).setCellValue(tabelPemasukkan.getColumns().get(j).getCellData(i).toString());
+                    } else {
+                        row.createCell(j).setCellValue("");
+                    }
+                }
+            }
+            FileChooser fileChooser = new FileChooser();
+            //filter ekstensi yang mau
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XLS files (*.xls)", "*.xls");
+            fileChooser.getExtensionFilters().add(extFilter);
+
+            //ini buka file dialog
+            File saveFile = fileChooser.showSaveDialog(tabelPemasukkan.getScene().getWindow());
+
+            if (saveFile != null) {
+                FileOutputStream fileout = new FileOutputStream(saveFile.getAbsolutePath());
+                System.out.println(saveFile.getAbsolutePath());
+                workbook.write(fileout);
+                System.out.println("berhasil bambang");
+            System.out.println("berhasil export");
+            }                        
+        }
+        if (tabelPengeluaran.getItems().isEmpty()) {
+            lbPeringatanEksport.setText("TIdak bisa Eksport Tabel Kosong!");
+        } else {
+            lbPeringatanEksport.setText("");
+            final Stage primaryStage = null;
+            Workbook workbook = new HSSFWorkbook();
+            org.apache.poi.ss.usermodel.Sheet spreadsheet = workbook.createSheet("sample");
+            Row row = spreadsheet.createRow(0);
+
+            for (int i = 0; i < tabelPengeluaran.getColumns().size(); i++) {
+                row.createCell(i).setCellValue(tabelPengeluaran.getColumns().get(i).getText());
+            }
+
+            for (int i = 0; i < tabelPengeluaran.getItems().size(); i++) {
+                row = spreadsheet.createRow(i + 1);
+                for (int j = 0; j < tabelPengeluaran.getColumns().size(); j++) {
+                    if (tabelPengeluaran.getColumns().get(j).getCellData(i) != null) {
+                        row.createCell(j).setCellValue(tabelPengeluaran.getColumns().get(j).getCellData(i).toString());
+                    } else {
+                        row.createCell(j).setCellValue("");
+                    }
+                }
+            }
+            FileChooser fileChooser = new FileChooser();
+            //filter ekstensi yang mau
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XLS files (*.xls)", "*.xls");
+            fileChooser.getExtensionFilters().add(extFilter);
+
+            //ini buka file dialog
+            File saveFile = fileChooser.showSaveDialog(tabelPengeluaran.getScene().getWindow());
+
+            if (saveFile != null) {
+                FileOutputStream fileout = new FileOutputStream(saveFile.getAbsolutePath());
+                System.out.println(saveFile.getAbsolutePath());
+                workbook.write(fileout);
+                System.out.println("berhasil bambang");
+            System.out.println("berhasil export");
+            }                        
+        }
+        if (tabelPeminjaman.getItems().isEmpty()) {
+            lbPeringatanEksport.setText("TIdak bisa Eksport Tabel Kosong!");
+        } else {
+            lbPeringatanEksport.setText("");
+            final Stage primaryStage = null;
+            Workbook workbook = new HSSFWorkbook();
+            org.apache.poi.ss.usermodel.Sheet spreadsheet = workbook.createSheet("sample");
+            Row row = spreadsheet.createRow(0);
+
+            for (int i = 0; i < tabelPeminjaman.getColumns().size(); i++) {
+                row.createCell(i).setCellValue(tabelPeminjaman.getColumns().get(i).getText());
+            }
+
+            for (int i = 0; i < tabelPeminjaman.getItems().size(); i++) {
+                row = spreadsheet.createRow(i + 1);
+                for (int j = 0; j < tabelPeminjaman.getColumns().size(); j++) {
+                    if (tabelPeminjaman.getColumns().get(j).getCellData(i) != null) {
+                        row.createCell(j).setCellValue(tabelPeminjaman.getColumns().get(j).getCellData(i).toString());
+                    } else {
+                        row.createCell(j).setCellValue("");
+                    }
+                }
+            }
+            FileChooser fileChooser = new FileChooser();
+            //filter ekstensi yang mau
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XLS files (*.xls)", "*.xls");
+            fileChooser.getExtensionFilters().add(extFilter);
+
+            //ini buka file dialog
+            File saveFile = fileChooser.showSaveDialog(tabelPeminjaman.getScene().getWindow());
+
+            if (saveFile != null) {
+                FileOutputStream fileout = new FileOutputStream(saveFile.getAbsolutePath());
+                System.out.println(saveFile.getAbsolutePath());
+                workbook.write(fileout);
+                System.out.println("berhasil bambang");
+            System.out.println("berhasil export");
+            }                        
+        }
+    }
+    
     @FXML
     public void getNamaDompet(String nama) {
         this.namaDompet = nama;
@@ -363,6 +494,11 @@ public class LaporanBulananController implements Initializable {
     }    
     
 }
+
+
+
+
+
 
 
 
