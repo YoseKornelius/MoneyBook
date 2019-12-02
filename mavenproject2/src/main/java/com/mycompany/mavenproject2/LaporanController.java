@@ -57,6 +57,8 @@ public class LaporanController implements Initializable {
      */
     @FXML
     Label lbId, lbNama, lbPemasukkan, lbPengeluaran, lbTotal, lbJumlahSisaSaldo, lbJumlahPemasukkan, lbJumlahPengeluaran;
+    @FXML
+    Label lbPeringatanEksport;
 
     @FXML
     private ComboBox<String> cbPilihDompet;
@@ -148,35 +150,45 @@ public class LaporanController implements Initializable {
 
     @FXML
     public void eksport(ActionEvent event) throws IOException {
-        Workbook workbook = new HSSFWorkbook();
-        org.apache.poi.ss.usermodel.Sheet spreadsheet = workbook.createSheet("sample");
-        Row row = spreadsheet.createRow(0);
+        if (table.getItems().isEmpty()) {
+            lbPeringatanEksport.setText("TIdak bisa Eksport Tabel Kosong!");
+        } else {
+            lbPeringatanEksport.setText("");
+            final Stage primaryStage = null;
+            Workbook workbook = new HSSFWorkbook();
+            org.apache.poi.ss.usermodel.Sheet spreadsheet = workbook.createSheet("sample");
+            Row row = spreadsheet.createRow(0);
 
-        for (int i = 0; i < table.getColumns().size(); i++) {
-            row.createCell(i).setCellValue(table.getColumns().get(i).getText());
-        }
+            for (int i = 0; i < table.getColumns().size(); i++) {
+                row.createCell(i).setCellValue(table.getColumns().get(i).getText());
+            }
 
-        for (int i = 0; i < table.getItems().size(); i++) {
-            row = spreadsheet.createRow(i + 1);
-            for (int j = 0; j < table.getColumns().size(); j++) {
-                if (table.getColumns().get(j).getCellData(i) != null) {
-                    row.createCell(j).setCellValue(table.getColumns().get(j).getCellData(i).toString());
-                } else {
-                    row.createCell(j).setCellValue("");
+            for (int i = 0; i < table.getItems().size(); i++) {
+                row = spreadsheet.createRow(i + 1);
+                for (int j = 0; j < table.getColumns().size(); j++) {
+                    if (table.getColumns().get(j).getCellData(i) != null) {
+                        row.createCell(j).setCellValue(table.getColumns().get(j).getCellData(i).toString());
+                    } else {
+                        row.createCell(j).setCellValue("");
+                    }
                 }
             }
-        }   
-//        try {
-//            File file = FileChooser.showOpenDialog(stage);
-//        } catch (Exception e) {
-//        }
+            FileChooser fileChooser = new FileChooser();
+            //filter ekstensi yang mau
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XLS files (*.xls)", "*.xls");
+            fileChooser.getExtensionFilters().add(extFilter);
 
-        FileOutputStream fileout = new FileOutputStream("D:" + "\\" + "contoh" + ".xls");
-        workbook.write(fileout);
+            //ini buka file dialog
+            File saveFile = fileChooser.showSaveDialog(table.getScene().getWindow());
 
-        //System.out.println(path + "\\" + this.namatxt.getText() + ".xlsx");
-        System.out.println("berhasil bambang");
-        System.out.println("berhasil export");
+            if (saveFile != null) {
+                FileOutputStream fileout = new FileOutputStream(saveFile.getAbsolutePath());
+                System.out.println(saveFile.getAbsolutePath());
+                workbook.write(fileout);
+                System.out.println("berhasil bambang");
+            System.out.println("berhasil export");
+            }                        
+        }
     }
 
     @FXML
@@ -284,7 +296,7 @@ public class LaporanController implements Initializable {
 
     public void updateSaldo() {
         if (cbPilihDompet.getValue() != null) {
-            int pemasukkan = 0, pengeluaran = 0, sisaAkhir = 0;            
+            int pemasukkan = 0, pengeluaran = 0, sisaAkhir = 0;
             try {
                 Connection conn = sqliteConnect.connect().Connector();
                 Statement stat = conn.createStatement();
@@ -309,13 +321,16 @@ public class LaporanController implements Initializable {
                     pengeluaran += Integer.parseInt(rsPengeluaran.getString(1));
                     System.out.println(rsPengeluaran.getString(1));
                 }
-                lbJumlahSisaSaldo.setText(Integer.toString(pemasukkan - pengeluaran));
+                lbJumlahSisaSaldo.setText(Integer.toString(pemasukkan - pengeluaran));                                
                 lbJumlahPemasukkan.setText(Integer.toString(pemasukkan));
                 lbJumlahPengeluaran.setText(Integer.toString(pengeluaran));
                 //lbJumlahPemasukkan.setText("10000");
             } catch (Exception e) {
+                
             }
-        }
+        }                
     }
+    
+    
 
 }

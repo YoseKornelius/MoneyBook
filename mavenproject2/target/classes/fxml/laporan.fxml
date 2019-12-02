@@ -172,6 +172,7 @@
             <TableView fx:id="table" layoutX="22.0" layoutY="60.0" prefHeight="591.0" prefWidth="524.0" />
             <ComboBox fx:id="cbDetail" layoutX="561.0" layoutY="14.0" onAction="#pilihJenis" onMouseClicked="#cekJenis" prefWidth="150.0" promptText="Pilih Jenis" />
             <Button fx:id="btnEksport" layoutX="840.0" layoutY="14.0" mnemonicParsing="false" onAction="#eksport" text="Eksport" />
+            <Label fx:id="lbPeringatanEksport" layoutX="789.0" layoutY="52.0" textFill="RED" />
          </children>
       </AnchorPane>
    </center>
