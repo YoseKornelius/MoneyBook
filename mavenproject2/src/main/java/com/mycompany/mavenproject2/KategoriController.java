@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +25,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -85,16 +88,23 @@ public class KategoriController implements Initializable {
     }
     @FXML
     public void hapus(ActionEvent event) throws SQLException{
-        Connection connection = sqliteConnect.connect().Connector();
-        Statement statement;
-        statement=connection.createStatement();
-        String query="DELETE from kategori where id_dompet='"+idDompet+"' AND nama_kategori='"+kategoriHapus+"'";
-        int hasil = statement.executeUpdate(query);
-        if(hasil==1){
-            System.out.println("Berhasil");
-            tampilkanTable();
-        }else{
-            System.out.println("GAGAL");
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation dialog"); 
+        alert.setHeaderText(null);
+        alert.setContentText("are you sure want to delete");
+        Optional <ButtonType> action = alert.showAndWait();
+        if(action.get() == ButtonType.OK){
+            Connection connection = sqliteConnect.connect().Connector();
+            Statement statement;
+            statement=connection.createStatement();
+            String query="DELETE from kategori where id_dompet='"+idDompet+"' AND nama_kategori='"+kategoriHapus+"'";
+            int hasil = statement.executeUpdate(query);
+            if(hasil==1){
+                System.out.println("Berhasil");
+                tampilkanTable();
+            }else{
+                System.out.println("GAGAL");
+            }
         }
     }
     

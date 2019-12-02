@@ -12,6 +12,7 @@ com\mycompany\mavenproject2\NewLoginController.class
 com\mycompany\mavenproject2\LaporanController.class
 com\mycompany\mavenproject2\RegisterController.class
 com\mycompany\mavenproject2\tampilTabel.class
+com\mycompany\mavenproject2\TampilanAnggaran.class
 com\mycompany\mavenproject2\AnggaranController.class
 com\mycompany\mavenproject2\HomeController.class
 com\mycompany\mavenproject2\sqliteConnect.class

@@ -81,6 +81,7 @@ public class HomeController implements Initializable {
     ObservableList<String> listKategori = FXCollections.observableArrayList();
     public String namaDompet;
     public int idDompet;
+    
     public String lunas;
 
     ObservableList<dataPencarian> data = FXCollections.observableArrayList();
@@ -357,8 +358,9 @@ public class HomeController implements Initializable {
 
         AnggaranController anggaran = loader.getController();
         System.out.println(namaDompet);
-        anggaran.setIdandName(idUser, lbNama.getText(), namaDompet);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        anggaran.setIdandName(idUser, lbNama.getText(), namaDompet); 
+        anggaran.getNamaDompet(cbPilihDompet.getValue());
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
     }
