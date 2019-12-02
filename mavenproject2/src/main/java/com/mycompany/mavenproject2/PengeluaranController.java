@@ -70,9 +70,9 @@ public class PengeluaranController implements Initializable {
 
     public ComboBox<String> cbTambahKategori;
 
-   
+   int tampNom;
     
-    
+    String tampNom1,tampNom2;
     
     @FXML
     private Label lbNama, lbId, lbNamaDompet;
@@ -155,6 +155,38 @@ public class PengeluaranController implements Initializable {
                     + " '" + txtNominalPengeluaran.getText() + "',"
                     + " '" + tgl_pengeluaran.getValue() + "' )";
             int hasil = statement.executeUpdate(query);
+            String query1 = "SELECT nominal_pengeluaran FROM pengeluaran WHERE id_dompet='" + idDompet + "' and id_kategori='" + idKategori + "'";
+            ResultSet rsp = statement.executeQuery(query1);
+            while (rsp.next()) {
+                
+                
+                tampNom1 = rsp.getString(1);
+                int tampNom3=Integer.parseInt(tampNom1);
+                tampNom= tampNom + tampNom3;
+            }
+            String query2 = "SELECT nominal FROM anggaran WHERE id_dompet='" + idDompet + "' and id_kategori='" + idKategori + "'";
+            ResultSet rspp = statement.executeQuery(query2);
+            while (rspp.next()) {
+                tampNom2 = rspp.getString(1);
+                
+                
+            }
+            int tampnom5=Integer.parseInt(tampNom2);
+            
+            int cobaalert = tampnom5-tampNom ;
+            
+            if(cobaalert < 0){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Pengingat");
+            alert.setHeaderText(null);
+            alert.setContentText("PENGELUARAN SUDAH MELEBIHI ANGGARAN, HARAP BERHEMAT");
+            Optional<ButtonType> action = alert.showAndWait();
+            
+            
+            
+            }
+            
+            
             if (hasil == 1) {
                 System.out.println("berhasil tambah pengeluaran");
                 txtKeteranganPengeluaran.clear();
@@ -163,6 +195,7 @@ public class PengeluaranController implements Initializable {
         } catch (SQLException ex) {
             ex.getMessage();
         }
+        
     }
     @FXML
     public void isitabel() {
