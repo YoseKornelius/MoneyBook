@@ -293,7 +293,9 @@ public class AnggaranController implements Initializable {
     public void editAnggaran(ActionEvent event) throws SQLException{
         System.out.println("editAnggaran.");
         Connection connection = sqliteConnect.connect().Connector();
+        System.out.println("1");
         Statement statement;
+        System.out.println("2");
         statement=connection.createStatement();
         String yangDiEdit = txtEdit.getText();
         System.out.println(yangDiEdit);
